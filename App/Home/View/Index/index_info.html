@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>首页-详情</title>
+	<base href="__PUBLIC__/" />
+	<link rel="stylesheet" href="css/nsty.css" />
+	<link rel="stylesheet" href="css/public.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body>
+<div class="nbodybg"></div>
+<div class="ncmtbox clearfix">
+	<!-- 导航部分 -->
+	<include file="common:header" />
+
+	<div class="n_conmentbox">
+		<!-- 左侧部分 -->
+		<include file="common:left" />
+
+		<!-- 右侧部分 -->
+		<div class="n_cmtrtbox">
+			<div class="L_all">
+				<!-- 留言反馈 -->
+				<div class="L_person">
+					<div class="L_person_tit">
+						<span>最新公告</span>
+					</div>
+					<!--  -->
+					<div class="L_new_mess L_detail_mess">
+						<!-- 首页详情 -->
+						<div class="L_detail">
+							<h3>{$notice.ntitle}<em>({$notice.ndate})</em></h3>
+							<div class="L_detail_con">
+								{$notice.ncontent}
+							</div>
+						</div>
+					</div>
+				<!-- 底部 -->
+				<div class="L_footer">
+					<p>提示:禁区(内容最多不要涉及到灰色区域)灰色区域开发时不显示</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery("#nav").slide({
+		type: "menu", // 效果类型，针对菜单/导航而引入的参数（默认slide）
+		titCell: ".nLi", //鼠标触发对象
+		targetCell: ".sub", //titCell里面包含的要显示/消失的对象
+		effect: "slideDown", //targetCell下拉效果
+		delayTime: 300, //效果时间
+		triggerTime: 0, //鼠标延迟触发时间（默认150）
+		returnDefault: true //鼠标移走后返回默认状态，例如默认频道是“预告片”，鼠标移走后会返回“预告片”（默认false）
+	});
+</script>
+</body>
+</html>

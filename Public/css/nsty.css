@@ -1,0 +1,390 @@
+/* css 重置 */
+
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 16px;
+}
+
+img,
+button {
+	border: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+
+/* 本例子css */
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.nav {
+	padding: 0 20px;
+	height: 34px;
+	line-height: 34px;
+	float: right;
+	position: relative;
+	z-index: 1;
+}
+
+.nav .nLi {
+	float: left;
+	position: relative;
+	display: inline;
+}
+
+.nav .nLi h3 {
+	float: left;
+	margin-top:12px;
+}
+
+.nav .nLi h3 a {
+	display: block;
+	padding: 12px 30px;
+	font-size: 16px;
+	color: #fff;
+}
+
+.nav .nLi h3 a span {
+	background: url(../images/n_icon1.png) no-repeat;
+	background-position: center;
+	width: 16px;
+	height: 10px;
+	display: block;
+	float: right;
+	margin-top: 12px;
+	margin-left: 5px;
+	transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+}
+
+.nav .nLi:hover span {
+	transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+}
+
+.nav .sub {
+	display: none;
+	left: 22px;
+	top:70px;
+	position: absolute;
+	line-height: 26px;
+	padding: 5px 0;
+	border: solid 1px #ccc;
+	background: #fff;
+}
+
+.nav .sub li {
+	zoom: 1;
+}
+
+.nav .sub a {
+	display: block;
+	float: left;
+	padding: 0 10px;
+	color: #666666;
+	font-size: 16px;
+}
+
+.nav .on h3 a {
+	color: #fff;
+}
+
+.ncmtbox {
+	width: 1200px;
+	margin: auto;
+	overflow: hidden;
+}
+
+.nnavtop {
+	height:70px;
+	background: #579fe9;
+}
+
+.nlogo img {
+	width: 166px;
+	height: 48px;
+	float: left;
+	display: block;
+	margin-left: 60px;
+	margin-top:8px
+}
+
+.n_conmentbox {
+	clear: both;
+	overflow: hidden;
+}
+
+
+/*左侧*/
+
+.n_cmtltbox {
+	width: 240px;
+	float: left;
+	background: #333333;
+	height: 700px
+}
+
+.nphoto {
+	width: 110px;
+	margin: 20px auto;
+	display: block;
+}
+
+.nphoto img {
+	width: 100px;
+	height: 100px;
+	border: solid 5px #3a74af;
+	border-radius: 50%;
+}
+
+.n_cmtltbox dl {
+	color: #fff;
+	font-size: 16px;
+	padding: 12px 20px;
+	font-family: "微软雅黑";
+}
+
+.n_cmtltbox dl dt {
+	float: left;
+	width: 88px;
+	text-align: right;
+}
+
+.n_cmtrtbox {
+	float: right;
+	overflow: auto;
+}
+
+
+/*订单查询*/
+
+.n_ddcxtit {
+	display: block;
+}
+
+.n_ddcxtit span {
+	margin-right: 10px
+}
+
+.n_ddcxtit select {
+	width: 170px;
+	padding: 5px;
+	border: solid 1px #ccc;
+}
+
+.ntext_time {
+	width: 170px;
+	padding: 6px;
+	border: solid 1px #ccc;
+}
+
+.nchaxbtn {
+	padding: 7px 30px;
+	background: #6699ff;
+	color: #fff;
+	border-radius: 5px;
+	margin-left: 10px;
+}
+
+.nddcxtable {
+	border: solid 1px #ccc;
+	margin: 25px 0;
+	width: 100%;
+}
+
+.nddcxtable tr {
+	border: solid 1px #ccc;
+}
+
+.nddcxtable tr:first-child {
+	background: #f6fbff;
+}
+
+.njjmx tr th,
+.njjmx tr td {
+	width: 11%;
+}
+
+.nddcxtable tr th,
+.nddcxtable tr td {
+	border-right: solid 1px #ccc;
+	max-width: 17%;
+	padding: 10px 0px;
+	text-align: center;
+	color: #666;
+}
+
+.npage {
+	display: block;
+	text-align: right;
+	overflow: hidden;
+	padding: 3px 0;
+}
+
+.npage a {
+	border: solid 1px #bbbbbb;
+	padding: 3px 8px;
+	margin: 0px 5px;
+	color: #666;
+}
+
+.npage a.pageon {
+	color: #2c89f9;
+	border: solid 1px #2c89f9;
+}
+
+.npage .npagetxt {
+	float: left;
+}
+
+.npagetxt input {
+	width: 40px;
+	padding: 0px 5px;
+	margin: 0 4px;
+}
+
+.npagetxt button {
+	background: none;
+}
+
+.nsjmmbox {
+	margin-top: 30px!important;
+}
+
+.nsjmmbox input {
+	width: 500px;
+	padding: 5px;
+	margin-left: 20px;
+}
+
+.nbtntij {
+	padding: 8px 100px;
+    color: #fff;
+    margin-top: 120px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: #6699ff;
+    border-radius: 5px;
+}
+
+.n_huiybh {
+	width: 75%;
+	padding: 5px 8px
+}
+
+.nbtndel {
+	background: #f05656;
+}
+
+.nbtnmsjh {
+	background: #6699ff;
+	margin-bottom: 5px;
+}
+
+.nbtnmsjh,
+.nbtndel {
+	color: #fff;
+	padding: 5px 10px;
+	border-radius: 4px;
+}
+
+.nsqgbox {
+	overflow: hidden;
+	margin-bottom: 36px;
+}
+
+.nsqgbox dl {
+	clear: both;
+	padding: 12px 0;
+	line-height: 36px;
+}
+
+.nsqgbox dl dt {
+	float: left;
+	text-align: right;
+	width: 160px;
+}
+
+.nsqgbox dl dd {
+	float: left;
+}
+
+.nsqgbox dl dd input {
+	width: 520px;
+	padding: 6px 10px;
+	background: #fff;
+	border: solid 1px #C0C4C7;
+}
+
+.nsqgbox dl dd select {
+	width: 542px;
+	padding: 6px 10px;
+	border: solid 1px #C0C4C7;
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	background: url(../images/nicon2.png) no-repeat right;
+	background-size: 36px;
+}
+
+.nhtcmt {
+	height: 666px;
+	overflow: auto;
+}
+
+.ntsspan {
+	color: red;
+	display: none;
+	margin-left: 5px;
+}
+
+.ncolor_red {
+	color: red;
+}
+
+.nbtnshentij,
+.nbtnxiugai {
+	width: 232px;
+	height: 35px;
+	text-align: center;
+	color: #fff;
+	font-size: 16px;
+	border-radius: 4px;
+}
+
+.nbtnshentij {
+	background: #6699ff;
+	margin-right: 77px
+}
+
+.nbtnxiugai {
+	background: #f05656;
+}
+
+.nbodybg {
+	background: #ccc;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}

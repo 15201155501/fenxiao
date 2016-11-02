@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>index</title>
+	<link rel="stylesheet" href="css/public.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body>
+<!-- 头部 -->
+<div class="hg-head">
+	<div class="hg-head-information">
+		<div class="hg-head-information-cen clearfix">
+			<div class="information_left">
+				<div class="information_left_signin"><span>欢迎&nbsp;&nbsp;&nbsp;已登陆会员名</span></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="hg-center">
+	<!-- 搜索 -->
+	<div class="hg-center-searchtext clearfix">
+		<div class="searchtext-logo ">
+			<a href="javascript:;">
+				<img src="images/q1.png" alt="恒工商城" height="77" width="191">
+			</a>
+		</div>
+		<div class="searchtext-logo-text">
+			<div class="bor"><span>自动化设备一站式采购平台</span></div>
+		</div>
+		<div class="searchtext-input">
+			<form action="#" class="clearfix">
+				<input type="text" name="text">
+				<button><img src="images/q11.png"></button>
+			</form>
+			<div class="form_value">
+				<span>买3赠一</span>
+				<span>美国进口电机</span>
+				<span>欧洲电机</span>
+				<span>伺服电机</span>
+			</div>
+		</div>
+		<!-- <div class="searchtext-shopping">
+			<a href="javascript:;"><span>我的购物车</span></a>
+		</div> -->
+	</div>
+	<!-- 内容部分 -->
+	<div class="L_shoping clearfix">
+		<!-- 左侧菜单列表 -->
+		<div class="L_shoping_list fl">
+			<div class="L_shoping_list_tit">全部商品分类</div>
+			<div class="L_shoping_nav">
+				<ul>
+					<li>
+						<a href="javascript:;">一类项目</a>
+						<em></em>
+					</li>
+					<li>
+						<a href="javascript:;">一类项目</a>
+						<em></em>
+					</li>
+					<li>
+						<a href="javascript:;">一类项目</a>
+						<em></em>
+					</li>
+					<li>
+						<a href="javascript:;">一类项目</a>
+						<em></em>
+					</li>
+					<li>
+						<a href="javascript:;">一类项目</a>
+						<em></em>
+					</li>
+					<li>
+						<a href="javascript:;">一类项目</a>
+						<em></em>
+					</li>
+					<li>
+						<a href="javascript:;">一类项目</a>
+						<em></em>
+					</li>
+					<li>
+						<a href="javascript:;">一类项目</a>
+						<em></em>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 右侧商品列表 -->
+		<div class="L_shoping_con fr">
+			<div class="L_shoping_con_nav">
+				<ul>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+				</ul>
+			</div>
+			<div class="L_shoping_con_nav">
+				<ul>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+					<li>
+						<img src="images/q22.png" alt="">
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 底部分页 -->
+		<div class="L_shoping_page fr">
+			<span><a href="javascript:;">上一页</a></span>
+			<span><a href="javascript:;">下一页</a></span>
+		</div>
+	</div>
+</div>
+</body>
+<script>
+$(function(){
+	$('.L_shoping_nav li').hover(
+		function() {
+			var index=$(this).index();
+			$(this).css('background','#000').siblings().css('background','#920303');
+			$(".L_shoping_con .L_shoping_con_nav").eq(index).show().siblings().hide();  
+		}); 
+})
+</script>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>修改密码</title>
+	<link rel="stylesheet" href="css/nsty.css" />
+	<link rel="stylesheet" href="css/public.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body>
+<div class="nbodybg"></div>
+<div class="ncmtbox clearfix">
+	<div class="nnavtop">
+		<a href="javascript:;"class="nlogo"><img src="images/nlogo.png"></a>
+		<ul id="nav" class="nav clearfix">
+			<li class="nLi">
+				<h3><a href="javascript:;" target="_blank">首页</a></h3>
+			</li>
+			<li class="nLi">
+				<h3><a href="javascript:;" target="_blank">管理团队<span></span></a></h3>
+				<ul class="sub">
+					<li>
+						<a href="javascript:;">业绩激活</a>
+					</li>
+					<li>
+						<a href="javascript:;">会员激活</a>
+					</li>
+					<li>
+						<a href="javascript:;">营销关系</a>
+					</li>
+					<li>
+						<a href="javascript:;">申请服务中</a>
+					</li>
+				</ul>
+			</li>
+			<li class="nLi on">
+				<h3><a href="javascript:;" target="_blank">财务中心<span></span></a></h3>
+				<ul class="sub">
+					<li>
+						<a href="javascript:;">新闻首页</a>
+					</li>
+					<li>
+						<a href="javascript:;">新闻人物</a>
+					</li>
+					<li>
+						<a href="javascript:;">新闻电视</a>
+					</li>
+					<li>
+						<a href="javascript:;">新闻图片</a>
+					</li>
+					<li>
+						<a href="javascript:;">新闻视频</a>
+					</li>
+					<li>
+						<a href="javascript:; ">新闻专题</a>
+					</li>
+				</ul>
+			</li>
+			<li class="nLi ">
+				<h3><a href="javascript:;" target="_blank">奖金管理<span></span></a></h3>
+				<ul class="sub">
+					<li>
+						<a href="javascript:;">新闻首页</a>
+					</li>
+					<li>
+						<a href="javascript:;">新闻人物</a>
+					</li>
+					<li>
+						<a href="javascript:;">新闻电视</a>
+					</li>
+					<li>
+						<a href="javascript:;">新闻图片</a>
+					</li>
+					<li>
+						<a href="javascript:;">新闻视频</a>
+					</li>
+					<li>
+						<a href="javascript:; ">新闻专题</a>
+					</li>
+				</ul>
+			</li>
+			<li class="nLi">
+				<h3><a href="javascript:;" target="_blank">信息安全<span></span></a></h3>
+				<ul class="sub">
+					<li>
+						<a href="javascript:;">新闻首页</a>
+					</li>
+					<li>
+						<a href="javascript:;">新闻人物</a>
+					</li>
+				
+				</ul>
+			</li>
+			<li class="nLi">
+				<h3><a href="javascript:;" target="_blank">服务台<span></span></a></h3>
+				<ul class="sub">
+					<li>
+						<a href="javascript:;">新闻首页</a>
+					</li>
+					<li>
+						<a href="javascript:;">新闻人物</a>
+					</li>
+				
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="n_conmentbox">
+		<!-- 左侧部分 -->
+		<div class="n_cmtltbox">
+			<a href="javascript:;"class="nphoto"><img src="images/npic1.png"></a>
+			<dl>
+				<dt>会员编号：</dt>
+				<dd>gs0001</dd>
+			</dl>
+			<dl>
+				<dt>会员姓名：</dt>
+				<dd>张三</dd>
+			</dl>
+			<dl>
+				<dt>会员系统：</dt>
+				<dd>10000元</dd>
+			</dl>
+			<dl>
+				<dt>股东系统：</dt>
+				<dd>10000元</dd>
+			</dl>
+			<dl>
+				<dt>养老系统：</dt>
+				<dd>10000元</dd>
+			</dl>
+			<dl>
+				<dt>注册币：</dt>
+				<dd>10000元</dd>
+			</dl>
+			<dl>
+				<dt>购物币：</dt>
+				<dd>10000元</dd>
+			</dl>
+			<dl>
+				<dt>奖金币：</dt>
+				<dd>10000元</dd>
+			</dl>
+			<dl>
+				<dt>已购物：</dt>
+				<dd>10000元</dd>
+			</dl>
+			<dl>
+				<dt>A市场：</dt>
+				<dd>11020人</dd>
+			</dl>
+			<dl>
+				<dt>B市场：</dt>
+				<dd>11020人</dd>
+			</dl>
+		</div>
+		<!-- 右侧部分 -->
+		<div class="n_cmtrtbox">
+			<div class="L_all">
+				<!-- 个人资料 -->
+				<div class="L_person">
+					<div class="L_person_tit">
+						<span>修改密码</span>
+					</div>
+					<!-- 修改密码 -->
+					<div class="L_write_pas">
+						<div class="L_write_pas1">
+							<p>修改一级密码:</p>
+							<ul>
+								<li  class="clearfix">
+									<label for="uyPas">
+										<span>原密码:</span>
+									</label>
+									<input type="password" id="uyPas" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+									<p id="text1"></p>
+								</li>
+								<li>
+									<label for="uxPas">
+										<span>新密码:</span>
+									</label>
+									<input type="password" id="uxPas" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+									<a  class="clearfix">
+										<em class=""></em>
+										<b>显示原密码</b>
+									</a>
+									<p id="text2"></p>
+								</li>
+								<li class="clearfix">
+									<label for="uqPas">
+										<span>确认新密码:</span>
+									</label>
+									<input type="password" id="uqPas" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+									<a  class="clearfix">
+										<em class=""></em>
+										<b>显示原密码</b>
+									</a>
+									<p id="text3"></p>
+								</li>
+							</ul>
+							<div class="L_write_pas_bnt">
+								<button class="bnts1">提交</button>
+							</div>
+						</div>
+						<div class="L_write_pas1">
+							<p>修改二级级密码:</p>
+							<ul>
+								<li  class="clearfix">
+									<label for="utyPas">
+										<span>原密码:</span>
+									</label>
+									<input type="password" id="utyPas" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+									<p id="text4"></p>
+								</li>
+								<li>
+									<label for="utxPas">
+										<span>新密码:</span>
+									</label>
+									<input type="password" id="utxPas" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+									<a  class="clearfix">
+										<em class=""></em>
+										<b>显示原密码</b>
+									</a>
+									<p id="text5"></p>
+								</li>
+								<li class="clearfix">
+									<label for="utqPas">
+										<span>确认新密码:</span>
+									</label>
+									<input type="password" id="utqPas" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+									<a  class="clearfix">
+										<em class=""></em>
+										<b>显示原密码</b>
+									</a>
+									<p id="text6"></p>
+								</li>
+							</ul>
+							<div class="L_write_pas_bnt">
+								<button class="bnts2">提交</button>
+							</div>
+						</div>
+						<div class="L_write_pas1">
+							<p>修改三级密码:</p>
+							<ul>
+								<li  class="clearfix">
+									<label for="usyPas">
+										<span>原密码:</span>
+									</label>
+									<input type="password" id="usyPas" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+									<p id="text7"></p>
+								</li>
+								<li>
+									<label for="usxPas">
+										<span>新密码:</span>
+									</label>
+									<input type="password" id="usxPas" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+									<a  class="clearfix">
+										<em class=""></em>
+										<b>显示原密码</b>
+									</a>
+									<p id="text8"></p>
+								</li> 
+								<li class="clearfix">
+									<label for="usqPas">
+										<span>确认新密码:</span>
+									</label>
+									<input type="password" id="usqPas" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+									<a  class="clearfix">
+										<em class=""></em>
+										<b>显示原密码</b>
+									</a>
+									<p id="text9"></p>
+								</li>
+							</ul>
+							<div class="L_write_pas_bnt">
+								<button class="bnts3">提交</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 底部 -->
+				<div class="L_footer">
+					<p>提示:禁区(内容最多不要涉及到灰色区域)灰色区域开发时不显示</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery("#nav").slide({
+		type: "menu", // 效果类型，针对菜单/导航而引入的参数（默认slide）
+		titCell: ".nLi", //鼠标触发对象
+		targetCell: ".sub", //titCell里面包含的要显示/消失的对象
+		effect: "slideDown", //targetCell下拉效果
+		delayTime: 300, //效果时间
+		triggerTime: 0, //鼠标延迟触发时间（默认150）
+		returnDefault: true //鼠标移走后返回默认状态，例如默认频道是“预告片”，鼠标移走后会返回“预告片”（默认false）
+	});
+</script>
+</body>
+<script>
+$(function(){
+	$('.L_write_pas1 ul li a').click(function() { 
+		if($(this).parents("li").find('input').val().length){
+			var em = $(this).find('em');
+			var input = $(this).parents("li").find('input');
+			em.toggleClass('select');
+			if(em.hasClass("select")){
+				input.prop('type','text');
+			}else{
+				input.prop('type','password');
+			}
+		} 
+	});
+	// 密码验证
+	// 一级验证
+	var uyPas=$('#uyPas');
+	var uxPas=$('#uxPas');
+	var uqPas=$('#uqPas');
+	var text1=$('#text1');
+	var text2=$('#text2');
+	var text3=$('#text3');
+	var bnts1=$('.bnts1');
+	bnts1.click(function() {
+		if (uyPas.val()=='') {
+			text1.text('请输入原密码');
+			return false;
+		}else{
+			text1.text('');
+		}
+		if (uxPas.val()=='') {
+			text2.text('请输入新密码');
+			return false;
+		}else{
+			text2.text('');
+		}
+		if (uqPas.val() != uxPas.val()) {
+			text3.text('两次密码输入的不一样');
+			return false;
+		}else{
+			text3.text('');
+		}
+	});
+	// 二级验证
+	var utyPas=$('#utyPas');
+	var utxPas=$('#utxPas');
+	var utqPas=$('#utqPas');
+	var text4=$('#text4');
+	var text5=$('#text5');
+	var text6=$('#text6');
+	var bnts2=$('.bnts2');
+	bnts2.click(function() {
+		if (utyPas.val()=='') {
+			text4.text('请输入原密码');
+			return false;
+		}else{
+			text4.text('');
+		}
+		if (utxPas.val()=='') {
+			text5.text('请输入新密码');
+			return false;
+		}else{
+			text5.text('');
+		}
+		if (utqPas.val() != utxPas.val()) {
+			text6.text('两次密码输入的不一样');
+			return false;
+		}else{
+			text6.text('');
+		}
+	});
+	// 三级级验证
+	var usyPas=$('#usyPas');
+	var usxPas=$('#usxPas');
+	var usqPas=$('#usqPas');
+	var text7=$('#text7');
+	var text8=$('#text8');
+	var text9=$('#text9');
+	var bnts3=$('.bnts3');
+	bnts3.click(function() {
+		if (usyPas.val()=='') {
+			text7.text('请输入原密码');
+			return false;
+		}else{
+			text7.text('');
+		}
+		if (usxPas.val()=='') {
+			text8.text('请输入新密码');
+			return false;
+		}else{
+			text8.text('');
+		}
+		if (usqPas.val() != usxPas.val()) {
+			text9.text('两次密码输入的不一样');
+			return false;
+		}else{
+			text9.text('');
+		}
+	});
+})
+</script>	
+
+</html>
