@@ -10,7 +10,9 @@ class ManagementTeamController extends Controller {
      * 会员激活 三级密码验证
      */
     public function passthree(){
-
+        $lefts = A('Home/Common');
+        $left=$lefts->left();
+        $this->assign('userinfo',$left);
         $this->display('passthree');
     }
     /***
