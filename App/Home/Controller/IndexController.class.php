@@ -19,7 +19,9 @@ class IndexController extends Controller {
     	$this->display();
     }
 
-    //首页详情
+    /**
+     * 首页公告详情
+     */
     public function index_info(){
         $lefts = A('Home/Common');
         $left=$lefts->left();
