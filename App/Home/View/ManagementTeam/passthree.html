@@ -18,10 +18,10 @@
 		<div class="nbodybg"></div>
 		<div class="ncmtbox">
 			<!-- 导航部分 -->
-			<include file="./common/header" />
+			<include file="public:header" />
 			<div class="n_conmentbox">
 				<!-- 左侧部分 -->
-				<include file="./common/left" />
+				<include file="public:left" />
 				<div class="n_cmtrtbox">
 					<div class="L_all">
 						<div class="L_person">
@@ -29,11 +29,13 @@
 								<span>三级密码验证</span>
 							</div>
 							<div class="L_person_con nsjmmbox">
+								<form action="__URL__/password_authentication"  method="post">
 								<label for="sjmm"><span>请输入您的三级密码:</span></label>
-								<input type="text" id="sjmm" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+								<input type="password" id="sjmm" name="password3" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
 								<div class="clearfix">
 									<button type="submit" class="nbtntij">提交</button>
 								</div>
+								</form>
 							</div>
 						</div>
 						<!-- 底部 -->
