@@ -47,20 +47,9 @@
 										<th>当前状态</th>
 										<th></th>
 									</tr>
+									<foreach name="list" item="v">
 									<tr>
-										<td>g2001</td>
-										<td>王五</td>
-										<td>gs001(张三)</td>
-										<td>gs001(张三)</td>
-										<td>2016-09-01<br />16:22</td>
-										<td>10000</td>
-										<td>2016-09-21<br />
-											20:22</td>
-										<td>已激活</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>g2001</td>
+										<td>{$v.HyNumber}</td>
 										<td>王五</td>
 										<td>gs001(张三)</td>
 										<td>gs001(张三)</td>
@@ -71,6 +60,7 @@
 										<td><button type="button"class="nbtnmsjh">马上激活</button><br />
 										<button type="button"class="nbtndel">删除会员</button></td>
 									</tr>
+									</foreach>
 								</table>							
 							</div>
 						</div>
