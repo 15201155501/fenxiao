@@ -4,7 +4,7 @@ use Think\Controller;
 class IndexController extends CommonController {
     //首页
     public function index(){
-        $lefts = A('Home/Common');
+        $lefts = A('Home/Public');
         $left=$lefts->left();
 
         //左侧会员信息
@@ -23,7 +23,7 @@ class IndexController extends CommonController {
      * 首页公告详情
      */
     public function index_info(){
-        $lefts = A('Home/Common');
+        $lefts = A('Home/Public');
         $left=$lefts->left();
 
         //左侧会员信息
