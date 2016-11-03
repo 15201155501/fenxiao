@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title></title>
+	<base href="__PUBLIC__/" />
 	<link rel="stylesheet" href="css/nsty.css" />
 	<link rel="stylesheet" href="css/public.css" />
 	<link rel="stylesheet" href="css/style.css" />
@@ -12,150 +13,11 @@
 <body>
 <div class="nbodybg"></div>
 <div class="ncmtbox clearfix">
-	<div class="nnavtop">
-		<a href="javascript:;"class="nlogo"><img src="images/nlogo.png"></a>
-		<ul id="nav" class="nav clearfix">
-			<li class="nLi">
-				<h3><a href="javascript:;" target="_blank">首页</a></h3>
-			</li>
-			<li class="nLi">
-				<h3><a href="javascript:;" target="_blank">管理团队<span></span></a></h3>
-				<ul class="sub">
-					<li>
-						<a href="javascript:;">业绩激活</a>
-					</li>
-					<li>
-						<a href="javascript:;">会员激活</a>
-					</li>
-					<li>
-						<a href="javascript:;">营销关系</a>
-					</li>
-					<li>
-						<a href="javascript:;">申请服务中</a>
-					</li>
-				</ul>
-			</li>
-			<li class="nLi on">
-				<h3><a href="javascript:;" target="_blank">财务中心<span></span></a></h3>
-				<ul class="sub">
-					<li>
-						<a href="javascript:;">新闻首页</a>
-					</li>
-					<li>
-						<a href="javascript:;">新闻人物</a>
-					</li>
-					<li>
-						<a href="javascript:;">新闻电视</a>
-					</li>
-					<li>
-						<a href="javascript:;">新闻图片</a>
-					</li>
-					<li>
-						<a href="javascript:;">新闻视频</a>
-					</li>
-					<li>
-						<a href="javascript:; ">新闻专题</a>
-					</li>
-				</ul>
-			</li>
-			<li class="nLi ">
-				<h3><a href="javascript:;" target="_blank">奖金管理<span></span></a></h3>
-				<ul class="sub">
-					<li>
-						<a href="javascript:;">新闻首页</a>
-					</li>
-					<li>
-						<a href="javascript:;">新闻人物</a>
-					</li>
-					<li>
-						<a href="javascript:;">新闻电视</a>
-					</li>
-					<li>
-						<a href="javascript:;">新闻图片</a>
-					</li>
-					<li>
-						<a href="javascript:;">新闻视频</a>
-					</li>
-					<li>
-						<a href="javascript:; ">新闻专题</a>
-					</li>
-				</ul>
-			</li>
-			<li class="nLi">
-				<h3><a href="javascript:;" target="_blank">信息安全<span></span></a></h3>
-				<ul class="sub">
-					<li>
-						<a href="javascript:;">新闻首页</a>
-					</li>
-					<li>
-						<a href="javascript:;">新闻人物</a>
-					</li>
-				
-				</ul>
-			</li>
-			<li class="nLi">
-				<h3><a href="javascript:;" target="_blank">服务台<span></span></a></h3>
-				<ul class="sub">
-					<li>
-						<a href="javascript:;">新闻首页</a>
-					</li>
-					<li>
-						<a href="javascript:;">新闻人物</a>
-					</li>
-				
-				</ul>
-			</li>
-		</ul>
-	</div>
+	<!-- 导航部分 -->
+	<include file="public:header" />
 	<div class="n_conmentbox">
 		<!-- 左侧部分 -->
-		<div class="n_cmtltbox">
-			<a href="javascript:;"class="nphoto"><img src="images/npic1.png"></a>
-			<dl>
-				<dt>会员编号：</dt>
-				<dd>gs0001</dd>
-			</dl>
-			<dl>
-				<dt>会员姓名：</dt>
-				<dd>张三</dd>
-			</dl>
-			<dl>
-				<dt>会员系统：</dt>
-				<dd>10000元</dd>
-			</dl>
-			<dl>
-				<dt>股东系统：</dt>
-				<dd>10000元</dd>
-			</dl>
-			<dl>
-				<dt>养老系统：</dt>
-				<dd>10000元</dd>
-			</dl>
-			<dl>
-				<dt>注册币：</dt>
-				<dd>10000元</dd>
-			</dl>
-			<dl>
-				<dt>购物币：</dt>
-				<dd>10000元</dd>
-			</dl>
-			<dl>
-				<dt>奖金币：</dt>
-				<dd>10000元</dd>
-			</dl>
-			<dl>
-				<dt>已购物：</dt>
-				<dd>10000元</dd>
-			</dl>
-			<dl>
-				<dt>A市场：</dt>
-				<dd>11020人</dd>
-			</dl>
-			<dl>
-				<dt>B市场：</dt>
-				<dd>11020人</dd>
-			</dl>
-		</div>
+		<include file="public:left" />
 		<!-- 右侧部分 -->
 		<div class="n_cmtrtbox">
 			<div class="L_all">
@@ -168,33 +30,33 @@
 						<ul class="clearfix">
 							<li>
 								<label for="Ucard"><span>会员帐号:</span></label>
-								<input type="text" id="Ucard" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+								<input type="text" id="Ucard" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hynumber}">
 							</li>
 							<li>
 								<label for="Uaddr"><span>居住地址:</span></label>
-								<input type="text" id="Uaddr" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+								<input type="text" id="Uaddr" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hynumber}">
 							</li>
 							<li>
 								<label for="Unam"><span>会员姓名:</span></label>
-								<input type="text" id="Unam" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+								<input type="text" id="Unam" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hyname}">
 								<em>＊必填项</em>
 								<p id="text1"></p>
 							</li>
 							<li>
 								<label for="Ubank"><span>开户银行:</span></label>
-								<input type="text" id="Ubank" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+								<input type="text" id="Ubank" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hyopenbank}">
 								<em>＊必填项</em>
 								<p id="text2"></p>
 							</li>
 							<li>
 								<label for="Uidcard"><span>身份证号:</span></label>
-								<input type="text" id="Uidcard" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+								<input type="text" id="Uidcard" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hynumber}">
 								<em>＊必填项</em>
 								<p id="text3"></p>
 							</li>
 							<li>
 								<label for="Ubankl"><span>银行卡号:</span></label>
-								<input type="number" id="Ubankl" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+								<input type="number" id="Ubankl" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hynumber}">
 								<em>＊必填项</em>
 								<p id="text4"></p>
 							</li>
