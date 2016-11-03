@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<base href="__PUBLIC__/" />
+		<link rel="stylesheet" href="css/nsty.css" />
+		<link rel="stylesheet" href="css/public.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+		<script type="text/javascript" src="js/nnavjs.js"></script>
+		<script type="text/javascript" src="js/showdate.js" ></script>
+	</head>
+
+	<body>
+		<div class="nbodybg"></div>
+		<div class="ncmtbox">
+			<!-- 导航部分 -->
+		<include file="public:header" />
+			<div class="n_conmentbox">
+				<!-- 左侧部分 -->
+			<include file="public:left" />
+				<div class="n_cmtrtbox">
+					<div class="L_all">
+						<!-- 个人资料 -->
+						<div class="L_person">
+							<div class="L_person_tit">
+								<span>会员激活</span>
+							</div>
+							<div class="L_person_con">
+								<div class="n_ddcxtit">
+									<span>会员编号:</span>
+									<input type="text" class="n_huiybh"/>
+	<button type="button" class="nchaxbtn">查询</button>
+								</div>
+								<table class="nddcxtable">
+									<tr>
+										<th>会员编号</th>
+										<th>姓名</th>
+										<th>推荐人</th>
+										<th>接点人</th>
+										<th>加入时间</th>
+										<th>消费总额</th>
+										<th>激活时间</th>
+										<th>当前状态</th>
+										<th></th>
+									</tr>
+									<tr>
+										<td>g2001</td>
+										<td>王五</td>
+										<td>gs001(张三)</td>
+										<td>gs001(张三)</td>
+										<td>2016-09-01<br />16:22</td>
+										<td>10000</td>
+										<td>2016-09-21<br />
+											20:22</td>
+										<td>已激活</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>g2001</td>
+										<td>王五</td>
+										<td>gs001(张三)</td>
+										<td>gs001(张三)</td>
+										<td>2016-09-01<br />16:22</td>
+										<td>10000</td>
+										<td>2016-09-21<br />20:22</td>
+										<td>未激活</td>
+										<td><button type="button"class="nbtnmsjh">马上激活</button><br />
+										<button type="button"class="nbtndel">删除会员</button></td>
+									</tr>
+								</table>							
+							</div>
+						</div>
+						<!-- 底部 -->
+						<div class="L_footer">
+							<p>提示:禁区(内容最多不要涉及到灰色区域)灰色区域开发时不显示</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>
