@@ -33,8 +33,10 @@
 					<div class="L_person_con">
 						<div class="n_ddcxtit">
 							<span>会员编号:</span>
-							<input type="text" class="n_huiybh"/>
-							<button type="button" class="nchaxbtn">查询</button>
+							<form action="__URL__/activation"  method="post" >
+							<input type="text" name="hynumber" class="n_huiybh"/>
+							<button type="submit" class="nchaxbtn">查询</button>
+							</form>
 						</div>
 						<table class="nddcxtable">
 							<tr>
@@ -67,10 +69,10 @@
 										<else />
 										<td>未激活</td>
 									</if>
-									<input type="hidden" id="acti_id" value="{$vo.id}">
+
 									<if condition="($vo.isapproved neq 1) ">
-										<td><button type="button"class="nbtnmsjh"  id="mactivation">马上激活</button><br />
-											<button type="button"class="nbtndel">删除会员</button></td>
+										<td><button type="button"class="nbtnmsjh" activ="{$vo.id}"  >马上激活</button><br />
+											<button type="button"class="nbtndel" activ_del="{$vo.id}">删除会员</button></td>
 										<else />
 										<td></td>
 									</if>
@@ -97,9 +99,26 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#mactivation').click(function(){
+		$('.nbtnmsjh').click(function(){
+			alert('您确认要删除吗?');
+			var acti_id =$(this).attr("activ_del");
 
-			var acti_id=$("#acti_id").val();
+			//var acti_id=$("#acti_id").val();
+			$.post("__APP__/Home/ManagementTeam/Activate_delete",{id:acti_id},function(result) {
+				if(result){
+					alert('删除成功');
+					location.reload();
+				}
+
+
+			});
+
+		});
+//删除会员
+		$('.nbtndel').click(function(){
+			var acti_id =$(this).attr("activ");
+
+			//var acti_id=$("#acti_id").val();
 			$.post("__APP__/Home/ManagementTeam/Activate_immediately",{id:acti_id},function(result) {
 				if(result){
 					alert('激活成功');
@@ -110,6 +129,9 @@
 			});
 
 		});
+
+
+
 	});
 </script>
 
