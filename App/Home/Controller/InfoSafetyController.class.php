@@ -83,7 +83,7 @@ class InfoSafetyController extends CommonController {
                 if($data['pwd'] == $data['qrpwd']){
                     $res = $tb->where($map)->find();
                     if($res){
-                        $arr['HyPassword'] = $data['pwd'];
+                        $arr['HyPassword2'] = $data['pwd'];
                         $tb->where('ID='.$res['id'])->save($arr);
                         $this->success('修改成功');
                     }else{
@@ -98,7 +98,7 @@ class InfoSafetyController extends CommonController {
                 if($data['pwd'] == $data['qrpwd']){
                     $res = $tb->where($map)->find();
                     if($res){
-                        $arr['HyPassword'] = $data['pwd'];
+                        $arr['HyPassword3'] = $data['pwd'];
                         $tb->where('ID='.$res['id'])->save($arr);
                         $this->success('修改成功');
                     }else{
