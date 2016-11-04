@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <base href="__PUBLIC__/" />
+    <link rel="stylesheet" href="css/nsty.css" />
+    <link rel="stylesheet" href="css/public.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="js/nnavjs.js"></script>
+    <script type="text/javascript" src="js/showdate.js"></script>
+</head>
+
+<body>
+<div class="nbodybg"></div>
+<div class="ncmtbox">
+    <!-- 导航部分 -->
+    <include file="public:header" />
+    <div class="n_conmentbox">
+        <!-- 左侧部分 -->
+        <include file="public:left" />
+        <div class="n_cmtrtbox">
+            <div class="L_all">
+                <div class="L_person">
+                    <div class="L_person_tit">
+                        <span>二级密码验证</span>
+                    </div>
+                    <div class="L_person_con nsjmmbox">
+                        <form action="__URL__/Password_Verification"  method="post">
+                            <label for="sjmm"><span>请输入您的二级密码:</span></label>
+                            <input type="password" id="sjmm" name="password2" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                            <div class="clearfix">
+                                <button type="submit" class="nbtntij">提交</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- 底部 -->
+                <div class="L_footer">
+                    <p>提示:禁区(内容最多不要涉及到灰色区域)灰色区域开发时不显示</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

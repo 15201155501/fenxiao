@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>营销关系</title>
+    <base href="__PUBLIC__/" />
+    <link rel="stylesheet" href="css/nsty.css" />
+    <link rel="stylesheet" href="css/public.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body>
+<div class="nbodybg"></div>
+<div class="ncmtbox clearfix">
+    <!-- 导航部分 -->
+    <include file="public:header" />
+    <div class="n_conmentbox">
+        <include file="public:left" />
+        <!-- 右侧部分 -->
+        <div class="n_cmtrtbox">
+            <div class="L_all">
+                <!-- 留言反馈 -->
+                <div class="L_person">
+                    <div class="L_person_tit">
+                        <span>营销关系</span>
+                    </div>
+                    <!--外部转币  -->
+                    <div class="L_Marketing">
+                        <label for="Unum"><span>会员编号:</span></label>
+                        <input type="text" id="Unum" >
+                        <button id="bnts">提交</button>
+                        <div class="L_Marketing_con">
+                            <p>我的推荐：</p>
+                            <table>
+                                <tr>
+                                    <th>会员编号</th>
+                                    <th>姓名</th>
+                                    <th>推荐人</th>
+                                    <th>接点人</th>
+                                    <th>加入时间</th>
+                                    <th>消费总额</th>
+                                    <th>激活时间</th>
+                                    <th>当前状态</th>
+                                    <th>层数</th>
+                                </tr>
+                                <volist name="list" id="vo">
+                                <tr>
+
+                                    <td>{$vo.hynumber}</td>
+                                    <td>{$vo.hyname}</td>
+                                    <td>{$vo.hytjnumber}</td>
+                                    <td>{$vo.hyparentnumber}</td>
+                                    <td>{$vo.registertime}</td>
+                                    <td>{$vo.hytotal}</td>
+                                    <td>{$vo.approvedtime}</td>
+                                    <if condition="($vo.isapproved eq 1) ">
+                                    <td>已激活</td>
+                                        <else />
+                                        <td>未激活</td>
+                                    </if>
+                                    <td>{$vo.hyjoininvest}</td>
+                                </tr>
+                                </volist>
+                            </table>
+                        </div>
+                    </div>
+                <!-- 底部 -->
+                <div class="L_footer">
+                    <p>提示:禁区(内容最多不要涉及到灰色区域)灰色区域开发时不显示</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript">
+        jQuery("#nav").slide({
+            type: "menu", // 效果类型，针对菜单/导航而引入的参数（默认slide）
+            titCell: ".nLi", //鼠标触发对象
+            targetCell: ".sub", //titCell里面包含的要显示/消失的对象
+            effect: "slideDown", //targetCell下拉效果
+            delayTime: 300, //效果时间
+            triggerTime: 0, //鼠标延迟触发时间（默认150）
+            returnDefault: true //鼠标移走后返回默认状态，例如默认频道是“预告片”，鼠标移走后会返回“预告片”（默认false）
+        });
+    </script>
+</body>
+<script>
+    $(function(){
+        var bnts=$('#bnts');
+        var Upasd=$('#Upasd');
+        var text1=$('#text1');
+
+        bnts.click(function() {
+            if (Upasd.val()=='') {
+                text1.text('请输入您的二级密码');
+                return  false;
+            }else{
+                text1.text('');
+            }
+        });
+    })
+</script>
+</html>
