@@ -26,4 +26,19 @@ class InfoSafetyController extends CommonController {
             }
         }
     }
+
+    /**
+     * 修改个人资料-修改
+     */
+    public function info_upd_pro(){
+        // 获取要修改的用户数据
+        $data = I('post.');
+        // print_r($data);die;
+
+        $res = M('hyclub')->where('ID='.$data['id'])->save($data);
+        // print_r($res);die;
+        if($res){
+            $this->redirect('InfoSafety/info_upd');
+        }
+    }
 }

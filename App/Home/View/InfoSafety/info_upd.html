@@ -26,73 +26,76 @@
 					<div class="L_person_tit">
 						<span>个人资料</span>
 					</div>
-					<div class="L_person_con">
-						<ul class="clearfix">
-							<li>
-								<label for="Ucard"><span>会员帐号:</span></label>
-								<input type="text" id="Ucard" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hynumber}">
-							</li>
-							<li>
-								<label for="Uaddr"><span>居住地址:</span></label>
-								<input type="text" id="Uaddr" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hynumber}">
-							</li>
-							<li>
-								<label for="Unam"><span>会员姓名:</span></label>
-								<input type="text" id="Unam" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hyname}">
-								<em>＊必填项</em>
-								<p id="text1"></p>
-							</li>
-							<li>
-								<label for="Ubank"><span>开户银行:</span></label>
-								<input type="text" id="Ubank" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hyopenbank}">
-								<em>＊必填项</em>
-								<p id="text2"></p>
-							</li>
-							<li>
-								<label for="Uidcard"><span>身份证号:</span></label>
-								<input type="text" id="Uidcard" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hynumber}">
-								<em>＊必填项</em>
-								<p id="text3"></p>
-							</li>
-							<li>
-								<label for="Ubankl"><span>银行卡号:</span></label>
-								<input type="number" id="Ubankl" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hynumber}">
-								<em>＊必填项</em>
-								<p id="text4"></p>
-							</li>
-							<li>
-								<label for="Uphoe"><span>手机号码:</span></label>
-								<input type="text" id="Uphoe" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
-								<em>＊必填项</em>
-								<p id="text5"></p>
-							</li>
-							<li>
-								<label for="Uaccou"><span>账户名称:</span></label>
-								<input type="text" id="Uaccou" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
-							</li>
-							<li>
-								<label for="Uqq"><span>QQ号:</span></label>
-								<input type="number" id="Uqq" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
-							</li>
-							<li>
-								<label for="Ukcard"><span>开户地址:</span></label>
-								<input type="text" id="Ukcard" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
-								<em>＊必填项</em>
-								<p id="text6"></p>
-							</li>
-							<li>
-								<label for="Umeil"><span>联系邮箱:</span></label>
-								<input type="number" id="Umeil" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
-							</li>
-							<li>
-								<label for="Ucnter"><span>服务中心信息:</span></label>
-								<input type="text" id="Ucnter" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
-							</li>
-						</ul>
-						<div class="L_person_up">
-							<button id="bnts">提交</button>
+					<form action="__URL__/info_upd_pro" method="post">
+						<input type="hidden" name="id" value="{$userinfo.id}">
+						<div class="L_person_con">
+							<ul class="clearfix">
+								<li>
+									<label for="Ucard"><span>会员帐号:</span></label>
+									<input type="text" id="Ucard" name="HyNumber" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hynumber}">
+								</li>
+								<li>
+									<label for="Uaddr"><span>居住地址:</span></label>
+									<input type="text" id="Uaddr" name="HyAddress" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hyaddress}">
+								</li>
+								<li>
+									<label for="Unam"><span>会员姓名:</span></label>
+									<input type="text" id="Unam" name="HyName" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hyname}">
+									<em>＊必填项</em>
+									<p id="text1"></p>
+								</li>
+								<li>
+									<label for="Ubank"><span>开户银行:</span></label>
+									<input type="text" id="Ubank" name="HyOpenBank" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hyopenbank}">
+									<em>＊必填项</em>
+									<p id="text2"></p>
+								</li>
+								<li>
+									<label for="Uidcard"><span>身份证号:</span></label>
+									<input type="text" id="Uidcard" name="HyCardNo" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hycardno}">
+									<em>＊必填项</em>
+									<p id="text3"></p>
+								</li>
+								<li>
+									<label for="Ubankl"><span>银行卡号:</span></label>
+									<input type="number" id="Ubankl" name="HyOpenBankNo" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hyopenbankno}">
+									<em>＊必填项</em>
+									<p id="text4"></p>
+								</li>
+								<li>
+									<label for="Uphoe"><span>手机号码:</span></label>
+									<input type="text" id="Uphoe" name="HyMobile" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hymobile}">
+									<em>＊必填项</em>
+									<p id="text5"></p>
+								</li>
+								<li>
+									<label for="Uaccou"><span>账户名称:</span></label>
+									<input type="text" id="Uaccou" name="HyOpenBankName" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hyopenbankname}">
+								</li>
+								<li>
+									<label for="Uqq"><span>QQ号:</span></label>
+									<input type="number" id="Uqq" name="HyQQMSN" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hyqqmsn}">
+								</li>
+								<li>
+									<label for="Ukcard"><span>开户地址:</span></label>
+									<input type="text" id="Ukcard" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hyaddress}">
+									<em>＊必填项</em>
+									<p id="text6"></p>
+								</li>
+								<li>
+									<label for="Umeil"><span>联系邮箱:</span></label>
+									<input type="number" id="Umeil" name="HyMail" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hymail}">
+								</li>
+								<li>
+									<label for="Ucnter"><span>服务中心信息:</span></label>
+									<input type="text" id="Ucnter" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" value="{$userinfo.hymobile}">
+								</li>
+							</ul>
+							<div class="L_person_up">
+								<button id="bnts">提交</button>
+							</div>
 						</div>
-					</div>
+					</form>
 				</div>
 				<!-- 底部 -->
 				<div class="L_footer">
