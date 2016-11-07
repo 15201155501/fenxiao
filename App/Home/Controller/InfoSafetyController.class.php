@@ -70,7 +70,9 @@ class InfoSafetyController extends CommonController {
                         $arr['HyPassword'] = $data['pwd'];
                         $tb->where('ID='.$res['id'])->save($arr);
                         session('hynumber',null);
-                        $this->success('修改成功,请重新登录！','Login/login');
+                        $result['pwd_code'] = 1;
+                        $result['pwd_info'] = '修改成功,请重新登录！';
+
                     }else{
                         $this->error('原密码有误');
                     }
@@ -85,7 +87,8 @@ class InfoSafetyController extends CommonController {
                     if($res){
                         $arr['HyPassword2'] = $data['pwd'];
                         $tb->where('ID='.$res['id'])->save($arr);
-                        $this->success('修改成功');
+                        $result['pwd_code'] = 2;
+                        $result['pwd_info'] = '修改成功';
                     }else{
                         $this->error('原密码有误');
                     }
@@ -100,7 +103,8 @@ class InfoSafetyController extends CommonController {
                     if($res){
                         $arr['HyPassword3'] = $data['pwd'];
                         $tb->where('ID='.$res['id'])->save($arr);
-                        $this->success('修改成功');
+                        $result['pwd_code'] = 3;
+                        $result['pwd_info'] = '修改成功';
                     }else{
                         $this->error('原密码有误');
                     }
@@ -108,6 +112,9 @@ class InfoSafetyController extends CommonController {
                     $this->error('两次密码不一致');
                 }
             }
+
+            $this->assign('result',$result);
+            $this->display('pwd_suc');
         }
     }
 }
