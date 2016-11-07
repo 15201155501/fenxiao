@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>申请区域代理</title>
+	<base href="__PUBLIC__/" />
+	<link rel="stylesheet" href="css/nsty.css" />
+	<link rel="stylesheet" href="css/public.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+	<script type="text/javascript" src="jeDate/jedate.js"></script>
+</head>
+<body>
+<div class="nbodybg"></div>
+<div class="ncmtbox clearfix">
+	<include file="public:header" />
+	<div class="n_conmentbox">
+		<!-- 左侧部分 -->
+		<include file="public:left" />
+		<!-- 右侧部分 -->
+		<div class="n_cmtrtbox">
+			<div class="L_all">
+				<!-- 留言反馈 -->
+				<div class="L_person">
+					<div class="L_person_tit">
+						<span>申请区域代理</span>
+					</div>
+					<!--申请区域代理  -->
+					<form action="__URL__/Application_Agent" method="post">
+					<div class="L_apply">
+						<p class="clearfix">
+							<label for="Unumb"><span>会员编号:</span></label>
+							<input type="text" id="Unumb" value="{$hynumber}" name="hynumber" disabled="disabled"  onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+							<h3 id="text1"></h3>
+						</p>
+						<p class="clearfix">
+							<label for="Utime"><span>申请时间:</span></label>
+							<input class="datainp" name="tdate" id="dateinfo" type="text" placeholder="请选择"  readonly>
+							<h3 id="text2"></h3>
+						</p>
+						<p class="clearfix">
+							<label for="Uadd"><span>会员地址:</span></label>
+							<input type="text" name="taddress" id="Uadd" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+							<h3 id="text3"></h3>
+						</p>
+						<p>
+							<label for="Ulagn"><span>备注:</span></label>
+							<textarea id="Ulagn" name="tnote" placeholder="不得少于30个字" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')"></textarea>
+							<h3 id="text4"></h3>
+						</p>
+						<div class="L_apply_bnts">
+							<button id="bnts">提交</button>
+						</div>
+					</div>
+				</div>
+				</form>
+				<!-- 底部 -->
+				<div class="L_footer">
+					<p>提示:禁区(内容最多不要涉及到灰色区域)灰色区域开发时不显示</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery("#nav").slide({
+		type: "menu", // 效果类型，针对菜单/导航而引入的参数（默认slide）
+		titCell: ".nLi", //鼠标触发对象
+		targetCell: ".sub", //titCell里面包含的要显示/消失的对象
+		effect: "slideDown", //targetCell下拉效果
+		delayTime: 300, //效果时间
+		triggerTime: 0, //鼠标延迟触发时间（默认150）
+		returnDefault: true //鼠标移走后返回默认状态，例如默认频道是“预告片”，鼠标移走后会返回“预告片”（默认false）
+	});
+</script>
+</body>	
+<script type="text/javascript">
+
+    jeDate({
+		dateCell:"#dateinfo",
+		format:"YYYY-MM-DD hh:mm:ss",
+		isinitVal:true,
+		isTime:true, //isClear:false,
+		minDate:"2014-09-19 00:00:00",
+		okfun:function(val){alert(val)}
+	})
+</script>
+<script>
+$(function(){
+	var bnts=$('#bnts');
+	var Unumb=$('#Unumb');
+	var Utime=$('#Utime');
+	var Uadd=$('#Uadd');
+	// 文本定义
+	var text1=$('#text1');
+	var text2=$('#text2');
+	var text3=$('#text3');
+	var text4=$('#text4');
+	bnts.click(function() {
+		if (Unumb.val()=='') {
+			text1.text('请输入会员编号');
+			return false;
+		}else{
+			text1.text('');
+		}
+		if (Utime.val()=='') {
+			text2.text('请输入申请时间');
+			return false;
+		}else{
+			text2.text('');
+		}
+		if (Uadd.val()=='') {
+			text3.text('请输入会员地址');
+			return false;
+		}else{
+			text3.text('');
+		}
+	});
+
+})
+</script>
+</html>

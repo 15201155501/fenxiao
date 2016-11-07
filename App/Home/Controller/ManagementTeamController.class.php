@@ -33,22 +33,7 @@ class ManagementTeamController extends CommonController {
 
     }
 
-    /***
-     * @param $count
-     * @param int $pagesize
-     * @return \Think\Page 分页样式
-     */
-    public function getpage($count, $pagesize = 10) {
-        $p = new \Think\Page($count, $pagesize);
-        $p->setConfig('header', '<li class="rows">共<b>%TOTAL_ROW%</b>条记录&nbsp;第<b>%NOW_PAGE%</b>页/共<b>%TOTAL_PAGE%</b>页</li>');
-        $p->setConfig('prev', '上一页');
-        $p->setConfig('next', '下一页');
-        $p->setConfig('last', '末页');
-        $p->setConfig('first', '首页');
-        $p->setConfig('theme', '%FIRST%%UP_PAGE%%LINK_PAGE%%DOWN_PAGE%%END%%HEADER%');
-        $p->lastSuffix = false;//最后一页不显示为总页数
-        return $p;
-    }
+
     /***
      *  会员激活
      */
@@ -145,20 +130,62 @@ class ManagementTeamController extends CommonController {
 
 
     }
-
+/*
+ * 营销关系
+ */
     public function Marketing(){
         $lefts = A('Home/Public');
         $left=$lefts->left();
         $this->assign('userinfo',$left);
-        $hypassword2 =session('hypassword2'); //验证密码是否填写
+       // $hypassword2 =session('hypassword2'); //验证密码是否填写
         $Model = M("hyclub");
+        $hynum_search =I('hynumber');
         $hynumber =session('hynumber');
-        $list = $Model->query("select HyClub.ID,HyClub.HyJoinInvest as hytotal, HyClub.ApprovedTime,HyClub.HyAmountInvest1,   case   HyClub.HyJoinInvest when '5000' then '1' when '10000'  then '2' when '15000'  then '3' end HyJoinInvest  ,HyClub.RegisterTime,case HyClub.BUsedPoints when '1' then 'vip2' else 'vip1' end BUsedPoints,HyClub.HyNumber,HyClub.HyTjNumber,HyClub.IsApproved,HyClub.HyParentNumber,HyClub.HyName,grid.gname from grid,HyClub  where HyClub.HyParentNumber='gs0003' and grid.gid=HyClub.HyLevel2");
-        $this->assign('list',$list);
-        echo "<pre>";
-        print_r($list);
-        echo "</pre>";
+        if(empty($hynum_search)){
+            $list = $Model->query("select HyClub.ID,HyClub.HyJoinInvest as hytotal, HyClub.ApprovedTime,HyClub.HyAmountInvest1,   case   HyClub.HyJoinInvest when '5000' then '1' when '10000'  then '2' when '15000'  then '3' end HyJoinInvest  ,HyClub.RegisterTime,case HyClub.BUsedPoints when '1' then 'vip2' else 'vip1' end BUsedPoints,HyClub.HyNumber,HyClub.HyTjNumber,HyClub.IsApproved,HyClub.HyParentNumber,HyClub.HyName,grid.gname from grid,HyClub  where HyClub.HyParentNumber='$hynumber' and grid.gid=HyClub.HyLevel2");
+        }else{
+            $list = $Model->query("select HyClub.ID,HyClub.HyJoinInvest as hytotal, HyClub.ApprovedTime,HyClub.HyAmountInvest1,   case   HyClub.HyJoinInvest when '5000' then '1' when '10000'  then '2' when '15000'  then '3' end HyJoinInvest  ,HyClub.RegisterTime,case HyClub.BUsedPoints when '1' then 'vip2' else 'vip1' end BUsedPoints,HyClub.HyNumber,HyClub.HyTjNumber,HyClub.IsApproved,HyClub.HyParentNumber,HyClub.HyName,grid.gname from grid,HyClub  where HyClub.HyParentNumber='$hynumber' and   grid.gid=HyClub.HyLevel2 and HyClub.HyNumber='$hynum_search'");
+        }
+       $this->assign('list',$list);
         $this->display();
+    }
+
+    /***
+     * 申请代理
+     */
+    public function Agent(){
+        $lefts = A('Home/Public');
+        $left=$lefts->left();
+        $this->assign('userinfo',$left);
+        $hynumber =session('hynumber');
+        $this->assign('hynumber',$hynumber);
+        $this->display();
+    }
+    /***
+     * 提交申请代理
+     */
+    public function Application_Agent(){
+        $data['tmid'] =session('hynumber');
+
+        $data['tdate'] = I('tdate');
+        $data['taddress'] = I('taddress');
+        $data['tnote'] = I('tnote');
+        $hynumber =session('hynumber');
+        $Model = M("trueshop");
+       $IsAgent= $Model->where("tmid='$hynumber'")->find();
+       if(empty($IsAgent)){
+           $Agent=$Model->add($data);
+           if($Agent){
+               $this->success('申请成功');
+           }
+       }else{
+           $this->success('您已经提交过该申请','ManagementTeam/Agent');
+       }
+
 
     }
+
+
+
+
 }
