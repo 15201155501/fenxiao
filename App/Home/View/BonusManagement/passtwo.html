@@ -8,11 +8,10 @@
 		<link rel="stylesheet" href="css/nsty.css" />
 		<link rel="stylesheet" href="css/public.css" />
 		<link rel="stylesheet" href="css/style.css" />
-		<link rel="stylesheet" href="css/mypage.css" />
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
 		<script type="text/javascript" src="js/nnavjs.js"></script>
-		<script type="text/javascript" src="js/showdate.js" ></script>
+		<script type="text/javascript" src="js/showdate.js"></script>
 	</head>
 
 	<body>
@@ -26,32 +25,18 @@
 				<div class="n_cmtrtbox">
 					<div class="L_all">
 						<div class="L_person">
-							<div class="L_person_tit">
-								<span>账目明细</span>
-							</div>
-							<div class="L_person_con">
-								<table class="nddcxtable njjmx">
-									<tr>
-										<th>金额</th>
-										<th>出账编号</th>
-										<th>入账编号</th>
-										<th>备注</th>
-										<th>日期</th>
-									</tr>
-									<volist name="list" id="v">
-										<tr>
-											<td>{$v.moneycount}</td>
-											<td>{$v.hynumberfrom}</td>
-											<td>{$v.hynumberto}</td>
-											<td>{$v.memo}</td>
-											<td>{$v.transdate}</td>
-										</tr>
-									</volist>
-								</table>
-								<div class="pages">
-									{$page}
+							<form action="__URL__/bonus"  method="post">
+								<div class="L_person_tit">
+									<span>二级密码验证</span>
 								</div>
-							</div>
+								<div class="L_person_con nsjmmbox">
+									<label for="sjmm"><span>请输入您的二级密码:</span></label>
+									<input type="text" id="sjmm" name="password2" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+									<div class="clearfix">
+										<button type="submit" class="nbtntij">提交</button>
+									</div>
+								</div>
+							</form>
 						</div>
 						<!-- 底部 -->
 						<div class="L_footer">

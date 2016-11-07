@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<base href="__PUBLIC__/">
+		<link rel="stylesheet" href="css/mypage.css" />
+		<link rel="stylesheet" href="css/nsty.css" />
+		<link rel="stylesheet" href="css/public.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+		<script type="text/javascript" src="js/nnavjs.js"></script>
+		<script type="text/javascript" src="js/showdate.js" ></script>
+	</head>
+
+	<body>
+		<div class="nbodybg"></div>
+		<div class="ncmtbox">
+			<!-- 导航部分 -->
+			<include file="public:header" />
+			<div class="n_conmentbox">
+				<!-- 左侧部分 -->
+				<include file="public:left" />
+				<div class="n_cmtrtbox">
+					<div class="L_all">
+						<div class="L_person nhtcmt">
+							<div class="L_person_tit">
+								<span>申请股东</span>
+							</div>
+							<div class="L_person_con">
+								<form action="__URL__/shareholder">
+									<div class="nsqgbox">
+										<dl>
+											<dt>申请类型：</dt>
+											<dd>
+												<select>
+													<option>请选择</option>
+													<option>申请股东分红</option>
+												</select>
+											</dd>
+										</dl>
+										<dl>
+											<dt>注册币：</dt>
+											<dd><input type="text" value="{$data.baodanfei}"disabled="true"><span class="ntsspan">低于当前</span></dd>
+										</dl>
+										<dl>
+											<dt>申请金额：</dt>
+											<dd><input type="text" value="5000" placeholder=""></dd>
+										</dl>
+										<dl>
+											<dt>会员编号：</dt>
+											<dd><input type="text" value="{$userinfo.hynumber}">
+												<button type="button"class="nbtnmsjh">会员验证</button>
+											</dd>
+										</dl>
+										<dl>
+											<dt>报单中心编号：</dt>
+											<dd><input type="text" value=""></dd>
+										</dl>
+									</div>
+									<div class="clearfix">
+										<button type="submit" class="nbtntij"style="margin-top:0px">提交</button>
+									</div>
+								</form>
+								<table class="nddcxtable">
+									<tr>
+										<th>金额</th>
+										<th>申请日期</th>
+										<th>处理结果</th>
+										<th>类型</th>
+									</tr>
+									<volist name="list" id="v">
+										<tr>
+											<td>{$v.applymoney}</td>
+											<td>{$v.applydate}</td>
+											<td>{$v.approvalflag}</td>
+											<td>{$v.approvaltype}</td>
+										</tr>
+									</volist>
+								</table>
+								<div class="pages">
+									{$page}
+								</div>
+							</div>
+						</div>
+						<!-- 底部 -->
+						<div class="L_footer">
+							<p>提示:禁区(内容最多不要涉及到灰色区域)灰色区域开发时不显示</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

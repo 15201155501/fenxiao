@@ -27,24 +27,32 @@
 					<div class="L_all">
 						<div class="L_person">
 							<div class="L_person_tit">
-								<span>账目明细</span>
+								<span>奖金明细</span>
 							</div>
 							<div class="L_person_con">
 								<table class="nddcxtable njjmx">
 									<tr>
-										<th>金额</th>
-										<th>出账编号</th>
-										<th>入账编号</th>
-										<th>备注</th>
-										<th>日期</th>
+										<th>栏目</th>
+										<th>层服务酬金</th>
+										<th>见点奖金</th>
+										<th>复投见点奖</th>
+										<th>物流补贴</th>
+										<th>每月分红</th>
+										<th>总额</th>
+										<th>明细</th>
+										<th>结算日期</th>
 									</tr>
 									<volist name="list" id="v">
 										<tr>
-											<td>{$v.moneycount}</td>
-											<td>{$v.hynumberfrom}</td>
-											<td>{$v.hynumberto}</td>
+											<td>{$v.hynumber}</td>
+											<td>{$v.bonus2}</td>
+											<td>{$v.bonus7}</td>
+											<td>{$v.bonus6}</td>
+											<td>{$v.bonus8}</td>
+											<td>{$v.bonus11}</td>
+											<td>{$v.bonusAmount}</td>
 											<td>{$v.memo}</td>
-											<td>{$v.transdate}</td>
+											<td>{$v.computetime}</td>
 										</tr>
 									</volist>
 								</table>
