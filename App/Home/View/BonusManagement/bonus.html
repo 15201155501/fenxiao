@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<base href="__PUBLIC__/">
+		<link rel="stylesheet" href="css/nsty.css" />
+		<link rel="stylesheet" href="css/public.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/mypage.css" />
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+		<script type="text/javascript" src="js/nnavjs.js"></script>
+		<script type="text/javascript" src="js/showdate.js" ></script>
+	</head>
+
+	<body>
+		<div class="nbodybg"></div>
+		<div class="ncmtbox">
+			<!-- 导航部分 -->
+			<include file="public:header" />
+			<div class="n_conmentbox">
+				<!-- 左侧部分 -->
+				<include file="public:left" />
+				<div class="n_cmtrtbox">
+					<div class="L_all">
+						<div class="L_person">
+							<div class="L_person_tit">
+								<span>奖金明细</span>
+							</div>
+							<div class="L_person_con">
+								<table class="nddcxtable njjmx">
+									<tr>
+										<th>层服务酬金</th>
+										<th>见点奖金</th>
+										<th>复投见点奖</th>
+										<th>物流补贴</th>
+										<th>每月分红</th>
+										<th>税杂费</th>
+										<th>实发总额</th>
+										<th>结算日期</th>
+									</tr>
+									<volist name="list" id="v">
+										<tr>
+											<td>{$v.bonus1}</td>
+											<td>{$v.bonus2}</td>
+											<td>{$v.bonus7}</td>
+											<td>{$v.bonus6}</td>
+											<td>{$v.bonus8}</td>
+											<td>{$v.bonus10}</td>
+											<td>{$v.shuizafei}</td>
+											<td>{$v.computetime}</td>
+										</tr>
+									</volist>
+								</table>
+								<div class="pages">
+									{$page}
+								</div>
+							</div>
+						</div>
+						<!-- 底部 -->
+						<div class="L_footer">
+							<p>提示:禁区(内容最多不要涉及到灰色区域)灰色区域开发时不显示</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>
