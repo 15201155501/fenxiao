@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>修改密码-修改成功</title>
+	<link rel="stylesheet" href="css/public.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery.min.js"></script>
+</head>
+<body>
+<!-- 弹框 -->
+<div class="L_box">
+	<div class="L_box_bj"></div>
+	<div class="L_box_con">
+		<p class="clearfix">
+			<span>未成报单</span>
+			<em id="closel">
+				<a href="javascript:;"><img src="images/l_close.png" alt=""></a>
+			</em>
+		</p>
+		<div class="L_box_con_one">
+			<img src="images/l-succes.png" alt="">
+			<p>修改成功</p>
+			<p>
+				<button id="bnts">确定</button>
+			</p>
+		</div>
+	</div>
+</div>
+</body>
+<script>
+	$(function(){
+		var closel=$('#closel');
+		var bnts=$('#bnts');
+		var box=$('.L_box');
+		bnts.click(function() {
+			box.hide();
+		});
+		closel.click(function() {
+			box.hide();
+		});
+	})
+</script>
+</html>

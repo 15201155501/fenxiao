@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>商品详情页</title>
+	<link rel="stylesheet" href="css/public.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/public.js"></script>
+	<script type="text/javascript" src="js/jquery.jqzoom.js"></script>
+	<script type="text/javascript" src="js/base.js"></script>
+	<script type="text/javascript" src="js/details.js"></script>
+	<style>
+		body{ background: #fff; }
+	</style>
+</head>
+<body>
+<!-- 头部 -->
+<div class="hg-head">
+	<div class="hg-head-information">
+		<div class="hg-head-information-cen clearfix">
+			<div class="information_left">
+				<div class="information_left_signin"><span>欢迎&nbsp;&nbsp;&nbsp;已登陆会员名</span></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="hg-center">
+	<!-- 搜索 -->
+	<div class="hg-center-searchtext clearfix">
+		<div class="searchtext-logo ">
+			<a href="javascript:;">
+				<img src="images/q1.png" alt="恒工商城" height="77" width="191">
+			</a>
+		</div>
+		<div class="searchtext-logo-text">
+			<div class="bor"><span>自动化设备一站式采购平台</span></div>
+		</div>
+		<div class="searchtext-input">
+			<form action="#" class="clearfix">
+				<input type="text" name="text">
+				<button><img src="images/q11.png"></button>
+			</form>
+			<div class="form_value">
+				<span>买3赠一</span>
+				<span>美国进口电机</span>
+				<span>欧洲电机</span>
+				<span>伺服电机</span>
+			</div>
+		</div>
+		<!-- <div class="searchtext-shopping">
+			<a href="javascript:;"><span>我的购物车</span></a>
+		</div> -->
+	</div>
+</div>
+<!--面包屑  -->
+<div class="commodity-crumbs">
+	<div class="commodity-min">
+		<ul>
+			<li><a href="javascript:;"><h2>步进电机 </h2></a></li>
+			<li><span>></span></li>
+			<li><a href="javascript:;">直流电动机</a></li>
+			<li><span>></span></li>
+			<li><a href="javascript:;">电神AK263</a></li>
+		</ul>
+	</div>
+</div>
+<!-- 商品详情 -->
+<div class="commodity-lists clearfix">
+	<div class="lists_Leftimgs">
+		<div id="preview" class="spec-preview"> 
+		  <span class="jqzoom"><img jqimg="images/b1.jpg" src="images/s1.jpg" /></span> 
+		</div>
+		<!--缩图开始-->
+		<div class="spec-scroll"> <a class="prev"></a> <a class="next"></a>
+		  <div class="items">
+		    <ul>
+		      <li><img alt="佳能" bimg="images/b1.jpg" src="images/s1.jpg" onmousemove="preview(this);"></li>
+		      <li><img alt="佳能" bimg="images/b2.jpg" src="images/s2.jpg" onmousemove="preview(this);"></li>
+		      <li><img alt="佳能" bimg="images/b3.jpg" src="images/s3.jpg" onmousemove="preview(this);"></li>
+		      <li><img alt="佳能" bimg="images/b1.jpg" src="images/s1.jpg" onmousemove="preview(this);"></li>
+		      <li><img alt="佳能" bimg="images/b3.jpg" src="images/s3.jpg" onmousemove="preview(this);"></li>
+		      <li><img alt="佳能" bimg="images/b1.jpg" src="images/s1.jpg" onmousemove="preview(this);"></li>
+		      <li><img alt="佳能" bimg="images/b2.jpg" src="images/s2.jpg" onmousemove="preview(this);"></li>
+		    </ul>
+		  </div>
+		</div>
+	</div>
+	<div class="lists_righttexts">
+		<div class="righttexts_title">
+			<h2>步进电机产品12</h2>
+			<p>
+				<span>双12疯狂放价抢购中，洗车机限量秒杀1999，还有毛刷免费送！</span>
+				<a href="javascript:;">猛戳此处开抢!</a>
+			</p>
+		</div>
+		<div class="righttexts_price">
+			<h2 class="clearfix"><span>价格:</span><em>1590.00</em></h2>
+			<p>产品名称:旋转式步进电机</p>
+			<p>货期：现代或者1-N天</p>
+		</div>
+		<!-- <div class="righttexts_backcolor">
+			<div class="backcolor_list">
+				<ul class="clearfix" id="colorid">
+					<input type="hidden" value="1" id="colorid_iput">
+					<li><span>选择颜色：</span></li>
+					<li><div class="color_tet color_tetset" value='1'>红配黄</div></li>
+					<li><div class="color_tet" value='2'>红配黄</div></li>
+					<li><div class="color_tet" value='3'>红配黄</div></li>
+				</ul>
+				<ul class="clearfix" id="glid">
+					<input type="hidden" value="1" id="glid_iput">
+					<li><span>选择功率：</span></li>
+					<li><div class="color_tet color_tetset" value='1'>500W</div></li>
+					<li><div class="color_tet" value='2'>500W</div></li>
+					<li><div class="color_tet" value='3'>500W</div></li>
+				</ul>
+				<ul class="clearfix" id="xhid">
+					<input type="hidden" value="1" id="xhid_iput">
+					<li><span>选择型号：</span></li>
+					<li><div class="color_tet color_tetset" value='1'>AK263</div></li>
+					<li><div class="color_tet" value='2'>AK263</div></li>
+					<li><div class="color_tet" value='3'>AK263</div></li>
+				</ul>
+				<ul class="clearfix" id="jxid">
+					<input type="hidden" value="1" id="jxid_iput">
+					<li><span>机械参数：</span></li>
+					<li><div class="color_tet color_tetset" value='1'>6-369</div></li>
+					<li><div class="color_tet" value='2'>6-369</div></li>
+					<li><div class="color_tet" value='3'>6-369</div></li>
+				</ul>
+				<ul class="clearfix" id="number">
+					<li><span>购买数量：</span></li>
+					<li><a class="jian btn_j" href="javscript:;" id="jian">-</a></li>
+					<li>
+						<div class="number_input">
+						<input type="number" value="1" id="number_val"></div>
+					</li>
+					<li><a class="jia btn_j" href="javscript:;" id="jia">+</a></li>
+				</ul>
+			</div>
+		</div> -->
+		<!-- <div class="customized clearfix">
+			<a href="javscript:;">非标定制</a>
+			<p>（若此产品的规格参数无法满足您的需要，点击此处，我们可以根据您的要求定制）</p>
+		</div> -->
+
+		<div class="shopping-btn-cen clearfix">
+			<a href="javsccript:;"  class="left_btn">立即下单</a>
+		</div>
+	</div>
+</div>
+<!-- 商品详细信息 -->
+<div class="commodity-detailed clearfix">
+	<!-- <div class="detailed-left">
+		<div class="imgs-tg"></div>
+		<ul>
+			<li>
+				<a href="javascript:;">
+					<dl>
+						<dt><img src="images/q25.png"></dt>
+						<dd>
+							<h2>感应电动机产品1型号参数</h2>
+							<p><em>3690.00</em></p>
+							<p><span>美国进口，超长稳定</span></p>
+						</dd>
+					</dl>
+				</a>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<dl>
+						<dt><img src="images/q25.png"></dt>
+						<dd>
+							<h2>感应电动机产品1型号参数</h2>
+							<p><em>3690.00</em></p>
+							<p><span>美国进口，超长稳定</span></p>
+						</dd>
+					</dl>
+				</a>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<dl>
+						<dt><img src="images/q25.png"></dt>
+						<dd>
+							<h2>感应电动机产品1型号参数</h2>
+							<p><em>3690.00</em></p>
+							<p><span>美国进口，超长稳定</span></p>
+						</dd>
+					</dl>
+				</a>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<dl>
+						<dt><img src="images/q25.png"></dt>
+						<dd>
+							<h2>感应电动机产品1型号参数</h2>
+							<p><em>3690.00</em></p>
+							<p><span>美国进口，超长稳定</span></p>
+						</dd>
+					</dl>
+				</a>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<dl>
+						<dt><img src="images/q25.png"></dt>
+						<dd>
+							<h2>感应电动机产品1型号参数</h2>
+							<p><em>3690.00</em></p>
+							<p><span>美国进口，超长稳定</span></p>
+						</dd>
+					</dl>
+				</a>
+			</li>
+		</ul>
+	</div> -->
+	<div class="detailed-right">
+		<div class="detaileds-list">
+			<ul class="clearfix" id="lists_text">
+				<li class="selected"><a href="javscript:;">产品详情</a></li>
+				<li><a href="javscript:;">规格参数</a></li>
+				<li><a href="javscript:;">用户评价<span>(4599)</span></a></li>
+				<li><a href="javscript:;">包装清单</a></li>
+				<li><a href="javscript:;">技术交流</a></li>
+				<li><a href="javscript:;">售后服务</a></li>
+			</ul>
+		</div>
+		<div class="detaileds-listcen" id="detaileds-listcen">
+			<!-- 产品详情 -->
+			<div class="listcen1" style="display: none;">
+				<div  class="text1">产品简介性能说明产品简介 性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简 介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明。</div>
+				<div  class="text1">产品简介性能说明产品简介 性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简 介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明。</div>
+				<div class="text1_imgs"><img src="images/q40.png"></div>
+				<div class="text1_dl">
+					<dl class="clearfix">
+						<dd>
+							<p>产品简介性能说明产品简介 性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简 介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明。</p>
+							<p>产品简介性能说明产品简介 性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简 介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明。</p>
+						</dd>
+						<dt><img src="images/q41.png"></dt>
+					</dl>
+				</div>
+				<div class="text1_dl text1_ds">
+					<dl class="clearfix">
+						<dt><img src="images/q42.png"></dt>
+							<dd>
+							<p>产品简介性能说明产品简介 性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简 介性能。说明产品简介性能说明产品简介性能说明产品简介性能，说明产品简介性能说明产品简介性能。说明产品简介性能说明。</p>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<!-- 规格参数 -->
+			<div class="listcen1 listcen2" style="display: none;" >
+				<div class="listcen2_title">
+					<span>如果您发现商品信息不准确，</span><a href="javascript:;">欢迎纠错</a>
+				</div>
+				<div class="th_tab">
+					<table>
+						<thead>
+							<tr>
+								<th colspan='2'>规格参数</th>
+							</tr>
+						</thead>
+						<tbody>	
+							<tr>
+								<td>品 牌</td>
+								<td>博世(Bosch)</td>
+							</tr>
+							<tr>
+								<td>型 号</td>
+								<td>GSB 600 RE set</td>
+							</tr>
+							<tr>
+								<td>最大直径</td>
+								<td>在砖墙中的钻孔直径 13 mm;在金属中的钻孔直径 10 mm ;在木材中的钻孔直径 25 mm</td>
+							</tr>
+							<tr>
+								<td>最大直径</td>
+								<td>13</td>
+							</tr>
+							<tr>
+								<td>锤击率</td>
+								<td>0-44800 次/分钟</td>
+							</tr>
+							<tr>
+								<td>包装尺寸(mm)</td>
+								<td>350*300*100</td>
+							</tr>
+							<tr>
+								<td>产品净重量（Kg）</td>
+								<td>1.7</td>
+							</tr>
+							<tr>
+								<td>其他</td>
+								<td>输入功率 600 W;空载转速：0 – 2800 rpm;正反转;电子调速;</td>
+							</tr>
+						</tbody>	
+					</table>
+				</div>
+			</div>
+			<!-- 用户评价 -->
+			<div class="listcen1 listcen6"  >
+				<div class="listcen6_top clearfix">
+					<div class="listcen6_topl clearfix">
+						<div class="listcen6_topls">
+							<h1><em>97</em><span>%</span></h1>
+							<p>好评度</p>
+						</div>
+						<div class="listcen6_toplt">
+
+							<div class="clearfix progress_bar">
+								<input type="hidden" class="hid_inpt" value="92">
+								<div class="progress_bar_text" >好评（<span class="jd">97%</span>）</div>
+								<div id="progressBox1" class="progressBox">
+									<div id="progressBar1" class="progressBar"></div>
+									<div id="progressText1" class="progressText"></div>
+								</div>
+							</div>
+							<div class="clearfix progress_bar">
+								<input type="hidden" class="hid_inpt" value="62">
+								<div class="progress_bar_text">中评（<span class="jd">97%</span>）</div>
+								<div id="progressBox2" class="progressBox">
+									<div id="progressBar2" class="progressBar"></div>
+									<div id="progressText2" class="progressText"></div>
+								</div>
+							</div>
+							<div class="clearfix progress_bar">
+								<input type="hidden" class="hid_inpt" value="86">
+								<div class="progress_bar_text">差评（<span class="jd">97%</span>）</div>
+								<div id="progressBox3" class="progressBox">
+									<div id=progressBar3"" class="progressBar"></div>
+									<div id="progressText3" class="progressText"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="listcen6_topr" id="listcen6_topr">
+						<p>1/600</p>
+						<textarea name="" id="" placeholder= '用户评价...'></textarea>
+						<div class="clearfix mark_center">
+							<div class="marks clearfix">
+								<div class="marks_txt">请评价：</div>
+								<ul id="stars">
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+									<input type="hidden">
+								</ul>
+							</div>
+							<input type="button" value="提  交" class="dis">
+						</div>
+					</div>
+				</div>
+				<div class="listcen6_bom">
+					<div class="listcen6_bomul clearfix" >
+						
+						<h2>
+							<a href="javascript:;">
+								<em>全部评价</em><span>（2660）</span> 
+							</a>
+						</h2>
+						<ul class="clearfix" id="bomul">
+							<input type="hidden" value="1">
+							<li class="licolor" >
+								<a href="javascript:;">
+									<em>晒图</em><span>（500） </span>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;">
+									<em>好评</em><span>（1800） </span>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;">
+									<em>中评</em><span>（300） </span>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;">
+									<em>差评</em><span>（20） </span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="listcen6_boms">
+					<ul id="list_ul">
+						<li class="clearfix">
+							<div class="lefts">
+								<ul>
+									<input type="hidden" class="xsinpt" value="2">
+								</ul>
+								<p>下单25天后评论</p>
+								<p>2016-06-1   20:26</p>
+							</div>
+							<div class="centers">
+								<p>好，质量好非常好，值得拥有。</p>
+							</div>
+							<div class="rights">
+								<p>yangshu</p>
+								<p><span>北京</span></p>
+								<p>来自恒工iPhone客户端</p>
+							</div>
+						</li>
+						<li class="clearfix">
+							<div class="lefts">
+								<ul>
+									<input type="hidden" class="xsinpt" value="2">
+								</ul>
+								<p>下单25天后评论</p>
+								<p>2016-06-1   20:26</p>
+							</div>
+							<div class="centers">
+								<p>好，质量好非常好，值得拥有。</p>
+							</div>
+							<div class="rights">
+								<p>yangshu</p>
+								<p><span>北京</span></p>
+								<p>来自恒工iPhone客户端</p>
+							</div>
+						</li>
+						<li class="clearfix">
+							<div class="lefts">
+								<ul>
+									<input type="hidden" class="xsinpt" value="2">
+								</ul>
+								<p>下单25天后评论</p>
+								<p>2016-06-1   20:26</p>
+							</div>
+							<div class="centers">
+								<p>好，质量好非常好，值得拥有。</p>
+							</div>
+							<div class="rights">
+								<p>yangshu</p>
+								<p><span>北京</span></p>
+								<p>来自恒工iPhone客户端</p>
+							</div>
+						</li>
+						<li class="clearfix">
+							<div class="lefts">
+								<ul>
+									<input type="hidden" class="xsinpt" value="2">
+								</ul>
+								<p>下单25天后评论</p>
+								<p>2016-06-1   20:26</p>
+							</div>
+							<div class="centers">
+								<p>好，质量好非常好，值得拥有。</p>
+							</div>
+							<div class="rights">
+								<p>yangshu</p>
+								<p><span>北京</span></p>
+								<p>来自恒工iPhone客户端</p>
+							</div>
+						</li>
+						<li class="clearfix">
+							<div class="lefts">
+								<ul>
+									<input type="hidden" class="xsinpt" value="2">
+								</ul>
+								<p>下单25天后评论</p>
+								<p>2016-06-1   20:26</p>
+							</div>
+							<div class="centers">
+								<p>好，质量好非常好，值得拥有。</p>
+							</div>
+							<div class="rights">
+								<p>yangshu</p>
+								<p><span>北京</span></p>
+								<p>来自恒工iPhone客户端</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="paging_lists clearfix">
+					<div class="fl"></div>
+					<div class="paging_listscen clearfix">
+						<ul class="clearfix">
+							<li><a href="javacript:;"><div class="si1">上一页</div></a></li>
+							<li class="selecteds"><a href="javscript:;"><span>1</span></a></li>
+							<li><a href="javscript:;"><em>...</em></a></li>
+							<li><a href="javscript:;"><span>3</span></a></li>
+							<li><a href="javacript:;"><div class="si1">下一页</div></a></li>
+						</ul>
+						<div class="texts">
+							<div class="texts_txt">到第<input  type="number">页</div>
+							<div class="texts_btn"><a href="javscript:;">确定</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 包装清单 -->
+			<div class="listcen1 listcen2 listcen3" style="display: none;">
+				<div class="listcen2_title">
+					<span>如果您发现商品信息不准确，</span><a href="javascript:;">欢迎纠错</a>
+				</div>
+				<div class="th_tab">
+					<table>
+						<thead>
+							<tr>
+								<th colspan='2'>包装清单</th>
+							</tr>
+						</thead>
+						<tbody>	
+							<tr>
+								<td>包装清单</td>
+								<td>产品本机</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>使用说明书</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>保修卡</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>产品证书</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>专用定制保护膜</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>包装盒</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>其他</td>
+							</tr>
+						</tbody>	
+					</table>
+				</div>
+				<div class="listcen3_imgs">
+					<ul>
+						<li>
+							<div class="imgas"><img src="images/a1.jpg"></div>
+							<div class="imgas_text"><p>包装展示图</p></div>
+						</li>
+						<li>
+							<div class="imgas"><img src="images/a1.jpg"></div>
+							<div class="imgas_text"><p>包装展示图</p></div>
+						</li>
+						<li>
+							<div class="imgas"><img src="images/a1.jpg"></div>
+							<div class="imgas_text"><p>包装展示图</p></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 技术交流 -->
+			<div class="listcen1 listcen2 listcen4" style="display: none;">
+				<div class="listcen2_title">
+					<span>如果您发现商品信息不准确，</span><a href="javascript:;">欢迎纠错</a>
+				</div>
+				<div class="listcen4_backcolor1">技术交流</div>
+				<div class="listcen4_backcolor2">以下内容仅供参考！给您带来的不变还请谅解。谢谢。</div>
+				<div class="comment_lists">
+					<ul>
+						<li>
+							<p class="bck_1">技术咨询：电机每天工作可以持续多久不造成损伤？</p>
+							<p><span>2016/06/22</span></p>
+							<p class="bck_2">技术回答：每天正常工作八小时不会对电机造成损伤，若每两小时休息十分钟有利于保护电机延长其寿命。</p>
+							<p><span>2016/06/22</span></p>
+						</li>
+						<li>
+							<p class="bck_1">技术咨询：电机每天工作可以持续多久不造成损伤？</p>
+							<p><span>2016/06/22</span></p>
+							<p class="bck_2">技术回答：每天正常工作八小时不会对电机造成损伤，若每两小时休息十分钟有利于保护电机延长其寿命。</p>
+							<p><span>2016/06/22</span></p>
+						</li>
+						<li>
+							<p class="bck_1">技术咨询：电机每天工作可以持续多久不造成损伤？</p>
+							<p><span>2016/06/22</span></p>
+							<p class="bck_2">技术回答：每天正常工作八小时不会对电机造成损伤，若每两小时休息十分钟有利于保护电机延长其寿命。</p>
+							<p><span>2016/06/22</span></p>
+						</li>
+						<li>
+							<p class="bck_1">技术咨询：电机每天工作可以持续多久不造成损伤？</p>
+							<p><span>2016/06/22</span></p>
+							<p class="bck_2">技术回答：每天正常工作八小时不会对电机造成损伤，若每两小时休息十分钟有利于保护电机延长其寿命。</p>
+							<p><span>2016/06/22</span></p>
+						</li>
+						<li>
+							<p class="bck_1">技术咨询：电机每天工作可以持续多久不造成损伤？</p>
+							<p><span>2016/06/22</span></p>
+							<p class="bck_2">技术回答：每天正常工作八小时不会对电机造成损伤，若每两小时休息十分钟有利于保护电机延长其寿命。</p>
+							<p><span>2016/06/22</span></p>
+						</li>
+					</ul>
+				</div>
+				<!-- 分页 -->
+				<div class="paging_lists clearfix">
+					<div class="fl"></div>
+					<div class="paging_listscen clearfix">
+						<ul class="clearfix">
+							<li><a href="javacript:;"><div class="si1">上一页</div></a></li>
+							<li class="selecteds"><a href="javscript:;"><span>1</span></a></li>
+							<li><a href="javscript:;"><em>...</em></a></li>
+							<li><a href="javscript:;"><span>3</span></a></li>
+							<li><a href="javacript:;"><div class="si1">下一页</div></a></li>
+						</ul>
+						<div class="texts">
+							<div class="texts_txt">到第<input  type="number">页</div>
+							<div class="texts_btn"><a href="javscript:;">确定</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 售后服务 -->
+			<div class="listcen1 listcen2 listcen5" style="display: none;">
+				<div class="listcen2_title">
+					<span>如果您发现商品信息不准确，</span><a href="javascript:;">欢迎纠错</a>
+				</div>
+				<div class="listcen5_lits">
+					<div class="listcen5_lits_title">售后服务</div>
+					<ul>
+						<li>
+							<h2>售后保障</h2>
+							<div class="pad_text">
+								<p>本产品全国联保，享受三包服务，质保期为：一年质保</p>
+								<p>如因质量问题或故障，凭厂商维修中心或特约维修点的质量检测证明，享受7日内退货，15日内换货，15日以上</p>
+								<p>在质保期内享受免费保修等三包服务！</p>
+								<p>注：如厂家在商品介绍中有售后保障的说明,则此商品按照厂家说明执行售后保障服务。</p>
+							</div>
+						</li>
+						<li>
+							<h2 class="back2">恒工承诺</h2>
+							<div class="pad_text">
+								<p>恒工销售并发货的商品，提供发票和相应的售后服务。请您放心购买！</p>
+								<p>注：因厂家会在没有任何提前通知的情况下更改产品包装、产地或者一些附件，本司不能确保客户收到的货物与商城图片、产地、附件说明完全一致。只能确保为原厂正货！并且保证与当时市场上同样主流新品一致。若本商城没有及时更新，请大家谅解！ </p>
+								
+							</div>
+						</li>
+						<li>
+							<h2 class="back3">正品行货</h2>
+							<div class="pad_text">
+								<p>恒工向您保证所售商品均为正品行货，有发票或电子发票。</p>
+							</div>
+						</li>
+						<li>
+							<h2 class="back4">全国联保</h2>
+							<div class="pad_text">
+								<p>凭质保证书及产品发票，可享受全国联保服务，与您亲临商场选购的商品享受相同的质量保证。恒工商城还为您提供具有竞争力的商品价格和运费政策，请您放心购买！</p>
+								<p>注：因厂家会在没有任何提前通知的情况下更改产品包装、产地或者一些附件，本司不能确保客户收到的货物与商城图片、产地、附件说明完全一致。只能确保为原厂正货！并且保证与当时市场上同样主流新品一致。若本商城没有及时更新，请大家谅解！ </p>
+							</div>
+						</li>
+						<li>
+							<h2 class="back5">无忧退换货</h2>
+							<div class="pad_text">
+								<p>客户购买恒工商品7日内（含7日，自客户收到商品之日起计算），在保证商品完好的前提下，可无理由退货。（部分商品除外，详情请见各商品细则）</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 尾部 -->
+<div class="hg-footer">
+	<div class="hg-footer-bor">
+		<div class="hg-footer-back">Copyright@深圳恒区精密器材有限公司  版权所有     粤ICP: 20160702536</div>
+	</div>
+</div>
+</body>
+</html>
