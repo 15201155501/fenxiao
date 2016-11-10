@@ -6,7 +6,12 @@
 	<base href="__PUBLIC__/">
 	<link rel="stylesheet" href="css/public.css">
 	<link rel="stylesheet" href="css/style.css">
-	<script src="js/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/nsty.css" />
+	<link rel="stylesheet" href="css/mypage.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+	<script type="text/javascript" src="js/nnavjs.js"></script>
+	<script type="text/javascript" src="js/showdate.js" ></script>
 	<style>
 	body{
 		background: #fff;
@@ -14,73 +19,64 @@
 	</style>
 </head>
 <body>
-<div class="check_order">
-	<div class="check_order_tltie">
-		<div class="logos clearfix">
-			<img src="images/q1.png">
-			<p>结算页</p>
-		</div>
-	</div>
+<div class="ncmtbox">
+
+	<!-- 导航部分 -->
+	<include file="public:header" />
 	<!-- 购买信息 -->
 	<div class="check_order_center">
 		<div class="form_tab">
 			<table>
 				<tr class="tr1">
-					<td  width="50">产品图片</td>
-					<td>产品名称</td>
-					<td>属性</td>
-					<td>单价（元）</td>
-					<td>数量</td>
-					<td>小计</td>
+					<td>流水号</td>
+					<td>下单时间</td>
+					<td>会员编号</td>
+					<td>名字</td>
+					<td>会员地址</td>
+					<td>会员电话</td>
+					<td>订单明细</td>
+					<td>支付状态</td>
+					<td>发货状态</td>
+					<td>总费用</td>
+					<td>总PV</td>
+					<td>类型</td>
+					<td>处理历史</td>
 				</tr>
-				<tr>
-					<td><img  src="images/q25.png"></td>
-					<td>步进电机产品</td>
-					<td>电压：550V </td>
-					<td>1500.00 </td>
-					<td>1</td>
-					<td> 1500.00</td>
-				</tr>
-				<tr>
-					<td><img  src="images/q25.png"></td>
-					<td>步进电机产品</td>
-					<td>电压：550V </td>
-					<td>1500.00 </td>
-					<td>1</td>
-					<td> 1500.00</td>
-				</tr>
+				<volist name="list" id="v">
+					<tr>
+						<td>{$v.did}</td>
+						<td>{$v.ddate}</td>
+						<td>{$v.hynumber}</td>
+						<td>{$v.hyname}</td>
+						<td>{$v.hyaddress}</td>
+						<td>{$v.hymobile}</td>
+						<td>{$v.ddetails}</td>
+						<td>
+							<if condition="$v.dstate eq 1">
+								已付款[{$v.dzfdate}]
+								<else />
+								<a href="__URL__/zhifu?did={$v.did}"><font color="red">现在支付</font></a>
+							</if>
+						</td>
+						<td>
+							<if condition="$v.wlzt eq 1">
+								已发货
+								<else />
+								未发货
+							</if>
+						</td>
+						<td>￥{$v.dmeonty}</td>
+						<td>{$v.dpv}</td>
+						<td>虚构订单</td>
+						<td>{$v.dls}</td>
+					</tr>
+				</volist>
 			</table>
-			<div class="stock_list clearfix">
-				<div class="dx_btns3">库存不足时:</div>
-				<div class="dx_btns1 clearfix">
-					<input type="radio" name="b" id="radios3" checked>
-					<label for="radios3"><span>先发有货产品</span></label>
-				</div>
-				<div class="dx_btns1 clearfix">
-					<input type="radio" name="b" id="radios4">
-					<label for="radios4"><span>备齐后一起发</span></label>
-				</div>
-			</div>
-			<div class="yf_remarks clearfix">
-				<div class="yf_remarks_left">
-					<span>备注：</span>
-					<textarea name=""></textarea>
-				</div>
-				<div class="yf_remarks_right">
-					<p><em>应付金额：</em><i>¥10000</i></p>
-				</div>
-			</div>
-			<div class="yf_total">
-				<span>实付总额：</span>
-				<i>¥10000</i>
+			<div class="pages" style="float: right; margin-right: 186px;">
+				{$page}
 			</div>
 		</div>
-		<div class="yf_submit">
-			<div class="yf_submit_cen">
-				<a href="javascript:;" class="a1"><span>刷新</span></a>
-				<a href="javascript:;">提交订单</a>
-			</div>
-		</div>
+
 	</div>
 </div>
 <!-- 尾部 -->

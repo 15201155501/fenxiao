@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>修改密码-修改成功</title>
+	<title>商品下单</title>
+	<base href="__PUBLIC__/">
 	<link rel="stylesheet" href="css/public.css">
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/jquery.min.js"></script>
@@ -13,14 +14,14 @@
 	<div class="L_box_bj"></div>
 	<div class="L_box_con">
 		<p class="clearfix">
-			<span>未成报单</span>
+			<span>{$res.title}</span>
 			<em id="closel">
 				<a href="javascript:;"><img src="images/l_close.png" alt=""></a>
 			</em>
 		</p>
 		<div class="L_box_con_one">
 			<img src="images/l-succes.png" alt="">
-			<p>修改成功</p>
+			<p>{$res.content}</p>
 			<p>
 				<button id="bnts">确定</button>
 			</p>
@@ -35,9 +36,11 @@
 		var box=$('.L_box');
 		bnts.click(function() {
 			box.hide();
+			location.href="__URL__/order_info";
 		});
 		closel.click(function() {
 			box.hide();
+			location.href="__URL__/order_info";
 		});
 	})
 </script>
