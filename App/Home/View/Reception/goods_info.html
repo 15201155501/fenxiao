@@ -3,65 +3,36 @@
 <head>
 	<meta charset="UTF-8">
 	<title>商品详情页</title>
+	<base href="__PUBLIC__/">
 	<link rel="stylesheet" href="css/public.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/nsty.css" />
 	<script src="js/jquery.min.js"></script>
 	<script src="js/public.js"></script>
 	<script type="text/javascript" src="js/jquery.jqzoom.js"></script>
 	<script type="text/javascript" src="js/base.js"></script>
 	<script type="text/javascript" src="js/details.js"></script>
+	<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+	<script type="text/javascript" src="js/nnavjs.js"></script>
+	<script type="text/javascript" src="js/showdate.js" ></script>
 	<style>
 		body{ background: #fff; }
 	</style>
 </head>
 <body>
-<!-- 头部 -->
-<div class="hg-head">
-	<div class="hg-head-information">
-		<div class="hg-head-information-cen clearfix">
-			<div class="information_left">
-				<div class="information_left_signin"><span>欢迎&nbsp;&nbsp;&nbsp;已登陆会员名</span></div>
-			</div>
-		</div>
-	</div>
-</div>
 <div class="hg-center">
-	<!-- 搜索 -->
-	<div class="hg-center-searchtext clearfix">
-		<div class="searchtext-logo ">
-			<a href="javascript:;">
-				<img src="images/q1.png" alt="恒工商城" height="77" width="191">
-			</a>
-		</div>
-		<div class="searchtext-logo-text">
-			<div class="bor"><span>自动化设备一站式采购平台</span></div>
-		</div>
-		<div class="searchtext-input">
-			<form action="#" class="clearfix">
-				<input type="text" name="text">
-				<button><img src="images/q11.png"></button>
-			</form>
-			<div class="form_value">
-				<span>买3赠一</span>
-				<span>美国进口电机</span>
-				<span>欧洲电机</span>
-				<span>伺服电机</span>
-			</div>
-		</div>
-		<!-- <div class="searchtext-shopping">
-			<a href="javascript:;"><span>我的购物车</span></a>
-		</div> -->
-	</div>
-</div>
+	<div class="ncmtbox">
+		<!-- 导航部分 -->
+		<include file="public:header" />
 <!--面包屑  -->
 <div class="commodity-crumbs">
 	<div class="commodity-min">
 		<ul>
-			<li><a href="javascript:;"><h2>步进电机 </h2></a></li>
+			<li><a href="javascript:;"><h2>服务台 </h2></a></li>
 			<li><span>></span></li>
-			<li><a href="javascript:;">直流电动机</a></li>
+			<li><a href="javascript:;">在线商城</a></li>
 			<li><span>></span></li>
-			<li><a href="javascript:;">电神AK263</a></li>
+			<li><a href="javascript:;">{$arr.xnprocname}</a></li>
 		</ul>
 	</div>
 </div>
@@ -69,35 +40,33 @@
 <div class="commodity-lists clearfix">
 	<div class="lists_Leftimgs">
 		<div id="preview" class="spec-preview"> 
-		  <span class="jqzoom"><img jqimg="images/b1.jpg" src="images/s1.jpg" /></span> 
+		  <span class="jqzoom"><img jqimg="./__PUBLIC__/{$arr.xnpicpath}" src="./__PUBLIC__/{$arr.xnpicpath}" /></span>
 		</div>
-		<!--缩图开始-->
-		<div class="spec-scroll"> <a class="prev"></a> <a class="next"></a>
-		  <div class="items">
-		    <ul>
-		      <li><img alt="佳能" bimg="images/b1.jpg" src="images/s1.jpg" onmousemove="preview(this);"></li>
-		      <li><img alt="佳能" bimg="images/b2.jpg" src="images/s2.jpg" onmousemove="preview(this);"></li>
-		      <li><img alt="佳能" bimg="images/b3.jpg" src="images/s3.jpg" onmousemove="preview(this);"></li>
-		      <li><img alt="佳能" bimg="images/b1.jpg" src="images/s1.jpg" onmousemove="preview(this);"></li>
-		      <li><img alt="佳能" bimg="images/b3.jpg" src="images/s3.jpg" onmousemove="preview(this);"></li>
-		      <li><img alt="佳能" bimg="images/b1.jpg" src="images/s1.jpg" onmousemove="preview(this);"></li>
-		      <li><img alt="佳能" bimg="images/b2.jpg" src="images/s2.jpg" onmousemove="preview(this);"></li>
-		    </ul>
-		  </div>
-		</div>
+		<!--&lt;!&ndash;缩图开始&ndash;&gt;-->
+		<!--<div class="spec-scroll"> <a class="prev"></a> <a class="next"></a>-->
+		  <!--<div class="items">-->
+		    <!--<ul>-->
+		      <!--<li><img alt="佳能" bimg="images/b1.jpg" src="images/s1.jpg" onmousemove="preview(this);"></li>-->
+		      <!--<li><img alt="佳能" bimg="images/b2.jpg" src="images/s2.jpg" onmousemove="preview(this);"></li>-->
+		      <!--<li><img alt="佳能" bimg="images/b3.jpg" src="images/s3.jpg" onmousemove="preview(this);"></li>-->
+		      <!--<li><img alt="佳能" bimg="images/b1.jpg" src="images/s1.jpg" onmousemove="preview(this);"></li>-->
+		      <!--<li><img alt="佳能" bimg="images/b3.jpg" src="images/s3.jpg" onmousemove="preview(this);"></li>-->
+		      <!--<li><img alt="佳能" bimg="images/b1.jpg" src="images/s1.jpg" onmousemove="preview(this);"></li>-->
+		      <!--<li><img alt="佳能" bimg="images/b2.jpg" src="images/s2.jpg" onmousemove="preview(this);"></li>-->
+		    <!--</ul>-->
+		  <!--</div>-->
+		<!--</div>-->
 	</div>
 	<div class="lists_righttexts">
 		<div class="righttexts_title">
-			<h2>步进电机产品12</h2>
+			<h2>{$arr.xnprocname}</h2>
 			<p>
-				<span>双12疯狂放价抢购中，洗车机限量秒杀1999，还有毛刷免费送！</span>
-				<a href="javascript:;">猛戳此处开抢!</a>
+				<span>{$arr.xndispotion}</span>
 			</p>
 		</div>
 		<div class="righttexts_price">
-			<h2 class="clearfix"><span>价格:</span><em>1590.00</em></h2>
-			<p>产品名称:旋转式步进电机</p>
-			<p>货期：现代或者1-N天</p>
+			<h2 class="clearfix"><span>价格:</span><em>{$arr.xnmemprice}</em></h2>
+			<p>产品积分:{$arr.xnjf}</p>
 		</div>
 		<!-- <div class="righttexts_backcolor">
 			<div class="backcolor_list">
@@ -131,23 +100,27 @@
 				</ul>
 				<ul class="clearfix" id="number">
 					<li><span>购买数量：</span></li>
-					<li><a class="jian btn_j" href="javscript:;" id="jian">-</a></li>
+					<li><a class="jian btn_j" href="javascript:;" id="jian">-</a></li>
 					<li>
 						<div class="number_input">
 						<input type="number" value="1" id="number_val"></div>
 					</li>
-					<li><a class="jia btn_j" href="javscript:;" id="jia">+</a></li>
+					<li><a class="jia btn_j" href="javascript:;" id="jia">+</a></li>
 				</ul>
 			</div>
 		</div> -->
 		<!-- <div class="customized clearfix">
-			<a href="javscript:;">非标定制</a>
+			<a href="javascript:;">非标定制</a>
 			<p>（若此产品的规格参数无法满足您的需要，点击此处，我们可以根据您的要求定制）</p>
 		</div> -->
 
 		<div class="shopping-btn-cen clearfix">
-			<a href="javsccript:;"  class="left_btn">立即下单</a>
+			<form action="__URL__/order_add" method="post">
+				<input type="hidden" name="xnprocid">
+				<button type="submit"><a href="javascript:;" class="left_btn">立即下单</a></button>
+			</form>
 		</div>
+
 	</div>
 </div>
 <!-- 商品详细信息 -->
@@ -220,12 +193,12 @@
 	<div class="detailed-right">
 		<div class="detaileds-list">
 			<ul class="clearfix" id="lists_text">
-				<li class="selected"><a href="javscript:;">产品详情</a></li>
-				<li><a href="javscript:;">规格参数</a></li>
-				<li><a href="javscript:;">用户评价<span>(4599)</span></a></li>
-				<li><a href="javscript:;">包装清单</a></li>
-				<li><a href="javscript:;">技术交流</a></li>
-				<li><a href="javscript:;">售后服务</a></li>
+				<li class="selected"><a href="javascript:;">产品详情</a></li>
+				<li><a href="javascript:;">规格参数</a></li>
+				<li><a href="javascript:;">用户评价<span>(4599)</span></a></li>
+				<li><a href="javascript:;">包装清单</a></li>
+				<li><a href="javascript:;">技术交流</a></li>
+				<li><a href="javascript:;">售后服务</a></li>
 			</ul>
 		</div>
 		<div class="detaileds-listcen" id="detaileds-listcen">
@@ -482,15 +455,15 @@
 					<div class="fl"></div>
 					<div class="paging_listscen clearfix">
 						<ul class="clearfix">
-							<li><a href="javacript:;"><div class="si1">上一页</div></a></li>
-							<li class="selecteds"><a href="javscript:;"><span>1</span></a></li>
-							<li><a href="javscript:;"><em>...</em></a></li>
-							<li><a href="javscript:;"><span>3</span></a></li>
-							<li><a href="javacript:;"><div class="si1">下一页</div></a></li>
+							<li><a href="javascript:;"><div class="si1">上一页</div></a></li>
+							<li class="selecteds"><a href="javascript:;"><span>1</span></a></li>
+							<li><a href="javascript:;"><em>...</em></a></li>
+							<li><a href="javascript:;"><span>3</span></a></li>
+							<li><a href="javascript:;"><div class="si1">下一页</div></a></li>
 						</ul>
 						<div class="texts">
 							<div class="texts_txt">到第<input  type="number">页</div>
-							<div class="texts_btn"><a href="javscript:;">确定</a></div>
+							<div class="texts_btn"><a href="javascript:;">确定</a></div>
 						</div>
 					</div>
 				</div>
@@ -602,15 +575,15 @@
 					<div class="fl"></div>
 					<div class="paging_listscen clearfix">
 						<ul class="clearfix">
-							<li><a href="javacript:;"><div class="si1">上一页</div></a></li>
-							<li class="selecteds"><a href="javscript:;"><span>1</span></a></li>
-							<li><a href="javscript:;"><em>...</em></a></li>
-							<li><a href="javscript:;"><span>3</span></a></li>
-							<li><a href="javacript:;"><div class="si1">下一页</div></a></li>
+							<li><a href="javascript:;"><div class="si1">上一页</div></a></li>
+							<li class="selecteds"><a href="javascript:;"><span>1</span></a></li>
+							<li><a href="javascript:;"><em>...</em></a></li>
+							<li><a href="javascript:;"><span>3</span></a></li>
+							<li><a href="javascript:;"><div class="si1">下一页</div></a></li>
 						</ul>
 						<div class="texts">
 							<div class="texts_txt">到第<input  type="number">页</div>
-							<div class="texts_btn"><a href="javscript:;">确定</a></div>
+							<div class="texts_btn"><a href="javascript:;">确定</a></div>
 						</div>
 					</div>
 				</div>

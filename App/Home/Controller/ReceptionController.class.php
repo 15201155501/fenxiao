@@ -11,8 +11,6 @@ class ReceptionController extends CommonController {
     public function index(){
         //左侧公共部分
         $this->userinfo();
-        //获取登录的会员编号
-        $hynumber = session('hynumber');
 
         //查询商品信息
         $User = M('xnproc'); // 实例化User对象
@@ -39,6 +37,31 @@ class ReceptionController extends CommonController {
      * @param arr 商品详情信息
      */
     public function goods_info(){
+        //获取商品id
+        $xnprocid = I('get.xnprocid');
+
+        //获取商品数据
+        $arr = M('xnproc')->where('xnprocid = '.$xnprocid)->find();
+        $this->assign('arr',$arr);
+
+        $this->display();
+    }
+
+    /**
+     * 加入购物车
+     * @author  spc <15201155501@163.com>
+     * @version 1.0
+     * @param res 返回的bool值
+     */
+    public function order_add(){
+        //获取商品id
+        $xnprocid = I('post.xnprocid');
+
+        //获取登录的会员编号
+        $hynumber = session('hynumber');
+
+        //加入购物车
+
 
     }
 
@@ -50,6 +73,8 @@ class ReceptionController extends CommonController {
      */
     public function order_info(){
 
+
+        $this->display();
     }
 
     /**
