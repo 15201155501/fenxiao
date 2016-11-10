@@ -27,7 +27,7 @@
 			<div class="L_box_con">
 				<p class="clearfix">
 					<span>未成报单</span>
-					<em id="closel">
+					<em class="closel">
 						<a href="javascript:;"><img src="images/l_close.png" alt=""></a>
 					</em>
 				</p>
@@ -35,11 +35,32 @@
 					<img src="images/l-m.png" alt="">
 					<p class="error_log"></p>
 					<p>
-						<button id="bnts">确定</button>
+						<button class="bnts">确定</button>
 					</p>
 				</div>
 			</div>
 		</div>
+<!------------成功提示----->
+		<div class="L_box"  id="success_id" style="display:none;">
+			<div class="L_box_bj"></div>
+			<div class="L_box_con">
+				<p class="clearfix">
+					<span>未成报单</span>
+					<em class="closel">
+						<a href="javascript:;"><img src="images/l_close.png" alt=""></a>
+					</em>
+				</p>
+				<div class="L_box_con_one">
+					<img src="images/l-succes.png" alt="">
+					<p id="success_log">成功</p>
+					<p>
+						<button class="bnts">确定</button>
+					</p>
+				</div>
+			</div>
+		</div>
+
+
 		<div class="n_cmtrtbox">
 
 			<div class="L_all">
@@ -67,6 +88,13 @@
 							<dl>
 								<dt>接受帐号：</dt>
 								<dd><input type="text" name="hynumberto" id="hynumberto" value="" ><span class="ntsspan">低于当前</span></dd>
+
+								<dd>
+									<input type="button" id="cation_number" style="background:#6699ff; width:80px" value="验证账号">
+									<!--<button style="background:#6699ff"  id="Usea">搜所</button>-->
+								</dd>
+
+
 							</dl>
 							<dl>
 								<dt>转账类型：</dt>
@@ -135,14 +163,31 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 
-		var closel=$('#closel');
-		var bnts=$('#bnts');
+		var closel=$('.closel');
+		var bnts=$('.bnts');
 		var box=$('.L_box');
 		bnts.click(function() {
 			box.hide();
 		});
 		closel.click(function() {
 			box.hide();
+		});
+
+
+		$('#cation_number').click(function(){
+			var hynumberto=$("#hynumberto").val();
+			$.post("__APP__/Home/FinancialCenter/VerificationAccount",{hynumberto:hynumberto},function(result) {
+
+				if(result==1){
+					$("#cation_number").val("验证成功");
+				}else{
+					$("#cation_number").val("验证失败");
+				}
+
+			});
+
+
+
 		});
 
 		$('#recharge_submit').click(function(){
@@ -153,6 +198,7 @@
 			var passwd2 =$("#passwd2").val();
 			var ewallet1 =$(".ewallet1").text();
 			var ewallet2 =$(".ewallet2").text();
+
 
 			if(moneycount =="" || hynumberto =="" || memo =="" || passwd2 ==""){
 				$("#redomfalseid").show();
@@ -182,13 +228,45 @@
 			$.post("__APP__/Home/FinancialCenter/llreflec",{moneycount:moneycount,hynumberto:hynumberto,memo:memo,passwd2:passwd2},function(result) {
 
 					if(result==1){
-						$("#redomfalseid").show();
-						$(".error_log").text("转币成功");
-						location.reload();
+						$("#success_id").show();
+						$("#success_log").text("转币成功");
+						$(".bnts").click(function() {
+							$("#success_id").hide();
+							location.reload();
+						});
+						$('.closel').click(function() {
+							$("#success_id").hide();
+						});
+
 					}else if(result==2){
+						$("#success_id").show();
+						$("#success_log").text("转币成功");
+						$(".bnts").click(function() {
+							$("#success_id").hide();
+							location.reload();
+						});
+						$('.closel').click(function() {
+							$("#success_id").hide();
+						});
+
+
+					}else if(result==4){
 						$("#redomfalseid").show();
-						$(".error_log").text("转币成功");
-						location.reload();
+						$(".error_log").text("转账账号验证失败");
+						$(".bnts").click(function() {
+							$("#redomfalseid").hide();
+
+						});
+					}else{
+						$("#redomfalseid").show();
+						$(".error_log").text("转币失败");
+						$(".bnts").click(function() {
+							$("#redomfalseid").hide();
+							location.reload();
+						});
+						$('.closel').click(function() {
+							$("#redomfalseid").hide();
+						});
 
 					}
 

@@ -9,7 +9,9 @@ class BonusManagementController extends CommonController {
         //左侧公共部分
         $this->userinfo();
         //判断用户是否输入过三级密码
-        if(empty(I('post.password2')) && empty(I('p'))){
+        $p =I('p');
+        $password2 =I('post.password2');
+        if(empty($password2) && empty($p)){
             $this->display('passtwo');
         }else{
             //获取提交的表单数据
@@ -18,7 +20,7 @@ class BonusManagementController extends CommonController {
             $map['HyNumber'] = session('hynumber');
             $res = M('hyclub')->where($map)->find();
 
-            if($res && $res['hypassword2']==$pwd || !empty(I('p'))){
+            if($res && $res['hypassword2']==$pwd || !empty($p)){
                 //设置查询条件
                 $map['HyNumber'] = session('hynumber');
                 $User = M('hymoneydailylog'); // 实例化User对象
@@ -99,6 +101,7 @@ class BonusManagementController extends CommonController {
     public function shareholder_add(){
         //左侧公共部分
         $this->userinfo();
+
         $hynumber = session('hynumber');
         //查询会员数据
         $data = M('hyclub') -> where("HyNumber='$hynumber'")->field('eWallet1,eWallet2,eWallet3,baodanfei')->find();
@@ -121,6 +124,31 @@ class BonusManagementController extends CommonController {
     }
 
     /**
+     * 验证会员账号
+     */
+    public function VerificationAccount(){
+        $hynumber =I('hynumber'); //接受账号
+        $Model = M("hyclub");
+        $hynuber=$Model->where("HyNumber='$hynumber' AND IsApproved='1'")->field('HyNumber')->find();
+        if(!empty($hynuber)){
+            echo 1;
+        }else{
+            echo 0;
+        }
+
+    }
+    /***
+     *  申请股东分红
+     */
+    public function AppayBonus(){
+        $hynumber_session =session('hynumber');
+        $approvaltype = I('approvaltype');
+        $ewallet1 =I('ewallet1'); //接受账号
+        $hynumber = I('hynumber');
+        $hymumber_member = I('hymumber_member');
+        $TransDate = date("Y-m-d H:i:s");
+    }
+    /**
      * 左侧公共信息页面
      */
     public function userinfo(){
@@ -128,4 +156,5 @@ class BonusManagementController extends CommonController {
         $left=$lefts->left();
         $this->assign('userinfo',$left);
     }
+
 }

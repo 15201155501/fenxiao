@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8" />
-		<title></title>
+		<title>申请股东</title>
 		<base href="__PUBLIC__/">
 		<link rel="stylesheet" href="css/mypage.css" />
 		<link rel="stylesheet" href="css/nsty.css" />
@@ -23,6 +23,45 @@
 			<div class="n_conmentbox">
 				<!-- 左侧部分 -->
 				<include file="public:left" />
+				<!-----错误提示---->
+				<div class="L_box" id="redomfalseid" style="display:none;"  >
+					<div class="L_box_bj"></div>
+					<div class="L_box_con">
+						<p class="clearfix">
+							<span>未成报单</span>
+							<em class="closel">
+								<a href="javascript:;"><img src="images/l_close.png" alt=""></a>
+							</em>
+						</p>
+						<div class="L_box_con_one">
+							<img src="images/l-m.png" alt="">
+							<p class="error_log"></p>
+							<p>
+								<button class="bnts">确定</button>
+							</p>
+						</div>
+					</div>
+				</div>
+				<!------------成功提示----->
+				<div class="L_box"  id="success_id" style="display:none;">
+					<div class="L_box_bj"></div>
+					<div class="L_box_con">
+						<p class="clearfix">
+							<span>未成报单</span>
+							<em class="closel">
+								<a href="javascript:;"><img src="images/l_close.png" alt=""></a>
+							</em>
+						</p>
+						<div class="L_box_con_one">
+							<img src="images/l-succes.png" alt="">
+							<p id="success_log">成功</p>
+							<p>
+								<button class="bnts">确定</button>
+							</p>
+						</div>
+					</div>
+				</div>
+
 				<div class="n_cmtrtbox">
 					<div class="L_all">
 						<div class="L_person nhtcmt">
@@ -35,33 +74,33 @@
 										<dl>
 											<dt>申请类型：</dt>
 											<dd>
-												<select>
-													<option>请选择</option>
-													<option>申请股东分红</option>
+												<select name="approvaltype" id="selectid">
+													<option value="B">申请股东分红</option>
 												</select>
-											</dd>
+												</dd>
+
 										</dl>
 										<dl>
 											<dt>注册币：</dt>
-											<dd><input type="text" value="{$data.baodanfei}"disabled="true"><span class="ntsspan">低于当前</span></dd>
+											<dd><input type="text" id="ewallet1" name="ewallet1" value="{$data.ewallet1}"disabled="true"><span class="ntsspan">低于当前</span></dd>
 										</dl>
 										<dl>
 											<dt>申请金额：</dt>
-											<dd><input type="text" value="5000" placeholder=""></dd>
+											<dd><input type="text" id="appymarany" name="appymarany" value="5000" placeholder=""></dd>
 										</dl>
 										<dl>
 											<dt>会员编号：</dt>
-											<dd><input type="text" value="{$userinfo.hynumber}">
-												<button type="button"class="nbtnmsjh">会员验证</button>
+											<dd><input id="hynumber" id="hynumber" type="text" value="{$userinfo.hynumber}">
+												<button type="button" id="veration_number" class="nbtnmsjh">会员验证</button>
 											</dd>
 										</dl>
 										<dl>
 											<dt>报单中心编号：</dt>
-											<dd><input type="text" value=""></dd>
+											<dd><input type="text" id="hymumber_member" name="hymumber_member" value=""></dd>
 										</dl>
 									</div>
 									<div class="clearfix">
-										<button type="submit" class="nbtntij"style="margin-top:0px">提交</button>
+										<button type="submit" id="cation_number" class="nbtntij"style="margin-top:0px">提交</button>
 									</div>
 								</form>
 								<table class="nddcxtable">
@@ -94,6 +133,58 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var closel=$('.closel');
+				var bnts=$('.bnts');
+				var box=$('.L_box');
+				bnts.click(function() {
+					box.hide();
+				});
+				closel.click(function() {
+					box.hide();
+				});
+				$('#veration_number').click(function(){
+					var hynumber=$("#hynumber").val();
+
+					$.post("__APP__/Home/BonusManagement/VerificationAccount",{hynumber:hynumber},function(result) {
+						if(result==1){
+							$("#veration_number").html("验证成功");
+						}else{
+							$("#veration_number").html("验证失败");
+						}
+
+					});
+
+
+
+				});
+
+				$('#cation_number').click(function(){
+					var approvaltype = $("#selectid option:selected").val();
+					var ewallet1=$("#ewallet1").val();
+					var appymarany=$("#appymarany").val();
+					var hynumber=$("#hynumber").val();
+					var hymumber_member=$("#hymumber_member").val();
+					$.post("__APP__/Home/BonusManagement/AppayBonus",{approvaltype:approvaltype,ewallet1:ewallet1,appymarany:appymarany,hynumberto:hynumberto,hymumber_member:hymumber_member},function(result) {
+
+						if(result==1){
+							$("#cation_number").val("验证成功");
+						}else{
+							$("#cation_number").val("验证失败");
+						}
+
+					});
+
+
+
+				});
+
+
+			});
+
+
+		</script>
 
 	</body>
 
