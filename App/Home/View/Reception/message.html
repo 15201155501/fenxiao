@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="css/nsty.css" />
 	<link rel="stylesheet" href="css/public.css" />
 	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/mypage.css" />
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
 </head>
@@ -28,22 +29,40 @@
 					</div>
 					<!--  -->
 					<div class="L_person_con">
-							<p>
-								<label for="Umiss">
-									<span>反馈意见</span>
-								</label>
-								<textarea id="Umiss" rows="10" cols="90" placeholder="不少于30字"></textarea>
-							</p>
-						</div>
-						<div class="L_lanage_bnt">
-							<button id="bnts">提交</button>
-						</div>
+						<p>
+							<label for="Umiss">
+								<span>反馈意见</span>
+							</label>
+							<textarea id="Umiss" rows="10" cols="90" placeholder="不少于30字"></textarea>
+						</p>
+					</div>
+					<button id="bnts" class="nchaxbtn" style="margin-left: 80px;">提交</button>
+					<table class="nddcxtable">
+					<tr>
+						<th>内容</th>
+						<th>时间	</th>
+						<th>操作	</th>
+					</tr>
+					<volist name="list" id="v">
+						<tr>
+							<td>留言内容:{$v.mcontent}<br>回复:</td>
+							<td>{$v.mdate}</td>
+							<td><a href="#">删除</a></td>
+						</tr>
+					</volist>
+					</table>
+					<!-- 底部分页 -->
+					<div class="pages" style="float: right; margin-right: 186px;">
+						{$page}
+					</div>
+
+					</div>
+					<!-- 底部 -->
+					<div class="L_footer">
+						<p>提示:禁区(内容最多不要涉及到灰色区域)灰色区域开发时不显示</p>
 					</div>
 				</div>
-				<!-- 底部 -->
-				<div class="L_footer">
-					<p>提示:禁区(内容最多不要涉及到灰色区域)灰色区域开发时不显示</p>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -66,7 +85,10 @@
 			alert('请输入反馈意见');
 		}else{
 			$.post("__URL__/message",{ mes:$("#Umiss").val()}, function(msg){
-
+				if (msg){
+					alert('留言成功');
+					location.reload();
+				}
 			});
 		}
 	});

@@ -230,7 +230,7 @@ class ReceptionController extends CommonController {
             ->where($map)
             ->where($where)
             ->join("hyclub b on a.dmid = b.ID")
-            ->order('did','desc')
+            ->order('did desc')
             ->limit($Page->firstRow.','.$Page->listRows)
             ->field("a.dId,a.ddetails,a.dfstate,a.wlzt, b.HyName,b.HyMobile,b.hyzipcode,b.hymail,b.hymemo,b.HyAddress,a.ddate,b.iswuliu,b.HyNumber")
             ->select();
@@ -253,12 +253,39 @@ class ReceptionController extends CommonController {
     public function message(){
         //左侧公共部分
         $this->userinfo();
-
         $mes = I('post.mes');
+        $hynumber = session('hynumber');
+
         if(empty($mes)){
+            $User = M('message'); // 实例化User对象
+            $count      = $User->where("mmid = '$hynumber' OR mtoid ='100001'")->count();// 查询满足要求的总记录数
+            // print_r($User->getLastSql());
+            // echo $count;
+            $Page       = $this->getpage($count,2);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+            $show       = $Page->show();// 分页显示输出
+            // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+            $list = $User->where("mmid = '$hynumber' OR mtoid ='100001'")
+                ->order('mdate desc')
+                ->limit($Page->firstRow.','.$Page->listRows)
+                ->select();
+
+            $this->assign('list',$list);// 赋值数据集
+            $this->assign('page',$show);// 赋值分页输出
+
             $this->display();
         }else{
-            
+            $arr = array(
+                'mmid' => $hynumber,
+                'mtitle' => '用户留言',
+                'mcontent' => $mes,
+                'mdate' => date('Y-m-d H:i:s'),
+            );
+            $rs = M('message')->add($arr);
+            if($rs){
+                echo 1;
+            }else{
+                echo 0;
+            }
         }
     }
 
