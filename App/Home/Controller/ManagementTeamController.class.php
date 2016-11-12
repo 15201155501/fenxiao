@@ -244,6 +244,7 @@ class ManagementTeamController extends CommonController {
         $immediately=$Model->where('ID='.$ID)->save($data);
 
         if($immediately){
+            
 
             echo 1;
         }else{
