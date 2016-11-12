@@ -27,7 +27,9 @@ class ManagementTeamController extends CommonController {
         $this->assign('UserMember',$UserMember);
 
         $UserModel=$Model->where("HyParentNumber='$wheres'")->field("ID,IsApproved,HyNumber,HyName,HyLocation")->select();
-
+        echo "<pre>";
+        print_r($UserModel);
+        echo "</pre>";
             $this->assign('UserModel',$UserModel);
 
 
@@ -54,10 +56,10 @@ class ManagementTeamController extends CommonController {
         $Model = M("hyclub");
         $hynuber=$Model->where("HyNumber='$hynumber'")->field('HyNumber')->find();
 
-        if(!empty($hynuber)){
-            echo 0;
+        if(empty($hynuber)){
+            echo 1;
         }else{
-            echo 1; //账号不存在，验证成功
+            echo 0; //账号不存在，验证成功
         }
 
     }
@@ -84,11 +86,15 @@ class ManagementTeamController extends CommonController {
      *添加会员信息
      */
     public function adduserinfo(){
-        $HyNumber = I('HyNumber');
+
+        $data['HyNumber'] = I('HyNumber');
+        $Number =$data['HyNumber'];
         $Model =M('hyclub');
         $data['HyAddress'] = I('HyAddress');
         $data['HyName'] = I('HyName');
+        $data['HyLevel1'] = I('HyLevel1');
         $hynumber =session('hynumber');
+
         $data['HyOpenBank'] = I('HyOpenBank');
         $data['HyCardNo'] = I('HyCardNo');
         $data['HyOpenBankNo'] = I('HyOpenBankNo');
@@ -100,23 +106,43 @@ class ManagementTeamController extends CommonController {
         $data['HyOpenBankAddress'] = I('HyOpenBankAddress');
         $data['HyTjNumber'] = I('HyTjNumber');
         $data['HyParentNumber'] = I('HyParentNumber');
-         $data['HyLevel1'] = I('HyLevel1');
+        $data['eWallet1'] = 0;
+        $data['eWallet2'] = 0;
+        $data['eWallet3'] = 0;
+
          $data['HyLocation'] = I('HyLocation');
         $data['HySex'] = I('HySex');
          $data['daili'] = I('daili');
+        $data['IsApproved'] = 0;
+
+        $data['BelongWuliuNumber'] = $hynumber;
+
 
 
         $data['HyPassword'] = I('HyPassword');
         $data['HyPassword2'] = I('HyPassword2');
         $data['HyPassword3'] = I('HyPassword3');
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
 
-        $res = $Model->where("HyNumber='$HyNumber'")->save($data);
-        echo $Model->getLastSql();
+
+        $res = $Model->where("HyNumber='$Number'")->add($data);
+
+        $hynuber_id=$Model->where("HyNumber='$hynumber'")->field('ID')->find();
+
+        $ddglModel =M('ddgl');
 
         if($res){
+            echo $data['HyLevel1'];
+            if($data['HyLevel1'] ==1){
+
+            // $res= $Model->where("HyNumber='$hynumber'")->setDec('eWallet1',5000);
+                $Model->where("HyNumber='$Number'")->setInc('eWallet2',5000);
+
+            }elseif($data['HyLevel1'] ==2){
+              //  $res= $Model->where("HyNumber='$hynumber'")->setDec('eWallet1',10000);
+                $rs= $Model->where("HyNumber='$Number'")->setInc('eWallet2',10000);
+            }
+            $dat['wlmid']=$hynuber_id['id'];
+            $ddgl =$ddglModel->add($dat);
 
             $result['addinfo'] = '添加个人信息成功';
         }else{
@@ -218,6 +244,7 @@ class ManagementTeamController extends CommonController {
         $immediately=$Model->where('ID='.$ID)->save($data);
 
         if($immediately){
+
             echo 1;
         }else{
             echo 0;
