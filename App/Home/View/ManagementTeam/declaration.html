@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>报单中心</title>
+    <base href="__PUBLIC__/" />
+    <link rel="stylesheet" href="css/nsty.css" />
+    <link rel="stylesheet" href="css/public.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!–[if lt IE 9]>
+    <script src=”http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js”></script>
+    <![endif]–>
+
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body>
+<div class="nbodybg"></div>
+<div class="ncmtbox clearfix">
+    <include file="public:header" />
+    <div class="n_conmentbox">
+        <!-- 左侧部分 -->
+        <include file="public:left" />
+        <!-- 右侧部分 -->
+        <div class="n_cmtrtbox">
+            <div class="L_all" style="overflow: hidden;">
+                <!-- 个人资料 -->
+                <div class="L_person" style="overflow: auto;height: 100%;width: 100%;">
+                    <div class="L_person_tit">
+                        <span>报单中心</span>
+                    </div>
+                    <form action="__URL__/adduserinfo" method="post">
+                    <div class="L_person_con">
+                        <ul class="clearfix">
+                            <li>
+                                <label for="Unum"><span>会员帐号:</span></label>
+                                <input type="text" id="Unum" value="" name="HyNumber" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                <em>＊</em>
+                               <!-- <em style="font-size:12px;color: #666;display: inline-block;padding: 3px 10px 3px 10px;border: 1px solid #999;border-radius:5px 5px ;">
+                                    <input type="button" id="cation_number" style="background:#6699ff; width:50px" value="验证">
+                                </em>-->
+                                <button type="button" id="veration_number" class="nbtnmsjh">验证</button>
+                                <p id="text_unum"></p>
+
+                            </li>
+                            <li>
+                                <label for="Umeil"><span>邮箱:</span></label>
+                                <input type="text" name="HyMail" id="Umeil" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                <em>＊</em>
+                                <p id="text2"></p>
+                            </li>
+                            <li>
+                                <label for="Urecommon"><span>推荐人编号:</span></label>
+                                <input type="text" id="Urecommon" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" style="width: 80px;"><em style="color: #999;margin-left: 10px;">——</em>
+                                <input type="text" id="UUrecommon_name" name="HyTjNumber" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" style="width: 80px;" value="">
+                                <em>＊</em>
+                                <p id="text_tnum"></p>
+                            </li>
+                            <li>
+                                <label for="Uaddr"><span>居住地址:</span></label>
+                                <input type="text" id="Uaddr" name="HyAddress" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                            </li>
+                            <li>
+                                <label for="Urece_num"><span>接点人编号:</span></label>
+                                <input type="text" id="Urece_num" name="HyParentNumber"  placeholder="默认不能更改" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                            </li>
+                            <li>
+                                <label for="Ubank"><span>开户银行:</span></label>
+                                <input type="text" id="Ubank" name="HyOpenBank" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" placeholder="农业银行">
+                                <em>＊</em>
+                                <p id="text_bank"></p>
+                            </li>
+                            <li>
+                                <label for="Ureg"><span>注册配套:</span></label>
+                                <select name="HyLevel1" value="请选择" style="width: 140px;">
+                                    <option selected value="请选择">请选择</option>
+                                    <option value="1">一星会员</option>
+                                    <option value="2">二星会员</option>
+                                </select>
+                                <em>＊</em>
+                                <p id="text_reg"></p>
+                            </li>
+                            <li>
+                                <label for="Ukai_name"><span>开户姓名:</span></label>
+                                <input type="text" name="HyOpenBankName" id="Ukai_name" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                <em>＊</em>
+                                <p id="text_knam"></p>
+                            </li>
+
+                            <li>
+                                <label for="Umark"><span>所属市场:</span></label>
+                                <select name="HyLocation" value="请选择" style="width: 140px;">
+                                    <if condition="$location eq A">
+                                    <option value="1">A市场</option>
+                                        <else />
+                                    <option value="2">B市场</option>
+                                    </if>
+                                </select>
+                                <em>＊默认不能更改</em>
+                                <p id="text_mark"></p>
+                            </li>
+                            <li>
+                                <label for="Ubankl"><span>银行账户:</span></label>
+                                <input type="number" name="HyOpenBankNo" id="Ubankl" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                <em>＊</em>
+                                <p id="text_bank1"></p>
+                            </li>
+                            <li>
+                                <label for="Unam"><span>真实姓名:</span></label>
+                                <input type="text" id="Unam" name="HyName2" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                <em>＊</em>
+                                <p id="text_relnam"></p>
+                            </li>
+                            <li>
+                                <label for="Ukaddr"><span>开户地址:</span></label>
+                                <input type="text" id="Ukaddr" name="HyOpenBankAddress" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                <em>＊</em>
+                                <p id="text_kaddr"></p>
+                            </li>
+
+                            <li>
+                                <label for="Usex"><span>性别:</span></label>
+                                <select name="HySex" value="请选择" style="width: 140px;">
+                                    <option value="1">男</option>
+                                    <option value="0">女</option>
+                                </select>
+                                <p id="text_sex"></p>
+                            </li>
+
+                            <li>
+                                <label for="Ucnter"><span>服务中心编号:</span></label>
+                                <input type="text" name="daili" id="Ucnter" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                <em>＊</em>
+                                <p id="text_center"></p>
+                            </li>
+                            <li>
+                                <label for="Uidcard"><span>身份证号:</span></label>
+                                <input type="text" id="Uidcard" name="HyCardNo" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                <em>＊</em>
+                                <p id="text_id"></p>
+                            </li>
+                            <li>
+                                <label for="Uphoe"><span>手机号码:</span></label>
+                                <input type="text" id="Uphoe" name="HyMobile" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                <em>＊</em>
+                                <p id="text_pho"></p>
+                            </li>
+                            <li>
+                                <label for="Uqq"><span>QQ号:</span></label>
+                                <input type="number" id="Uqq" name="HyQQMSN" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                            </li>
+                        </ul>
+                        <div class="L_person_tit">
+                        </div>
+                        <ul class="clearfix" style="margin-top: 30px;">
+                            <li>
+                                <label for="Upwd_first"><span>一级密码:</span></label>
+                                <input class="Upwd_first" type="password" name="HyPassword" id="Upwd_first" style="width: 160px;" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                <em>＊</em>
+                                <div class="circle" style="display: inline-block;text-align:center;line-height: 12px;width: 14px;height: 14px;border-radius: 100%;border: 1px solid #666;">
+                                    <div style="display: none;width: 10px;height: 10px;border-radius: 100%;background: #000;" class="circle1"></div>
+                                </div>
+
+                                <em>显示密码</em>
+                                <p id="text_first"></p>
+                            </li>
+                            <li>
+                                <label for="Upwd_second"><span>二级密码:</span></label>
+                                <input type="password" id="Upwd_second" name="HyPassword2" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" style="width: 160px;">
+                                <em>＊</em>
+                                <div class="circle2" style="display: inline-block;text-align:center;line-height: 12px;width: 14px;height: 14px;border-radius: 100%;border: 1px solid #666;">
+                                    <div class="circle3" style="display: none;width: 10px;height: 10px;border-radius: 100%;background: #000;"></div>
+                                </div>
+                                <em>显示密码</em>
+                                <p id="text_second"></p>
+                            </li>
+                            <li>
+                                <label for="Upwd_first_config"><span>一级密码确认:</span></label>
+                                <input type="password" name="pwd1"  id="Upwd_first_config" style="width: 160px;" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                <em>＊</em>
+                                <p id="text_finrst_config"></p>
+                            </li>
+                            <li>
+                                <label for="Upwd_second_config"><span>二级密码确认:</span></label>
+                                <input type="password" id="Upwd_second_config" name="pwd2" style="width: 160px;" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                <em>＊</em>
+                                <p id="text_second_config"></p>
+                            </li>
+                            <li>
+                                <label for="Upwd_third"><span>三级密码:</span></label>
+                                <input type="password" id="Uwd_third" name="HyPassword3"  style="width: 160px;" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                <em>＊</em>
+                                <div class="circle4" style="display: inline-block;text-align:center;line-height: 12px;width: 14px;height: 14px;border-radius: 100%;border: 1px solid #666;">
+                                    <div class="circle5" style="display: none;width: 10px;height: 10px;border-radius: 100%;background: #000;"></div>
+                                </div>
+                                <em>显示密码</em>
+                                <p id="text_third"></p>
+                            </li>
+                            <li>
+                                <label for="Upwd_third_config"><span>三级密码确认:</span></label>
+                                <input type="password" id="Upwd_third_config" name="pwd3" style="width: 160px;" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+                                <em>＊</em>
+                                <p id="text_third_config"></p>
+                            </li>
+                        </ul>
+                        <div class="L_person_up" style="padding-bottom:25px;">
+                            <button id="bnts">提交</button>
+                        </div>
+
+                    </div>
+                        </form>
+                </div>
+                <!-- 底部 -->
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery("#nav").slide({
+        type: "menu", // 效果类型，针对菜单/导航而引入的参数（默认slide）
+        titCell: ".nLi", //鼠标触发对象
+        targetCell: ".sub", //titCell里面包含的要显示/消失的对象
+        effect: "slideDown", //targetCell下拉效果
+        delayTime: 300, //效果时间
+        triggerTime: 0, //鼠标延迟触发时间（默认150）
+        returnDefault: true //鼠标移走后返回默认状态，例如默认频道是“预告片”，鼠标移走后会返回“预告片”（默认false）
+    });
+</script>
+
+
+</body>
+<script>
+
+    $(function(){
+        var closel=$('#closel');
+        var bnts=$('#bnts');
+        var box=$('.L_box');
+        bnts.click(function() {
+            box.hide();
+            location.href="__APP__/Home/Index/index";
+        });
+        closel.click(function() {
+            box.hide();
+            location.href="__APP__/Home/Index/index";
+        });
+
+//验证会员编号
+        $('#veration_number').click(function(){
+            var hynumber=$("#Unum").val();
+            $.post("__APP__/Home/ManagementTeam/VerificationAccount",{hynumber:hynumber},function(result) {
+                if(result==1){
+                    $(".nbtnmsjh").html("成功");
+                }else{
+                    $(".nbtnmsjh").html("失败");
+                }
+
+            });
+
+        });
+        //推荐人编号
+        $('#Urecommon').blur(function(){
+            var HyTjNumber=$("#Urecommon").val();
+
+            $.post("__APP__/Home/ManagementTeam/HyTjNumber",{HyTjNumber:HyTjNumber},function(msg) {
+                if(msg!=0){
+                 $("#UUrecommon_name").val(msg['hyname']);
+                }else{
+                    alert('您填的推荐人编号不存在存在或未激活');
+                }
+
+            },'json');
+
+        });
+
+
+
+        var Unam=$('#Unam'); //姓名验证
+        var Ubank=$("#Ubank"); //开户行验证
+        var Uidcard=$("#Uidcard"); //身份证验证
+        var Ubankl=$("#Ubankl");//银行卡号验证
+        var Uphoe=$("#Uphoe"); //手机号验证
+        var Ukcard=$("#Ukcard");//开户地址验证
+        var Ukname=$('#Ukai_name');
+        // 显示文字定义
+        var text1=$('#text_relnam');
+        var text2=$('#text_bank');
+        var text3=$('#text_id');
+        var text4=$('#text_bank1');
+        var text5=$('#text_pho');
+        var text6=$('#text_kaddr');
+        var text7=$('#text_knam');
+        var bnts=$("#bnts");
+
+        // 验证身份证号
+        var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        //  验证手机号
+        var phones = /^(14[0-9]|13[0-9]|15[0-9]|17[0-9]|18[0-9])\d{8}$$/;
+
+        bnts.click(function() {
+            if (Unam.val()=='') {
+                text1.text('请输入真实姓名');
+                return false;
+            }else{
+                text1.text('');
+            }
+            if (Ubank.val()=='') {
+                text2.text('请输入开户行号');
+                return false;
+            }else{
+                text2.text('');
+            }
+            if( reg.test(Uidcard.val()) === false )
+            {
+                text3.text('请输入正确的身份证号');
+                return  false;
+            }else{
+                text3.text('');
+            }
+            if (Ubankl.val()=='') {
+                text4.text('请输入银行卡号');
+                return false;
+            }else{
+                text4.text('');
+            }
+            if(!phones.test(Uphoe[0].value)) {
+                text5.text('请输入手机号');
+                return false;
+            }else{
+                text5.text('');
+            }
+            if (Ukcard.val()=='') {
+                text6.text('请输入开户地址');
+                return false;
+            }if(Ukname.val()!=Unam.val()){
+                text7.text("请检查真实姓名与开户名是否一致");
+            }
+            else{
+                text6.text('');
+            }
+        });
+        $('.circle').click(function(){
+            var display=$('.circle1').css("display");
+            if(display=='none'){
+                $(this).find('.circle1').css("display","inline-block");
+                $(this).siblings('input').prop('type','text');
+            }else if(display=='inline-block'){
+                $(this).find('.circle1').css("display","none");
+                $(this).siblings('input').prop('type','password');;
+            }
+        })
+        $('.circle2').click(function(){
+            var display=$('.circle3').css("display");
+            if(display=='none'){
+                $(this).find('.circle3').css("display","inline-block");
+                $(this).siblings('input').prop('type','text');
+            }else if(display=='inline-block'){
+                $(this).find('.circle3').css("display","none");
+                $(this).siblings('input').prop('type','password');;
+            }
+
+        })
+        $('.circle4').click(function(){
+            var display=$('.circle5').css("display");
+            if(display=='none'){
+                $(this).find('.circle5').css("display","inline-block");
+                $(this).siblings('input').prop('type','text');
+            }else if(display=='inline-block'){
+                $(this).find('.circle5').css("display","none");
+                $(this).siblings('input').prop('type','password');;
+            }
+
+        })
+
+    })
+</script>
+
+</html>

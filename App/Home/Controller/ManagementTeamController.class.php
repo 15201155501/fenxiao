@@ -3,8 +3,133 @@ namespace Home\Controller;
 use Think\Controller;
 class ManagementTeamController extends CommonController {
     public function select(){
+        $lefts = A('Home/Public');
+        $left=$lefts->left();
+        $this->assign('userinfo',$left);
+        $Model = M("hyclub");
+        $hynumber =session('hynumber');
+        $ParentNumber =I('ParentNumber');
+        if(!empty($ParentNumber)){
+             $vartionum=$Model->where("HyNumber='$ParentNumber'")->field('HyNumber')->find();
+
+             if(empty($vartionum)){
+                 echo "<script language='javascript' type='text/javascript'>alert('该用户不存在')</script>";
+                 $wheres =$hynumber;
+             }else{
+                 $wheres =$ParentNumber;
+             }
+
+        }else{
+            $wheres = $hynumber;
+        }
+
+        $UserMember=$Model->where("HyNumber='$wheres'")->field("HyJoinInvest,ALeftPoints,BLeftPoints,ALeftPersonNums,BLeftPersonNums,CLeftPoints,AUsedPoints,BUsedPoints,CUsedPoints,HyName, HyNumber, HyparentNumber, jiedianyejiall")->find();
+        $this->assign('UserMember',$UserMember);
+
+        $UserModel=$Model->where("HyParentNumber='$wheres'")->field("ID,IsApproved,HyNumber,HyName,HyLocation")->select();
+
+            $this->assign('UserModel',$UserModel);
+
+
         $this->display();
     }
+    /***
+     *  报单显示页面
+     */
+    public function Declaration(){
+        $lefts = A('Home/Public');
+        $left=$lefts->left();
+        $location =I('location'); //A B
+        $this->assign('userinfo',$left);
+        $this->assign('location',$location);
+
+        $this->display();
+    }
+
+    /**
+     * 验证转账账号
+     */
+    public function VerificationAccount(){
+        $hynumber =I('hynumber'); //接受账号
+        $Model = M("hyclub");
+        $hynuber=$Model->where("HyNumber='$hynumber'")->field('HyNumber')->find();
+
+        if(!empty($hynuber)){
+            echo 0;
+        }else{
+            echo 1; //账号不存在，验证成功
+        }
+
+    }
+    /**
+     * 验证推荐人编号
+     */
+    public function HyTjNumber(){
+        $HyTjNumber =I('HyTjNumber'); //接受账号
+        $Model = M("hyclub");
+        $hynumber =session('hynumber');
+        $HyName=$Model->where("HyNumber='$HyTjNumber' AND IsApproved='1'")->field('HyName')->find();
+
+        if(!empty($HyName)){
+            echo json_encode(array(
+                'hyname' => $HyName['hyname']
+            ));
+
+        }else{
+            echo 0;
+        }
+
+    }
+    /***
+     *添加会员信息
+     */
+    public function adduserinfo(){
+        $HyNumber = I('HyNumber');
+        $Model =M('hyclub');
+        $data['HyAddress'] = I('HyAddress');
+        $data['HyName'] = I('HyName');
+        $hynumber =session('hynumber');
+        $data['HyOpenBank'] = I('HyOpenBank');
+        $data['HyCardNo'] = I('HyCardNo');
+        $data['HyOpenBankNo'] = I('HyOpenBankNo');
+        $data['HyMobile'] = I('HyMobile');
+        $data['HyOpenBankName'] = I('HyOpenBankName');
+        $data['HyQQMSN'] = I('HyQQMSN');
+        $data['HyAddress'] = I('HyAddress');
+        $data['HyMail'] = I('HyMail');
+        $data['HyOpenBankAddress'] = I('HyOpenBankAddress');
+        $data['HyTjNumber'] = I('HyTjNumber');
+        $data['HyParentNumber'] = I('HyParentNumber');
+         $data['HyLevel1'] = I('HyLevel1');
+         $data['HyLocation'] = I('HyLocation');
+        $data['HySex'] = I('HySex');
+         $data['daili'] = I('daili');
+
+
+        $data['HyPassword'] = I('HyPassword');
+        $data['HyPassword2'] = I('HyPassword2');
+        $data['HyPassword3'] = I('HyPassword3');
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+
+        $res = $Model->where("HyNumber='$HyNumber'")->save($data);
+        echo $Model->getLastSql();
+
+        if($res){
+
+            $result['addinfo'] = '添加个人信息成功';
+        }else{
+            $result['addinfo'] = '添加个人信息失败';
+        }
+
+        //$this->assign('result',$result);
+       // $this->display('success');
+    }
+
+
+
+
 
     /***
      * 会员激活 三级密码验证
@@ -167,6 +292,9 @@ class ManagementTeamController extends CommonController {
     public function Application_Agent(){
         $data['tmid'] =session('hynumber');
 
+        $data['tsum'] =0;
+        $data['tsign'] =0;
+        $data['tlg'] =0;
         $data['tdate'] = I('tdate');
         $data['taddress'] = I('taddress');
         $data['tnote'] = I('tnote');
