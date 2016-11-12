@@ -7,7 +7,8 @@ class InfoSafetyController extends CommonController {
      */
     public function info_upd(){
         //判断是否输入过三级密码
-        if(empty(I('post.password3'))){
+        $pwd3 = I('post.password3');
+        if(empty($pwd3)){
             $lefts = A('Home/Public');
             $left=$lefts->left();
             $this->assign('userinfo',$left);
@@ -54,15 +55,17 @@ class InfoSafetyController extends CommonController {
         $left=$lefts->left();
         $this->assign('userinfo',$left);
         //判断是否表单提交
-        if(empty(I('post.'))){
+        $data = I('post.');
+        if(empty($data)){
             $this->display();
         }else{
-            $data = I('post.');
+
             //获取登录的用户id
             $map['HyNumber'] = session('hynumber');
             $tb = M('hyclub');
             //判断是修改的几级密码
-            if(!empty(I('get.act')) && I('get.act')=='pwd1'){
+            $act = I('get.act');
+            if(!empty($act) && $act=='pwd1'){
                 $map['HyPassword'] = $data['HyPassword'];
                 if($data['pwd'] == $data['qrpwd']){
                     $res = $tb->where($map)->find();
@@ -80,7 +83,7 @@ class InfoSafetyController extends CommonController {
                     $this->error('两次密码不一致');
                 }
             }
-            if(!empty(I('get.act')) && I('get.act')=='pwd2'){
+            if(!empty($act) && $act=='pwd2'){
                 $map['HyPassword2'] = $data['HyPassword2'];
                 if($data['pwd'] == $data['qrpwd']){
                     $res = $tb->where($map)->find();
@@ -96,7 +99,7 @@ class InfoSafetyController extends CommonController {
                     $this->error('两次密码不一致');
                 }
             }
-            if(!empty(I('get.act')) && I('get.act')=='pwd3'){
+            if(!empty($act) && $act=='pwd3'){
                 $map['HyPassword3'] = $data['HyPassword3'];
                 if($data['pwd'] == $data['qrpwd']){
                     $res = $tb->where($map)->find();
