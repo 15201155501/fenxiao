@@ -290,6 +290,17 @@ class ReceptionController extends CommonController {
     }
 
     /**
+     * 留言反馈-删除数据
+     * @author  spc <15201155501@163.com>
+     * @version 1.0
+     * @param state 返回删除状态
+     */
+    public function del_mes(){
+        M('message')->delete(I('post.mid'));
+        echo 1;
+    }
+
+    /**
      * 左侧公共信息页面
      */
     public function userinfo(){
