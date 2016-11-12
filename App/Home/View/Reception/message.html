@@ -47,7 +47,7 @@
 						<tr>
 							<td>留言内容:{$v.mcontent}<br>回复:</td>
 							<td>{$v.mdate}</td>
-							<td><a href="#">删除</a></td>
+							<td><a href="javascript:;" onclick="del({$v.mid})">删除</a></td>
 						</tr>
 					</volist>
 					</table>
@@ -92,5 +92,14 @@
 			});
 		}
 	});
+
+	function del(mid){
+		$.post("__URL__/del_mes",{ mid:mid}, function(msg){
+			if (msg){
+				alert('删除成功');
+				location.reload();
+			}
+		});
+	}
 </script>
 </html>
