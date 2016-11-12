@@ -203,13 +203,16 @@ class ReceptionController extends CommonController {
 
         //根据订单号查询
         if(I('post.did') != null){
-            $map['dId'] = empty(I('post.did')) ? '' : I('post.did');
+            $did = I('post.did');
+            $map['dId'] = empty($did) ? '' : I('post.did');
             $this->assign('did',$map['dId']);
         }
 
         //根据日期查询
-        $s_time = empty(I('post.s_time')) ? '' : I('post.s_time');
-        $e_time = empty(I('post.e_time')) ? '' : I('post.e_time');
+        $s = I('post.s_time');
+        $e = I('post.e_time');
+        $s_time = empty($s) ? '' : I('post.s_time');
+        $e_time = empty($e) ? '' : I('post.e_time');
 
         if($s_time != null && $e_time != null){
             $where = "ddate > '$s_time' AND ddate < '$e_time'";
