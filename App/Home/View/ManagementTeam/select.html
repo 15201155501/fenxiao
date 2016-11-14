@@ -90,6 +90,9 @@
 							</em>
 
 						</div>
+						<div class="L_querys_search clearfix">
+							<button type="button" style="background: blue; color: white;width: 80px;height: 40px;" onclick="history.go(-1);">返回</button>
+						</div>
 						<div class="L_querys_con">
 							<div class="L_querys_con1">
 								<p>
@@ -113,7 +116,9 @@
 									<if condition="($vo.hylocation eq 1) AND $vo.hynumber neq ''">
 									<div class="L_querys_con1 fl">
 										<if condition="$vo.isapproved eq 1">
-										<a href="__URL__/select/ParentNumber/{$vo.hynumber}"><h3>A点</h3>
+											<form name="myForm" action="__URL__/select"  method="post">
+												<input type="hidden" name="ParentNumber" value="{$vo.hynumber}">
+										<a href="javascript:document.myForm.submit();" ><h3>A点</h3>
 											<p>
 												编号:<span>{$vo.hynumber}</span>
 											</p>
@@ -121,6 +126,7 @@
 												姓名:<span>{$vo.hyname}</span>
 											</p>
 										</a>
+											</form>
 											<else />
 											<h3>A点</h3>
 											<p>
@@ -143,7 +149,9 @@
 									<if condition="$vo.hylocation eq 2 AND $vo.hynumber neq ''">
 										<div class="L_querys_con1 L_querys_con2 fr">
 											<if condition="$vo.isapproved eq 1">
-											<a href="__URL__/select/ParentNumber/{$vo.hynumber}"><h3>B点</h3>
+												<form name="myForm" action="__URL__/select"  method="post">
+													<input type="hidden" name="ParentNumber" value="{$vo.hynumber}">
+											<a href="javascript:document.myForm.submit();" ><h3>B点</h3>
 												<p>
 													编号:<span>{$vo.hynumber}</span>
 												</p>
@@ -151,6 +159,7 @@
 													姓名:<span>{$vo.hyname}</span>
 												</p>
 											</a>
+												</form>
 												<else />
 												<h3>B点</h3>
 												<p>
