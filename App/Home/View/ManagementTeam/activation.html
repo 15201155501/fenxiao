@@ -71,7 +71,7 @@
 									</if>
 
 									<if condition="($vo.isapproved neq 1) ">
-										<td><button type="button"class="nbtnmsjh" activ="{$vo.id}"  >马上激活</button><br />
+										<td><button type="button"class="nbtnmsjh" hyparent="{$vo.hyparentnumber}" activ="{$vo.id}"  >马上激活</button><br />
 											<button type="button"class="nbtndel" activ_del="{$vo.id}">删除会员</button></td>
 										<else />
 										<td></td>
@@ -101,9 +101,10 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('.nbtnmsjh').click(function(){
+		$('.nbtndel').click(function(){
 			alert('您确认要删除吗?');
 			var acti_id =$(this).attr("activ_del");
+
 
 			//var acti_id=$("#acti_id").val();
 			$.post("__APP__/Home/ManagementTeam/Activate_delete",{id:acti_id},function(result) {
@@ -117,11 +118,11 @@
 
 		});
 //删除会员
-		$('.nbtndel').click(function(){
+		$('.nbtnmsjh').click(function(){
 			var acti_id =$(this).attr("activ");
+			var hyparent =$(this).attr("hyparent");
 
-			//var acti_id=$("#acti_id").val();
-			$.post("__APP__/Home/ManagementTeam/Activate_immediately",{id:acti_id},function(result) {
+		$.post("__APP__/Home/ManagementTeam/Activate_immediately",{id:acti_id,hyparent:hyparent},function(result) {
 				if(result){
 					alert('激活成功');
 					location.reload();

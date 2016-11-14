@@ -27,14 +27,86 @@ class ManagementTeamController extends CommonController {
         $this->assign('UserMember',$UserMember);
 
         $UserModel=$Model->where("HyParentNumber='$wheres'")->field("ID,IsApproved,HyNumber,HyName,HyLocation")->select();
-        echo "<pre>";
-        print_r($UserModel);
-        echo "</pre>";
-            $this->assign('UserModel',$UserModel);
 
+            $this->assign('UserModel',$UserModel);
+        $numarray = $this->MemberSystem();
+       /* $wall2 ='5000';
+        $getwall2 =($wall2*0.35)*0.9;
+        $hyparentnumber= $numarray[0]['hyparentnumber'];
+        $ewallet2 =$Model->where("HyNumber='$hyparentnumber'")->setInc('eWallet2',$getwall2);*/
+        //获取顶层会员信息
+        $count =count($numarray)-1;
+        $top = $numarray[$count];
+        $pnumber =$top['hynumber']; //获取
+        $newdata=  $this->PcSystem($pnumber,$count);
+       // print_r($top);
+        $a = array();
+        $b = array();
+        for($i=0;$i<count($newdata);$i++){
+            for($j=$i+1;$j<count($newdata);$j++){
+                if($newdata[$i]['level'] == $newdata[$j]['level']){
+                    $a[] = $newdata[$i];
+                    $b[] = $newdata[$j];
+                }
+            }
+        }
+       /* echo "<pre>";
+        print_r($newdata);
+        echo "</pre>";exit;
+
+        echo "<pre>";
+        print_r(array_merge($a,$b));
+        echo "</pre>";
+
+exit;*/
 
         $this->display();
     }
+
+    public function MemberSystem(){
+        $Model = M("hyclub");
+        $number ='534415';
+        $arr = $Model->field("HyNumber,HyParentNumber,HyTjNumber,IsApproved,HyLocation")->select();
+        return $this->_tree($arr,$hyparent=$number,$leve=0);
+    }
+    //递归 用户信息
+    public function _tree($arr,$hyparent,$level=0){
+        static $data = array();
+        foreach ($arr as $k => $v) {
+            if($v['hynumber']==$hyparent){
+                $v['level'] = $level;
+                $data[] = $v;
+                $data = $this->_tree($arr,$v['hyparentnumber'],$level+1);
+            }
+        }
+        return $data;
+    }
+
+    public function PcSystem($number,$count){
+        $Model = M("hyclub");
+        $arr = $Model->field("HyNumber,HyParentNumber,HyTjNumber,IsApproved,HyLocation")->select();
+        return $this->_number($arr,$hyparent=$number,$count,$leve=0);
+    }
+
+    public function _number($arr,$hyparent,$count,$level=0){
+        static $data = array();
+        foreach ($arr as $k => $v) {
+            if ($level >$count){
+                break;
+            }
+            if($v['hyparentnumber']==$hyparent){
+                $v['level'] = $level;
+                $data[] = $v;
+
+                $data = $this->_number($arr,$v['hynumber'],$count,$level+1);
+            }
+        }
+        return $data;
+
+    }
+
+
+
     /***
      *  报单显示页面
      */
@@ -238,19 +310,24 @@ class ManagementTeamController extends CommonController {
     public function Activate_immediately(){
         $Model = M("hyclub");
         $ID= I('id');
+        $hyparent= I('hyparent');
+
 
         $data['IsApproved'] = '1';
         $data['ApprovedTime'] = date("Y-m-d H:i:s");
         $immediately=$Model->where('ID='.$ID)->save($data);
 
         if($immediately){
-            
+        $this->MemberSystem($hyparent);
 
             echo 1;
         }else{
             echo 0;
         }
     }
+
+
+
         //会员激活删除
     public function Activate_delete(){
 
