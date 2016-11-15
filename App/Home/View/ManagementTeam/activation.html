@@ -71,7 +71,7 @@
 									</if>
 
 									<if condition="($vo.isapproved neq 1) ">
-										<td><button type="button"class="nbtnmsjh" hyparent="{$vo.hyparentnumber}" activ="{$vo.id}"  >马上激活</button><br />
+										<td><button type="button"class="nbtnmsjh"  hynumber="{$vo.hynumber}" hyparent="{$vo.hyparentnumber}" activ="{$vo.id}"  >马上激活</button><br />
 											<button type="button"class="nbtndel" activ_del="{$vo.id}">删除会员</button></td>
 										<else />
 										<td></td>
@@ -121,8 +121,9 @@
 		$('.nbtnmsjh').click(function(){
 			var acti_id =$(this).attr("activ");
 			var hyparent =$(this).attr("hyparent");
+			var hynumber =$(this).attr("hynumber");
 
-		$.post("__APP__/Home/ManagementTeam/Activate_immediately",{id:acti_id,hyparent:hyparent},function(result) {
+		$.post("__APP__/Home/ManagementTeam/Activate_immediately",{id:acti_id,hyparent:hyparent,hynumber:hynumber},function(result) {
 				if(result){
 					alert('激活成功');
 					location.reload();
