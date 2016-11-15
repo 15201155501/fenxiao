@@ -28,8 +28,10 @@ class ManagementTeamController extends CommonController {
 
         $UserModel=$Model->where("HyParentNumber='$wheres'")->field("ID,IsApproved,HyNumber,HyName,HyLocation")->select();
 
-            $this->assign('UserModel',$UserModel);
+        $this->assign('UserModel',$UserModel);
         $numarray = $this->MemberSystem();
+        //echo "<pre>";
+        //print_r($numarray);
        /* $wall2 ='5000';
         $getwall2 =($wall2*0.35)*0.9;
         $hyparentnumber= $numarray[0]['hyparentnumber'];
@@ -38,8 +40,15 @@ class ManagementTeamController extends CommonController {
         $count =count($numarray)-1;
         $top = $numarray[$count];
         $pnumber =$top['hynumber']; //获取
-        $newdata=  $this->PcSystem($pnumber,$count);
-       // print_r($top);
+        $newdata = $this->PcSystem($pnumber,$count);
+
+        echo "<pre>";
+        print_r($newdata);
+
+        // 判断是否发生层碰
+        $flag = $this -> iscp($newdata);
+        print_r($flag);die;
+
         $a = array();
         $b = array();
         for($i=0;$i<count($newdata);$i++){
@@ -50,22 +59,21 @@ class ManagementTeamController extends CommonController {
                 }
             }
         }
-       /* echo "<pre>";
-        print_r($newdata);
-        echo "</pre>";exit;
+        //echo "<pre>";
+        //print_r($newdata);
+        //echo "</pre>";exit;
 
-        echo "<pre>";
-        print_r(array_merge($a,$b));
-        echo "</pre>";
-
-exit;*/
+        //echo "<pre>";
+        //print_r(array_merge($a,$b));
+        //echo "</pre>";
+        //exit;
 
         $this->display();
     }
 
     public function MemberSystem(){
         $Model = M("hyclub");
-        $number ='534415';
+        $number ='861285';
         $arr = $Model->field("HyNumber,HyParentNumber,HyTjNumber,IsApproved,HyLocation")->select();
         return $this->_tree($arr,$hyparent=$number,$leve=0);
     }
@@ -85,10 +93,10 @@ exit;*/
     public function PcSystem($number,$count){
         $Model = M("hyclub");
         $arr = $Model->field("HyNumber,HyParentNumber,HyTjNumber,IsApproved,HyLocation")->select();
-        return $this->_number($arr,$hyparent=$number,$count,$leve=0);
+        return $this->_number($arr,$hyparent=$number,$count,$leve=1);
     }
 
-    public function _number($arr,$hyparent,$count,$level=0){
+    public function _number($arr,$hyparent,$count,$level=1){
         static $data = array();
         foreach ($arr as $k => $v) {
             if ($level >$count){
@@ -103,6 +111,41 @@ exit;*/
         }
         return $data;
 
+    }
+
+    /**
+     * 判断是否发生层碰
+     * @author spc <15201155501@163.com>
+     * @version 0.1
+     * @return flag 0 1 是否发生
+     */
+    public function iscp($arr){
+        $flag = 1;
+        //查看刚激活用户的层数
+        $level = $arr[count($arr)-1]['level']-1;
+        // return $level;
+        $data = array();
+        for($i=0;$i<count($arr);$i++){
+            if($arr[$i]['level'] == $level-1){
+                $data[] = $arr[$i];
+            }
+        }
+
+        if(count($data) < (2^$level-1)){
+            $flag = 0;
+            return $flag;
+        }
+
+        // 判断是否发生层碰
+        foreach($data as $k => $v){
+            $res = M('hyclub') -> where('HyParentNumber='.$v['hynumber']) -> find();
+            if($res){
+                $flag *= 1;
+            }else{
+                $flag *= 0;
+            }
+        }
+        return $flag;
     }
 
 
@@ -279,7 +322,7 @@ exit;*/
 
         // $Page       = new \Think\Page($count,1);// 实例化分页类 传入总记录数和每页显示的记录数(25)
         $show       = $Page->show();// 分页显示输出
-// 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
         if(!empty($hynum_search)){
 
 
