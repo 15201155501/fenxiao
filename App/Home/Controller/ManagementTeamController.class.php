@@ -29,27 +29,80 @@ class ManagementTeamController extends CommonController {
         $UserModel=$Model->where("HyParentNumber='$wheres'")->field("ID,IsApproved,HyNumber,HyName,HyLocation")->select();
 
         $this->assign('UserModel',$UserModel);
-        $numarray = $this->MemberSystem();
-        //echo "<pre>";
-        //print_r($numarray);
-       /* $wall2 ='5000';
+
+        $activation_number ='gs0007';
+        $numarray = $this->MemberSystem($activation_number);
+
+        //查询新用户是 一星会员 还是二星
+        $hylevel1=$Model->where("HyNumber='$activation_number'")->field('HyLevel1')->find();
+      if($hylevel1 ==1){
+        $wall2='5000';
+      }else if($hylevel1==2){
+          $wall2='10000';
+      }
+
+       /* echo "<pre>";
+        print_r($numarray);exit;*/
+        //返利给接点人
+      /*  $wall2 ='5000';
         $getwall2 =($wall2*0.35)*0.9;
         $hyparentnumber= $numarray[0]['hyparentnumber'];
         $ewallet2 =$Model->where("HyNumber='$hyparentnumber'")->setInc('eWallet2',$getwall2);*/
         //获取顶层会员信息
         $count =count($numarray)-1;
-        $top = $numarray[$count];
-        $pnumber =$top['hynumber']; //获取
-        $newdata = $this->PcSystem($pnumber,$count);
+       /* echo "<pre>";
+        print_r($count);exit;*/
 
-        echo "<pre>";
-        print_r($newdata);
+        $top = $numarray[$count];
+        $pnumber =$top['hynumber']; //获取顶层用户信息
+        //返利给顶级用户 补贴
+
+        $newdata = $this->PcSystem($pnumber,$count); //$pnumber 顶层用户编号  重上往下查
+        $search_number =$this->FindHyNumber($newdata,$activation_number);
+        $level =$newdata[$search_number]['level']; //查询这个用户所属第几层
+       if($level>=3){
+           $ptwall2 =150*0.9;
+           $pewallet2 =$Model->where("HyNumber='$pnumber'")->setInc('eWallet2',$ptwall2);
+       }
+/*
+       echo "<pre>";
+        print_r($newdata);*/
+        //判断满层 返利满层奖 4000
+        if($level>=2){
+            $fall =$this->Fulllayer($newdata,$level);
+            if($fall==1){
+                $fallwall2 = 4000*0.9; //平衡奖
+                $fallwallet2 =$Model->where("HyNumber='$pnumber'")->setInc('eWallet2',$fallwall2);
+            }
+        }
 
         // 判断是否发生层碰
-        $flag = $this -> iscp($newdata);
-        print_r($flag);die;
+        if($level>=2){
+            $result = $this -> iscp($newdata,$activation_number);
+            if($result['flag']==1){
+                $list =  $result['info'];
+                $sort = array(
+                    'direction' => 'SORT_ASC', //排序顺序标志 SORT_DESC 降序；SORT_ASC 升序
+                    'field'     => 'approvedtime',       //排序字段
+                );
+                $arrSort = array();
+                foreach($list AS $uniqid => $row){
+                    foreach($row AS $key=>$value){
+                        $arrSort[$key][$uniqid] = $value;
+                    }
+                }
+                if($sort['direction']){
+                    array_multisort($arrSort[$sort['field']], constant($sort['direction']),$list);
+                }
+                $conwall2 =($list[0]['ewallet2']*0.35)*0.9; //平衡奖
 
-        $a = array();
+                $ewallet2 =$Model->where("HyNumber='$pnumber'")->setInc('eWallet2',$conwall2);
+
+
+            }
+        }
+
+        /* $a = array();
         $b = array();
         for($i=0;$i<count($newdata);$i++){
             for($j=$i+1;$j<count($newdata);$j++){
@@ -58,24 +111,19 @@ class ManagementTeamController extends CommonController {
                     $b[] = $newdata[$j];
                 }
             }
-        }
-        //echo "<pre>";
-        //print_r($newdata);
-        //echo "</pre>";exit;
+        }*/
 
-        //echo "<pre>";
-        //print_r(array_merge($a,$b));
-        //echo "</pre>";
-        //exit;
 
         $this->display();
     }
 
-    public function MemberSystem(){
+    public function MemberSystem($activation_number){
         $Model = M("hyclub");
-        $number ='861285';
+       // $number ='gs00013';//861285
         $arr = $Model->field("HyNumber,HyParentNumber,HyTjNumber,IsApproved,HyLocation")->select();
-        return $this->_tree($arr,$hyparent=$number,$leve=0);
+
+
+        return $this->_tree($arr,$hyparent=$activation_number,$leve=0);
     }
     //递归 用户信息
     public function _tree($arr,$hyparent,$level=0){
@@ -87,9 +135,10 @@ class ManagementTeamController extends CommonController {
                 $data = $this->_tree($arr,$v['hyparentnumber'],$level+1);
             }
         }
+
         return $data;
     }
-
+// 顶层用户信息 $number 顶层用户编号
     public function PcSystem($number,$count){
         $Model = M("hyclub");
         $arr = $Model->field("HyNumber,HyParentNumber,HyTjNumber,IsApproved,HyLocation")->select();
@@ -119,34 +168,70 @@ class ManagementTeamController extends CommonController {
      * @version 0.1
      * @return flag 0 1 是否发生
      */
-    public function iscp($arr){
+    public function iscp($arr,$activation_number){
         $flag = 1;
         //查看刚激活用户的层数
-        $level = $arr[count($arr)-1]['level']-1;
-        // return $level;
+        $search_number =$this->FindHyNumber($arr,$activation_number);
+        $level =$arr[$search_number]['level']; //查询这个用户所属第几层
         $data = array();
         for($i=0;$i<count($arr);$i++){
             if($arr[$i]['level'] == $level-1){
                 $data[] = $arr[$i];
             }
         }
-
-        if(count($data) < (2^$level-1)){
+        if(count($data) < pow(2,$level-1)){
             $flag = 0;
             return $flag;
         }
 
+
+       // echo "<pre>";
+        // print_r($data);
+
         // 判断是否发生层碰
+        $new_data = array();
         foreach($data as $k => $v){
-            $res = M('hyclub') -> where('HyParentNumber='.$v['hynumber']) -> find();
+            $hynumber =$v['hynumber'];
+            $res= M('hyclub') -> where("HyParentNumber='$hynumber'")->order('ApprovedTime desc') ->find();
             if($res){
+                $new_data[] = $res;
                 $flag *= 1;
             }else{
                 $flag *= 0;
             }
         }
-        return $flag;
+
+        $result['flag'] = $flag;
+        $result['info'] = $new_data;
+        return $result;
     }
+    public function Fulllayer($arr,$level){
+       /* $search_number =$this->FindHyNumber($arr,$activation_number);
+        $level =$arr[$search_number]['level']; //查询这个用户所属第几层*/
+
+
+        $data = array();
+        for($i=0;$i<count($arr);$i++){
+            if($arr[$i]['level'] == $level){
+                $data[] = $arr[$i];
+            }
+        }
+
+        if(count($data) == pow(2,$level-1)){
+            $fall = 1;
+            return $fall;
+        }
+    }
+//多维数组查询
+    function FindHyNumber(&$arr,$hynumber){
+        foreach($arr as $k=>$t){
+            if(in_array($hynumber,$t))
+                return $k;
+        }
+        return false;
+    }
+
+
 
 
 
@@ -224,6 +309,8 @@ class ManagementTeamController extends CommonController {
         $data['eWallet1'] = 0;
         $data['eWallet2'] = 0;
         $data['eWallet3'] = 0;
+        $data['ApprovedTime']=date("Y-m-d H:i:s");
+
 
          $data['HyLocation'] = I('HyLocation');
         $data['HySex'] = I('HySex');
@@ -327,7 +414,7 @@ class ManagementTeamController extends CommonController {
 
 
             $list=$Model->table('hyclub h')
-                ->field('h.ID,h.HyJoinInvest,h.HyNumber,h.hyname,h.IsApproved,h.ApprovedTime,h.HyParentNumber,h.hytjnumber,h.RegisterTime,d.wlmid,d.dmeonty')
+                ->field('h.ID,h.HyJoinInvest,h.HyNumber,h.HyLevel1,h.hyname,h.IsApproved,h.ApprovedTime,h.HyParentNumber,h.hytjnumber,h.RegisterTime,d.wlmid,d.dmeonty')
                 ->join('LEFT JOIN ddgl d ON d.wlmid = h.ID')
                 ->order('h.RegisterTime desc')
                 ->where("h.hynumber='$hynum_search' AND h.IsApproved='1'")
@@ -335,7 +422,7 @@ class ManagementTeamController extends CommonController {
                 ->select();
         }else{
             $list=$Model->table('hyclub h')
-                ->field('h.ID,h.HyJoinInvest,h.HyNumber,h.hyname,h.IsApproved,h.ApprovedTime,h.HyParentNumber,h.hytjnumber,h.RegisterTime,d.wlmid,d.dmeonty')
+                ->field('h.ID,h.HyJoinInvest,h.HyNumber,h.HyLevel1,h.hyname,h.IsApproved,h.ApprovedTime,h.HyParentNumber,h.hytjnumber,h.RegisterTime,d.wlmid,d.dmeonty')
                 ->join('LEFT JOIN ddgl d ON d.wlmid = h.ID')
                 ->order('h.RegisterTime desc')
                 ->where("h.BelongWuliuNumber='$hynumber'")
@@ -354,14 +441,79 @@ class ManagementTeamController extends CommonController {
         $Model = M("hyclub");
         $ID= I('id');
         $hyparent= I('hyparent');
-
-
+        $activation_number= I('hynumber');
         $data['IsApproved'] = '1';
         $data['ApprovedTime'] = date("Y-m-d H:i:s");
         $immediately=$Model->where('ID='.$ID)->save($data);
-
         if($immediately){
-        $this->MemberSystem($hyparent);
+            $numarray = $this->MemberSystem($activation_number);
+            //返利给接点人  查询是一星会员 还是二星会员
+            $hylevel1=$Model->where("HyNumber='$activation_number'")->field('HyLevel1')->find();
+            if($hylevel1 ==1){
+                $wall2='5000';
+            }else if($hylevel1==2){
+                $wall2='10000';
+            }
+
+              $getwall2 =($wall2*0.35)*0.9;
+              $hyparentnumber= $numarray[0]['hyparentnumber'];
+              $ewallet2 =$Model->where("HyNumber='$hyparentnumber'")->setInc('eWallet2',$getwall2);
+            //获取顶层会员信息
+            $count =count($numarray)-1;
+            /* echo "<pre>";
+             print_r($count);exit;*/
+
+            $top = $numarray[$count];
+            $pnumber =$top['hynumber']; //获取顶层用户信息
+            //返利给顶级用户 补贴
+
+            $newdata = $this->PcSystem($pnumber,$count); //$pnumber 顶层用户编号  重上往下查
+            $search_number =$this->FindHyNumber($newdata,$activation_number);
+            $level =$newdata[$search_number]['level']; //查询这个用户所属第几层
+            if($level>=3){
+                $ptwall2 =150*0.9;
+                $pewallet2 =$Model->where("HyNumber='$pnumber'")->setInc('eWallet2',$ptwall2);
+            }
+            /*
+                   echo "<pre>";
+                    print_r($newdata);*/
+            //判断满层 返利满层奖 4000
+            if($level>2){
+                $fall =$this->Fulllayer($newdata,$activation_number,$level);
+                if($fall==1){
+                    $fallwall2 = 4000*0.9; //平衡奖
+                    $fallwallet2 =$Model->where("HyNumber='$pnumber'")->setInc('eWallet2',$fallwall2);
+                }
+            }
+
+            // 判断是否发生层碰
+            if($level>=2){
+                $result = $this -> iscp($newdata,$activation_number);
+                if($result['flag']==1){
+                    $list =  $result['info'];
+                    $sort = array(
+                        'direction' => 'SORT_ASC', //排序顺序标志 SORT_DESC 降序；SORT_ASC 升序
+                        'field'     => 'approvedtime',       //排序字段
+                    );
+                    $arrSort = array();
+                    foreach($list AS $uniqid => $row){
+                        foreach($row AS $key=>$value){
+                            $arrSort[$key][$uniqid] = $value;
+                        }
+                    }
+                    if($sort['direction']){
+                        array_multisort($arrSort[$sort['field']], constant($sort['direction']),$list);
+                    }
+                    $conwall2 =($list[0]['ewallet2']*0.35)*0.9; //平衡奖
+
+                    $ewallet2 =$Model->where("HyNumber='$pnumber'")->setInc('eWallet2',$conwall2);
+
+
+                }
+
+            }
+
+
 
             echo 1;
         }else{

@@ -1576,7 +1576,7 @@ class FirePHP {
                     $name = 'static:'.$name;
                 }
                 if ($property->isPublic()) {
-                    $name = 'public:'.$name;
+                    $name = 'Public:'.$name;
                 } else
                 if ($property->isPrivate()) {
                     $name = 'private:'.$name;
