@@ -34,10 +34,10 @@
 						<a href="/index.php/Home/ManagementTeam/passthree">会员激活</a>
 					</li>
 					<li>
-						<a href="javascript:;">营销关系</a>
+						<a href="/index.php/Home/ManagementTeam/PassTwo">营销关系</a>
 					</li>
 					<li>
-						<a href="javascript:;">申请服务中</a>
+						<a href="/index.php/Home/ManagementTeam/agent">申请服务中</a>
 					</li>
 				</ul>
 			</li>
@@ -45,22 +45,10 @@
 				<h3><a href="javascript:;" target="_blank">财务中心<span></span></a></h3>
 				<ul class="sub">
 					<li>
-						<a href="javascript:;">新闻首页</a>
+						<a href="/index.php/Home/FinancialCenter/Verification">外部转币</a>
 					</li>
 					<li>
-						<a href="javascript:;">新闻人物</a>
-					</li>
-					<li>
-						<a href="javascript:;">新闻电视</a>
-					</li>
-					<li>
-						<a href="javascript:;">新闻图片</a>
-					</li>
-					<li>
-						<a href="javascript:;">新闻视频</a>
-					</li>
-					<li>
-						<a href="javascript:; ">新闻专题</a>
+						<a href="/index.php/Home/FinancialCenter/Withdraw">申请提现</a>
 					</li>
 				</ul>
 			</li>
@@ -68,22 +56,16 @@
 				<h3><a href="javascript:;" target="_blank">奖金管理<span></span></a></h3>
 				<ul class="sub">
 					<li>
-						<a href="javascript:;">新闻首页</a>
+						<a href="/index.php/Home/BonusManagement/bonus">每日奖金</a>
 					</li>
 					<li>
-						<a href="javascript:;">新闻人物</a>
+						<a href="/index.php/Home/BonusManagement/bonus_info">奖金明细</a>
 					</li>
 					<li>
-						<a href="javascript:;">新闻电视</a>
+						<a href="/index.php/Home/BonusManagement/account_details">账目明细</a>
 					</li>
 					<li>
-						<a href="javascript:;">新闻图片</a>
-					</li>
-					<li>
-						<a href="javascript:;">新闻视频</a>
-					</li>
-					<li>
-						<a href="javascript:; ">新闻专题</a>
+						<a href="/index.php/Home/BonusManagement/shareholder_add">申请股东</a>
 					</li>
 				</ul>
 			</li>
@@ -91,10 +73,10 @@
 				<h3><a href="javascript:;" target="_blank">信息安全<span></span></a></h3>
 				<ul class="sub">
 					<li>
-						<a href="javascript:;">新闻首页</a>
+						<a href="/index.php/Home/InfoSafety/info_upd">个人资料</a>
 					</li>
 					<li>
-						<a href="javascript:;">新闻人物</a>
+						<a href="/index.php/Home/InfoSafety/pwd_upd">修改密码</a>
 					</li>
 				
 				</ul>
@@ -103,12 +85,14 @@
 				<h3><a href="javascript:;" target="_blank">服务台<span></span></a></h3>
 				<ul class="sub">
 					<li>
-						<a href="javascript:;">新闻首页</a>
+						<a href="/index.php/Home/Reception/order">订单查询</a>
 					</li>
 					<li>
-						<a href="javascript:;">新闻人物</a>
+						<a href="/index.php/Home/Reception/index">在线商城</a>
 					</li>
-				
+					<li>
+						<a href="/index.php/Home/Reception/message">留言反馈</a>
+					</li>
 				</ul>
 			</li>
 		</ul>
@@ -169,11 +153,13 @@
 								<span>三级密码验证</span>
 							</div>
 							<div class="L_person_con nsjmmbox">
+								<form action="/index.php/Home/ManagementTeam/password_authentication"  method="post">
 								<label for="sjmm"><span>请输入您的三级密码:</span></label>
-								<input type="text" id="sjmm" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+								<input type="password" id="sjmm" name="password3" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
 								<div class="clearfix">
 									<button type="submit" class="nbtntij">提交</button>
 								</div>
+								</form>
 							</div>
 						</div>
 						<!-- 底部 -->
