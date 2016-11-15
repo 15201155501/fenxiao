@@ -98,21 +98,8 @@ class ManagementTeamController extends CommonController {
 
                 $ewallet2 =$Model->where("HyNumber='$pnumber'")->setInc('eWallet2',$conwall2);
 
-
             }
         }
-
-        /* $a = array();
-        $b = array();
-        for($i=0;$i<count($newdata);$i++){
-            for($j=$i+1;$j<count($newdata);$j++){
-                if($newdata[$i]['level'] == $newdata[$j]['level']){
-                    $a[] = $newdata[$i];
-                    $b[] = $newdata[$j];
-                }
-            }
-        }*/
-
 
         $this->display();
     }
