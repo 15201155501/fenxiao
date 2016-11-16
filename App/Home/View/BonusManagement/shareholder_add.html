@@ -69,7 +69,7 @@
 								<span>申请股东</span>
 							</div>
 							<div class="L_person_con">
-								<form action="__URL__/shareholder" method="post">
+								<!--<form action="__URL__/shareholder" method="post">-->
 									<div class="nsqgbox">
 										<dl>
 											<dt>申请类型：</dt>
@@ -89,7 +89,9 @@
 										</dl>
 										<dl>
 											<dt>会员编号：</dt>
-											<dd><input id="hynumber" id="hynumber" type="text" value="">
+											<dd>
+												<input type="hidden" value="" class="succ_state">
+												<input id="hynumber" id="hynumber" stute="" type="text" value="">
 												<button type="button" id="veration_number" class="nbtnmsjh">会员验证</button>
 											</dd>
 										</dl>
@@ -101,7 +103,7 @@
 									<div class="clearfix">
 										<button type="submit" id="cation_number" class="nbtntij"style="margin-top:0px">提交</button>
 									</div>
-								</form>
+							<!--	</form>-->
 								<table class="nddcxtable">
 									<tr>
 										<th>金额</th>
@@ -150,6 +152,7 @@
 						if(result==1){
 							alert('恭喜当前用户可申请成为股东');
 							$("#veration_number").html("验证成功");
+							$(".succ_state").val('success');
 							return true;
 						}else{
 							alert('该会员还没有资格成功股东');
@@ -162,14 +165,26 @@
 
 				$('#cation_number').click(function(){
 					var approvaltype = $("#selectid option:selected").val();
-					var ewallet1=$("#ewallet1").val();
-					var appymarany=$("#appymarany").val();
+					var ewallet1=parseInt($("#ewallet1").val());
+					var appymarany=parseInt($("#appymarany").val());
 					var hynumber=$("#hynumber").val();
 					var hymumber_member=$("#hymumber_member").val();
-					$.post("__APP__/Home/BonusManagement/AppayBonus",{approvaltype:approvaltype,ewallet1:ewallet1,appymarany:appymarany,hynumberto:hynumberto,hymumber_member:hymumber_member},function(result) {
 
+					if(ewallet1 < appymarany){
+						alert('您的注册币不够申请股东分红');
+						return false;
+					}
+					var succ_state =$(".succ_state").val();
+					if(succ_state ==""){
+						alert('您还没验证，请点击会员验证');
+						return false;
+					}
+
+					$.post("__APP__/Home/BonusManagement/AppayBonus",{approvaltype:approvaltype,appymarany:appymarany,hynumber:hynumber},function(result) {
 						if(result==1){
-							$("#cation_number").val("验证成功");
+							alert('您已经提交申请，请等待审核');
+							//$("#cation_number").val("验证成功");
+							location.reload();
 						}else{
 							$("#cation_number").val("验证失败");
 						}

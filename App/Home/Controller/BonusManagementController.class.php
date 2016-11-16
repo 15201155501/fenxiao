@@ -123,6 +123,7 @@ class BonusManagementController extends CommonController {
         $this->display();
     }
 
+
     /**
      * 验证会员账号
      */
@@ -184,11 +185,29 @@ class BonusManagementController extends CommonController {
      */
     public function AppayBonus(){
         $hynumber_session =session('hynumber');
-        $approvaltype = I('approvaltype');
-        $ewallet1 =I('ewallet1'); //接受账号
-        $hynumber = I('hynumber');
-        $hymumber_member = I('hymumber_member');
-        $TransDate = date("Y-m-d H:i:s");
+        $data['approvaltype']= I('approvaltype');
+        $data['applymoney']= I('appymarany');
+
+        $data['applyhynumber'] = I('hynumber');//会员编号
+        // $hymumber_member = I('hymumber_member');
+        $data['applydate']= date("Y-m-d H:i:s");
+        $data['remark'] = '复投5000';
+        $data['type'] = 0;
+        $User = M("afutou");
+        $Model = M("hyclub");
+        $appay = $User->add($data);
+        if($appay){
+
+            $res= $Model->where("HyNumber='$hynumber_session'")->setDec('eWallet1',5000);
+            if($res){
+                //添加股东成功，返利
+
+                echo 1;
+            }
+
+        }else{
+            echo 0;
+        }
     }
 
     /**
