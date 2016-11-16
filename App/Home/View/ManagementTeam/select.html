@@ -113,54 +113,44 @@
 							</div>
 							<div class="L_querys_conm clearfix">
 								<volist name="UserModel" id="vo">
-									<if condition="($vo.hylocation eq 1) AND $vo.hynumber neq ''">
-									<div class="L_querys_con1 fl">
-										<if condition="$vo.isapproved eq 1">
-											<form name="myForm" action="__URL__/select"  method="post">
-												<input type="hidden" name="ParentNumber" value="{$vo.hynumber}">
-										<a href="javascript:document.myForm.submit();" ><h3>A点</h3>
-											<p>
-												编号:<span>{$vo.hynumber}</span>
-											</p>
-											<p>
-												姓名:<span>{$vo.hyname}</span>
-											</p>
-										</a>
-											</form>
-											<else />
-											<h3>A点</h3>
-											<p>
-												编号:<span>{$vo.hynumber}</span>
-											</p>
-											<p>
-												姓名:<span>{$vo.hyname}</span>
-											</p>
-										</if>
-									</div>
-										<else />
+								<?php if($vo['hynumber'] !='' && $vo['hylocation']==1  && $vo['isapproved']==1){ ?>
+									<form name="myForm" action="__URL__/select"  method="post">
+										<input type="hidden" name="ParentNumber" value="{$vo.hynumber}">
+										<a href="javascript:document.myForm.submit();" >
 										<div class="L_querys_con1 fl">
-											<a href="__URL__/Declaration/location/A">
 											<h3>A点</h3>
-											<p>空市场</p>
-											</a>
+											<p>
+												编号:<span>{$vo.hynumber}</span>
+											</p>
+											<p>
+												姓名:<span>{$vo.hyname}</span>
+											</p>
 										</div>
-									</if>
+										</a>
+									</form>
+									<?php }else if($vo['hynumber'] !='' && $vo['isapproved']==0 &&  $vo['hylocation']==1){ ?>
+									<div class="L_querys_con1 fl">
+										<h3>A点</h3>
+										<p>
+											编号:<span>{$vo.hynumber}</span>
+										</p>
+										<p>
+											姓名:<span>{$vo.hyname}</span>
+										</p>
+									</div>
+									<?php }else{ ?>
 
-									<if condition="$vo.hylocation eq 2 AND $vo.hynumber neq ''">
+									<div class="L_querys_con1 L_querys_con2 fr">
+										<h3>A点</h3>
+										<p>空市场</p>
+									</div>
+									<?php  } ?>
+
+									<?php   if($vo['hynumber'] !='' && $vo['hylocation']==2  && $vo['isapproved']==1){ ?>
+									<form name="myForm" action="__URL__/select"  method="post">
+										<input type="hidden" name="ParentNumber" value="{$vo.hynumber}">
+										<a href="javascript:document.myForm.submit();" >
 										<div class="L_querys_con1 L_querys_con2 fr">
-											<if condition="$vo.isapproved eq 1">
-												<form name="myForm" action="__URL__/select"  method="post">
-													<input type="hidden" name="ParentNumber" value="{$vo.hynumber}">
-											<a href="javascript:document.myForm.submit();" ><h3>B点</h3>
-												<p>
-													编号:<span>{$vo.hynumber}</span>
-												</p>
-												<p>
-													姓名:<span>{$vo.hyname}</span>
-												</p>
-											</a>
-												</form>
-												<else />
 												<h3>B点</h3>
 												<p>
 													编号:<span>{$vo.hynumber}</span>
@@ -168,21 +158,46 @@
 												<p>
 													姓名:<span>{$vo.hyname}</span>
 												</p>
-											</if>
-										</div>
-										<else />
-
+											</div>
+										</a>
+									</form>
+									<?php }else if($vo['hynumber'] !='' && $vo['hylocation']==2  && $vo['isapproved']==0){ ?>
 										<div class="L_querys_con1 L_querys_con2 fr">
-											<a href="__URL__/Declaration/location/B">
 											<h3>B点</h3>
-											<p>空市场</p>
-											</a>
+											<p>
+												编号:<span>{$vo.hynumber}</span>
+											</p>
+											<p>
+												姓名:<span>{$vo.hyname}</span>
+											</p>
 										</div>
+									<?php  }else{ ?>
+											<div class="L_querys_con1 L_querys_con2 fr">
+												<h3>B点</h3>
+												<p>空市场</p>
+											</div>
+									<?php  } ?>
 
-									</if>
 								</volist>
-							</div>
 
+									<!--<div class="L_querys_con1 L_querys_con2 fr">
+									<h3>B点</h3>
+									<p>空市场</p>
+								</div>-->
+							<!--	<div class="L_querys_con1 L_querys_con2 fr">
+									<h3>B点</h3>
+									<p>
+										编号:<span>gs0003</span>
+									</p>
+									<p>
+										姓名:<span>张三</span>
+									</p>
+								</div>-->
+
+							</div>
+							<!--<volist name="UserModel" id="vo">
+
+							</volist>-->
 						</div>
 					</div>
 				</div>
