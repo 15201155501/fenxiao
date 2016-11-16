@@ -87,6 +87,7 @@
 							</dl>
 							<dl>
 								<dt>接受帐号：</dt>
+								<input type="hidden" value="" class="succes_state">
 								<dd><input type="text" name="hynumberto" id="hynumberto" value="" ><span class="ntsspan">低于当前</span></dd>
 
 								<dd>
@@ -180,6 +181,7 @@
 
 				if(result==1){
 					$("#cation_number").val("验证成功");
+					$(".succes_state").val('success');
 				}else{
 					$("#cation_number").val("验证失败");
 				}
@@ -198,6 +200,7 @@
 			var passwd2 =$("#passwd2").val();
 			var ewallet1 =$(".ewallet1").text();
 			var ewallet2 =$(".ewallet2").text();
+			var succes_state =$(".succes_state").val();
 
 
 			if(moneycount =="" || hynumberto =="" || memo =="" || passwd2 ==""){
@@ -209,6 +212,10 @@
 			if (!re.test(moneycount)) {
 				$("#redomfalseid").show();
 				$(".error_log").text("转账金额必须为数字");
+				return false;
+			}
+			if(succes_state==""){
+				alert("请您先验证接受账号，在提交");
 				return false;
 			}
 			if(memo==25){

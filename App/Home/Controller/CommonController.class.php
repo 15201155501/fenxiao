@@ -16,7 +16,7 @@ class CommonController extends Controller {
 	 * @param int $pagesize
 	 * @return \Think\Page 分页样式
 	 */
-	public function getpage($count, $pagesize = 10) {
+	public function getpage($count, $pagesize = 4) {
 		$p = new \Think\Page($count, $pagesize);
 		$p->setConfig('header', '<li class="rows">共<b>%TOTAL_ROW%</b>条记录&nbsp;第<b>%NOW_PAGE%</b>页/共<b>%TOTAL_PAGE%</b>页</li>');
 		$p->setConfig('prev', '上一页');

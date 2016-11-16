@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title></title>
+	<title>会员激活</title>
 	<base href="__PUBLIC__/" />
 	<link rel="stylesheet" href="css/nsty.css" />
 	<link rel="stylesheet" href="css/public.css" />
@@ -14,7 +14,6 @@
 	<script type="text/javascript" src="js/nnavjs.js"></script>
 	<script type="text/javascript" src="js/showdate.js" ></script>
 </head>
-
 <body>
 <div class="nbodybg"></div>
 <div class="ncmtbox">
@@ -104,11 +103,9 @@
 		$('.nbtndel').click(function(){
 			alert('您确认要删除吗?');
 			var acti_id =$(this).attr("activ_del");
-
-
 			//var acti_id=$("#acti_id").val();
 			$.post("__APP__/Home/ManagementTeam/Activate_delete",{id:acti_id},function(result) {
-				if(result){
+				if(result==1){
 					alert('删除成功');
 					location.reload();
 				}

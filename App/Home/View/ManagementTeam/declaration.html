@@ -34,6 +34,7 @@
                         <ul class="clearfix">
                             <li>
                                 <label for="Unum"><span>会员帐号:</span></label>
+                                <input type="hidden" value="" class="success_state" >
                                 <input type="text" id="Unum" value="" name="HyNumber" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
                                 <em>＊</em>
                                <!-- <em style="font-size:12px;color: #666;display: inline-block;padding: 3px 10px 3px 10px;border: 1px solid #999;border-radius:5px 5px ;">
@@ -51,8 +52,8 @@
                             </li>
                             <li>
                                 <label for="Urecommon"><span>推荐人编号:</span></label>
-                                <input type="text" id="Urecommon" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" style="width: 80px;"><em style="color: #999;margin-left: 10px;">——</em>
-                                <input type="text" id="UUrecommon_name" name="HyTjNumber" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" style="width: 80px;" value="">
+                                <input type="text" id="Urecommon" name="HyTjNumber" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" style="width: 80px;"><em style="color: #999;margin-left: 10px;">——</em>
+                                <input type="text" id="UUrecommon_name"  onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" style="width: 80px;" value="">
                                 <em>＊</em>
                                 <p id="text_tnum"></p>
                             </li>
@@ -238,11 +239,11 @@
         var box=$('.L_box');
         bnts.click(function() {
             box.hide();
-            location.href="__APP__/Home/Index/index";
+           // location.href="__APP__/Home/Index/index";
         });
         closel.click(function() {
             box.hide();
-            location.href="__APP__/Home/Index/index";
+          //  location.href="__APP__/Home/Index/index";
         });
 
 //验证会员编号
@@ -250,7 +251,10 @@
             var hynumber=$("#Unum").val();
             $.post("__APP__/Home/ManagementTeam/VerificationAccount",{hynumber:hynumber},function(result) {
                 if(result==1){
+
+                    $(".success_state").val("success_state");
                     $(".nbtnmsjh").html("成功");
+
                 }else{
                     $(".nbtnmsjh").html("失败");
                 }
@@ -290,7 +294,9 @@
         var text5=$('#text_pho');
         var text6=$('#text_kaddr');
         var text7=$('#text_knam');
+
         var bnts=$("#bnts");
+
 
         // 验证身份证号
         var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
@@ -298,12 +304,19 @@
         var phones = /^(14[0-9]|13[0-9]|15[0-9]|17[0-9]|18[0-9])\d{8}$$/;
 
         bnts.click(function() {
+            var success_state =$(".success_state").val();
+
+            if(success_state==""){
+                alert("请先验证会员账户");
+                return false;
+            }
             if (Unam.val()=='') {
                 text1.text('请输入真实姓名');
                 return false;
             }else{
                 text1.text('');
             }
+
             if (Ubank.val()=='') {
                 text2.text('请输入开户行号');
                 return false;
