@@ -45,8 +45,7 @@ class ManagementTeamController extends CommonController {
             }
             $UserModel = array_merge($UserModel,$arr);
         }
-        // echo "<pre>";
-        // print_r($UserModel);die;
+
         $this->assign('UserModel',$UserModel);
 
 
