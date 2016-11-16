@@ -15,7 +15,7 @@
 <div class="ncmtbox clearfix">
 	<!-- 导航部分 -->
 	<div class="nnavtop">
-
+	
 		<a href="javascript:;"class="nlogo"><img src="images/nlogo.png"></a>
 		<ul id="nav" class="nav clearfix">
 			<li class="nLi">
