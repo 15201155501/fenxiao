@@ -128,15 +128,57 @@ class BonusManagementController extends CommonController {
      */
     public function VerificationAccount(){
         $hynumber =I('hynumber'); //接受账号
-        $Model = M("hyclub");
-        $hynuber=$Model->where("HyNumber='$hynumber' AND IsApproved='1'")->field('HyNumber')->find();
-        if(!empty($hynuber)){
-            echo 1;
-        }else{
-            echo 0;
+
+        $data = $this->PcSystem($hynumber);
+        $new_data = array();
+        foreach ($data as $k => $v) {
+            if($v['level'] == 12){
+                $new_data[] = $v;
+            }
         }
 
+        // print_r($new_data);die;
+
+        if(empty($new_data)){
+            echo 0;exit;
+        }else{
+            //判断第12层中的用户是否有当前用户直推的分销用户
+            foreach ($new_data as $k => $v) {
+                if($v['hytjnumber'] == $hynumber){
+                    $flag = 1;
+                    break;
+                }else{
+                    $flag = 0;
+                }
+            }
+
+            if($flag == 1){
+                echo 1;exit;
+            }else{
+                echo 0;exit;
+            }
+        }
     }
+
+    // 获取当前用户的层数
+    public function PcSystem($number){
+        $Model = M("hyclub");
+        $arr = $Model->where("IsApproved = 1")->field("HyNumber,HyParentNumber,HyTjNumber,IsApproved,HyLocation")->select();
+        return $this->_number($arr,$hyparent=$number,$leve=1);
+    }
+
+    public function _number($arr,$hyparent,$level=1){
+        static $data = array();
+        foreach ($arr as $k => $v) {
+            if($v['hyparentnumber']==$hyparent){
+                $v['level'] = $level;
+                $data[] = $v;
+                $data = $this->_number($arr,$v['hynumber'],$level+1);
+            }
+        }
+        return $data;
+    }
+
     /***
      *  申请股东分红
      */
@@ -148,6 +190,7 @@ class BonusManagementController extends CommonController {
         $hymumber_member = I('hymumber_member');
         $TransDate = date("Y-m-d H:i:s");
     }
+
     /**
      * 左侧公共信息页面
      */
