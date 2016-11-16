@@ -95,12 +95,18 @@
 						</div>
 						<div class="L_querys_con">
 							<div class="L_querys_con1">
+							<form name="myForm22" action="__URL__/select"  method="post">
+									<input type="hidden" name="ParentNumber" value="{$vo.hynumber}">
+									<a href="javascript:document.myForm.submit();" >
 								<p>
 									编号:<span>{$UserMember.hynumber}</span>
 								</p>
+									</a>
+							</form>
 								<p>
 									姓名:<span>{$UserMember.hyname}</span>
 								</p>
+
 								<p>
 									消费额度:<span>{$UserMember.hyjoininvest}</span>
 								</p>
