@@ -244,7 +244,7 @@ class ManagementTeamController extends CommonController {
     /***
      *  报单显示页面
      */
-    public function Declaration(){
+    public function declaration(){
         $lefts = A('Home/Public');
         $left=$lefts->left();
         $location =I('location'); //A B
@@ -576,7 +576,7 @@ class ManagementTeamController extends CommonController {
 
         if($hypassword2==$UserModel['hypassword2']){
             session('hypassword2',$UserModel['hypassword2']);
-            $this->redirect("ManagementTeam/Marketing");
+            $this->redirect("ManagementTeam/marketing");
         }else{
             echo '密码错误';
         }
@@ -586,7 +586,7 @@ class ManagementTeamController extends CommonController {
 /*
  * 营销关系
  */
-    public function Marketing(){
+    public function marketing(){
         $lefts = A('Home/Public');
         $left=$lefts->left();
         $this->assign('userinfo',$left);
