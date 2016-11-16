@@ -24,13 +24,33 @@ class ManagementTeamController extends CommonController {
         }
 
         $UserMember=$Model->where("HyNumber='$wheres'")->field("HyJoinInvest,ALeftPoints,BLeftPoints,ALeftPersonNums,BLeftPersonNums,CLeftPoints,AUsedPoints,BUsedPoints,CUsedPoints,HyName, HyNumber, HyparentNumber, jiedianyejiall")->find();
+
         $this->assign('UserMember',$UserMember);
 
-        $UserModel=$Model->where("HyParentNumber='$wheres'")->field("ID,IsApproved,HyNumber,HyName,HyLocation")->select();
+        $UserModel=$Model->where("HyParentNumber='$wheres'")->field("ID,IsApproved,HyNumber,HyName,HyLocation,HyparentNumber")->select();
 
+        // echo $Model->getLastSql();
+        $arr = array();
+        if(empty($UserModel)){
+            $UserModel['0']['hynumber'] = '';
+            $UserModel['0']['hylocation'] = 1;
+        }
+
+        if(count($UserModel)<2){
+            $arr['1']['hynumber'] = '';
+            if($UserModel[0]['hylocation']==1){
+                $arr['1']['hylocation'] = 2;
+            }else{
+                $arr['1']['hylocation'] = 1;
+            }
+            $UserModel = array_merge($UserModel,$arr);
+        }
+        // echo "<pre>";
+        // print_r($UserModel);die;
         $this->assign('UserModel',$UserModel);
 
-        $activation_number ='gs0007';
+
+        /*$activation_number ='gs0007';
         $numarray = $this->MemberSystem($activation_number);
 
         //查询新用户是 一星会员 还是二星
@@ -39,7 +59,7 @@ class ManagementTeamController extends CommonController {
         $wall2='5000';
       }else if($hylevel1==2){
           $wall2='10000';
-      }
+      }*/
 
        /* echo "<pre>";
         print_r($numarray);exit;*/
@@ -49,26 +69,26 @@ class ManagementTeamController extends CommonController {
         $hyparentnumber= $numarray[0]['hyparentnumber'];
         $ewallet2 =$Model->where("HyNumber='$hyparentnumber'")->setInc('eWallet2',$getwall2);*/
         //获取顶层会员信息
-        $count =count($numarray)-1;
+      //  $count =count($numarray)-1;
        /* echo "<pre>";
         print_r($count);exit;*/
 
-        $top = $numarray[$count];
-        $pnumber =$top['hynumber']; //获取顶层用户信息
+      /*  $top = $numarray[$count];
+        $pnumber =$top['hynumber']; //获取顶层用户信息*/
         //返利给顶级用户 补贴
 
-        $newdata = $this->PcSystem($pnumber,$count); //$pnumber 顶层用户编号  重上往下查
+       /* $newdata = $this->PcSystem($pnumber,$count); //$pnumber 顶层用户编号  重上往下查
         $search_number =$this->FindHyNumber($newdata,$activation_number);
         $level =$newdata[$search_number]['level']; //查询这个用户所属第几层
        if($level>=3){
            $ptwall2 =150*0.9;
            $pewallet2 =$Model->where("HyNumber='$pnumber'")->setInc('eWallet2',$ptwall2);
-       }
+       }*/
 /*
        echo "<pre>";
         print_r($newdata);*/
         //判断满层 返利满层奖 4000
-        if($level>=2){
+       /* if($level>=2){
             $fall =$this->Fulllayer($newdata,$level);
             if($fall==1){
                 $fallwall2 = 4000*0.9; //平衡奖
@@ -99,7 +119,7 @@ class ManagementTeamController extends CommonController {
                 $ewallet2 =$Model->where("HyNumber='$pnumber'")->setInc('eWallet2',$conwall2);
 
             }
-        }
+        }*/
 
         $this->display();
     }
@@ -275,6 +295,7 @@ class ManagementTeamController extends CommonController {
     public function adduserinfo(){
 
         $data['HyNumber'] = I('HyNumber');
+
         $Number =$data['HyNumber'];
         $Model =M('hyclub');
         $data['HyAddress'] = I('HyAddress');
@@ -291,17 +312,22 @@ class ManagementTeamController extends CommonController {
         $data['HyAddress'] = I('HyAddress');
         $data['HyMail'] = I('HyMail');
         $data['HyOpenBankAddress'] = I('HyOpenBankAddress');
-        $data['HyTjNumber'] = I('HyTjNumber');
+
         $data['HyParentNumber'] = I('HyParentNumber');
+        $data['HyTjNumber'] = I('HyTjNumber');
+         $data['RegisterTime'] =date("Y-m-d H:i:s");
         $data['eWallet1'] = 0;
         $data['eWallet2'] = 0;
         $data['eWallet3'] = 0;
-        $data['ApprovedTime']=date("Y-m-d H:i:s");
+        if($data['HyLevel1'] ==1){
+            $data['HyJoinInvest'] = 5000;
+        }elseif($data['HyLevel1'] ==2){
+            $data['HyJoinInvest'] = 10000;
+        }
 
-
-         $data['HyLocation'] = I('HyLocation');
+        $data['HyLocation'] = I('HyLocation');
         $data['HySex'] = I('HySex');
-         $data['daili'] = I('daili');
+        $data['daili'] = I('daili');
         $data['IsApproved'] = 0;
 
         $data['BelongWuliuNumber'] = $hynumber;
@@ -314,32 +340,39 @@ class ManagementTeamController extends CommonController {
 
 
         $res = $Model->where("HyNumber='$Number'")->add($data);
+        if($res){
+            $hynuber_id=$Model->where("HyNumber='$Number'")->field('ID')->find();
+        }
 
-        $hynuber_id=$Model->where("HyNumber='$hynumber'")->field('ID')->find();
 
         $ddglModel =M('ddgl');
 
         if($res){
-            echo $data['HyLevel1'];
+
             if($data['HyLevel1'] ==1){
 
-            // $res= $Model->where("HyNumber='$hynumber'")->setDec('eWallet1',5000);
+               $res= $Model->where("HyNumber='$hynumber'")->setDec('eWallet1',5000);
                 $Model->where("HyNumber='$Number'")->setInc('eWallet2',5000);
 
             }elseif($data['HyLevel1'] ==2){
-              //  $res= $Model->where("HyNumber='$hynumber'")->setDec('eWallet1',10000);
+               $res= $Model->where("HyNumber='$hynumber'")->setDec('eWallet1',10000);
                 $rs= $Model->where("HyNumber='$Number'")->setInc('eWallet2',10000);
             }
             $dat['wlmid']=$hynuber_id['id'];
             $ddgl =$ddglModel->add($dat);
+            if($ddgl){
+                $result['addinfo'] = '添加个人信息成功';
+            }else{
+                $result['addinfo'] = '添加个人信息失败';
+            }
 
-            $result['addinfo'] = '添加个人信息成功';
         }else{
-            $result['addinfo'] = '添加个人信息失败';
+
+            $this->error('添加个人信息失败');
         }
 
-        //$this->assign('result',$result);
-       // $this->display('success');
+        $this->assign('result',$result);
+       $this->display('success');
     }
 
 
@@ -391,8 +424,10 @@ class ManagementTeamController extends CommonController {
         $left=$lefts->left();
         $this->assign('userinfo',$left);
 
-        $count      = $Model->where("BelongWuliuNumber='$hynumber'")->count();// 查询满足要求的总记录数
-        $Page =$this->getpage($count,3);
+        //$count      = $Model->where("BelongWuliuNumber='$hynumber'")->count();// 查询满足要求的总记录数
+        $count =$Model->table('hyclub h')->join('LEFT JOIN ddgl d ON d.wlmid = h.ID') ->where("h.BelongWuliuNumber='$hynumber'")->count();
+
+        $Page =$this->getpage($count,4);
 
         // $Page       = new \Think\Page($count,1);// 实例化分页类 传入总记录数和每页显示的记录数(25)
         $show       = $Page->show();// 分页显示输出
@@ -416,8 +451,8 @@ class ManagementTeamController extends CommonController {
                 ->limit($Page->firstRow.",".$Page->listRows)
                 ->select();
         }
-
-        // $Demo->join('RIGHT JOIN think_work ON think_artist.id = think_work.artist_id' );
+        /*echo "<pre>";
+        print_r($list);exit;*/
 
         $this->assign('list',$list);// 赋值数据集
         $this->assign('page',$show);// 赋值分页输出*/
@@ -512,7 +547,14 @@ class ManagementTeamController extends CommonController {
 
         //会员激活删除
     public function Activate_delete(){
-
+        $id =I('id');
+        $User = M("hyclub"); // 实例化User对象
+       $res = $User->where("ID=".$id)->delete(); // 删除id为5的用户数据
+        if($res){
+            echo 1;
+        }else{
+            echo 0;
+        }
     }
     /***
      *  营销关系 二级密码验证
