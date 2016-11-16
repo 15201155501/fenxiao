@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8" />
 	<title>业务查询</title>
-	<base href="__PUBLIC__/" />
+	<base href="/Public/" />
 	<link rel="stylesheet" href="css/nsty.css" />
 	<link rel="stylesheet" href="css/public.css" />
 	<link rel="stylesheet" href="css/style.css" />
@@ -14,10 +14,135 @@
 <div class="nbodybg"></div>
 <div class="ncmtbox clearfix">
 	<!-- 导航部分 -->
-	<include file="Public:header" />
+	<div class="nnavtop">
+
+		<a href="javascript:;"class="nlogo"><img src="images/nlogo.png"></a>
+		<ul id="nav" class="nav clearfix">
+			<li class="nLi">
+				<h3><a href="/index.php/Home">首页</a></h3>
+			</li>
+			<li class="nLi">
+				<h3><a href="javascript:;" >管理团队<span></span></a></h3>
+				<ul class="sub">
+					<li>
+						<a href="/index.php/Home/ManagementTeam/select">业绩查询</a>
+					</li>
+					<li>
+						<a href="/index.php/Home/ManagementTeam/passthree">会员激活</a>
+					</li>
+					<li>
+						<a href="/index.php/Home/ManagementTeam/PassTwo">营销关系</a>
+					</li>
+					<li>
+						<a href="/index.php/Home/ManagementTeam/agent">申请服务中</a>
+					</li>
+				</ul>
+			</li>
+			<li class="nLi on">
+				<h3><a href="javascript:;" target="_blank">财务中心<span></span></a></h3>
+				<ul class="sub">
+					<li>
+						<a href="/index.php/Home/FinancialCenter/Verification">外部转币</a>
+					</li>
+					<li>
+						<a href="/index.php/Home/FinancialCenter/Withdraw">申请提现</a>
+					</li>
+				</ul>
+			</li>
+			<li class="nLi ">
+				<h3><a href="javascript:;" target="_blank">奖金管理<span></span></a></h3>
+				<ul class="sub">
+					<li>
+						<a href="/index.php/Home/BonusManagement/bonus">每日奖金</a>
+					</li>
+					<li>
+						<a href="/index.php/Home/BonusManagement/bonus_info">奖金明细</a>
+					</li>
+					<li>
+						<a href="/index.php/Home/BonusManagement/account_details">账目明细</a>
+					</li>
+					<li>
+						<a href="/index.php/Home/BonusManagement/shareholder_add">申请股东</a>
+					</li>
+				</ul>
+			</li>
+			<li class="nLi">
+				<h3><a href="javascript:;" target="_blank">信息安全<span></span></a></h3>
+				<ul class="sub">
+					<li>
+						<a href="/index.php/Home/InfoSafety/info_upd">个人资料</a>
+					</li>
+					<li>
+						<a href="/index.php/Home/InfoSafety/pwd_upd">修改密码</a>
+					</li>
+				
+				</ul>
+			</li>
+			<li class="nLi">
+				<h3><a href="javascript:;" target="_blank">服务台<span></span></a></h3>
+				<ul class="sub">
+					<li>
+						<a href="/index.php/Home/Reception/order">订单查询</a>
+					</li>
+					<li>
+						<a href="/index.php/Home/Reception/index">在线商城</a>
+					</li>
+					<li>
+						<a href="/index.php/Home/Reception/message">留言反馈</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
 	<div class="n_conmentbox">
 		<!-- 左侧部分 -->
-		<include file="Public:left" />
+		<div class="n_cmtltbox">
+			<a href="javascript:;"class="nphoto"><img src="images/npic1.png"></a>
+			<dl>
+				<dt>会员编号：</dt>
+				<dd><?php echo ($userinfo['hynumber']); ?></dd>
+			</dl>
+			<dl>
+				<dt>会员姓名：</dt>
+				<dd><?php echo ($userinfo['hyname']); ?></dd>
+			</dl>
+			<dl>
+				<dt>会员系统：</dt>
+				<dd><?php echo ($userinfo['stocklockedmoney']); ?>元</dd>
+			</dl>
+			<dl>
+				<dt>股东系统：</dt>
+				<dd><?php echo ($userinfo['stockburse']); ?>元</dd>
+			</dl>
+			<dl>
+				<dt>养老系统：</dt>
+				<dd><?php echo ($userinfo['fenhong']); ?>元</dd>
+			</dl>
+			<dl>
+				<dt>注册币：</dt>
+				<dd><?php echo ($userinfo['ewallet1']); ?>元</dd>
+			</dl>
+			<dl>
+				<dt>购物币：</dt>
+				<dd><?php echo ($userinfo['hyjoininvest1']); ?>元</dd>
+			</dl>
+			<dl>
+				<dt>奖金币：</dt>
+				<dd><?php echo ($userinfo['ewallet2']); ?>元</dd>
+			</dl>
+			<dl>
+				<dt>已购物：</dt>
+				<dd><?php echo ($userinfo['chijiang2']); ?>元</dd>
+			</dl>
+			<dl>
+				<dt>A市场：</dt>
+				<dd><?php echo ($userinfo['aall']); ?>人</dd>
+			</dl>
+			<dl>
+				<dt>B市场：</dt>
+				<dd><?php echo ($userinfo['ball']); ?>人</dd>
+			</dl>
+		</div>
 
 
 		<div class="L_person_know" class="L_box" style="display: none;background:#fff;margin-left:270px;position:absolute;z-index:10000;top:140px;">
@@ -62,7 +187,7 @@
 					</a>
 				</div>
 				<div class="L_person_bnt">
-					<a href="__URL__/Agent"><button id="bnts">确定</button></a>
+					<a href="/index.php/Home/ManagementTeam/Agent"><button id="bnts">确定</button></a>
 				</div>
 			</div>
 		</div>
@@ -79,7 +204,7 @@
 					<!--业务查询  -->
 					<div class="L_querys">
 						<div class="L_querys_search clearfix">
-							<form action="__URL__/select"  method="post" style="float: left;">
+							<form action="/index.php/Home/ManagementTeam/select"  method="post" style="float: left;">
 							<input placeholder="账户:" type="text" name="ParentNumber" id="Unam" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
 							<a>
 								<button type="submit" class="parentid" id="Usea">搜所</button>
@@ -96,46 +221,45 @@
 						<div class="L_querys_con">
 							<div class="L_querys_con1">
 								<p>
-									编号:<span>{$UserMember.hynumber}</span>
+									编号:<span><?php echo ($UserMember["hynumber"]); ?></span>
 								</p>
 								<p>
-									姓名:<span>{$UserMember.hyname}</span>
+									姓名:<span><?php echo ($UserMember["hyname"]); ?></span>
 								</p>
 								<p>
-									消费额度:<span>{$UserMember.hyjoininvest}</span>
+									消费额度:<span><?php echo ($UserMember["hyjoininvest"]); ?></span>
 								</p>
 								<p>
-									A市场业绩:<span>{$UserMember.aleftpoints}</span>
+									A市场业绩:<span><?php echo ($UserMember["aleftpoints"]); ?></span>
 								</p>
 								<p>
-									B市场业绩:<span>{$UserMember.bleftpoints}</span>
+									B市场业绩:<span><?php echo ($UserMember["bleftpoints"]); ?></span>
 								</p>
 							</div>
 							<div class="L_querys_conm clearfix">
-								<volist name="UserModel" id="vo">
-								<?php if($vo['hynumber'] !='' && $vo['hylocation']==1  && $vo['isapproved']==1){ ?>
-									<form name="myForm" action="__URL__/select"  method="post">
-										<input type="hidden" name="ParentNumber" value="{$vo.hynumber}">
+								<?php if(is_array($UserModel)): $i = 0; $__LIST__ = $UserModel;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo['hynumber'] !='' && $vo['hylocation']==1 && $vo['isapproved']==1){ ?>
+									<form name="myForm" action="/index.php/Home/ManagementTeam/select"  method="post">
+										<input type="hidden" name="ParentNumber" value="<?php echo ($vo["hynumber"]); ?>">
 										<a href="javascript:document.myForm.submit();" >
 										<div class="L_querys_con1 fl">
 											<h3>A点</h3>
 											<p>
-												编号:<span>{$vo.hynumber}</span>
+												编号:<span><?php echo ($vo["hynumber"]); ?></span>
 											</p>
 											<p>
-												姓名:<span>{$vo.hyname}</span>
+												姓名:<span><?php echo ($vo["hyname"]); ?></span>
 											</p>
 										</div>
 										</a>
 									</form>
-									<?php }else if($vo['hynumber'] !='' && $vo['isapproved']==0 &&  $vo['hylocation']==1){ ?>
+									<?php }else if($vo['hynumber'] !='' && $vo['isapproved']==0 && $vo['hylocation']==1){ ?>
 									<div class="L_querys_con1 fl">
 										<h3>A点</h3>
 										<p>
-											编号:<span>{$vo.hynumber}</span>
+											编号:<span><?php echo ($vo["hynumber"]); ?></span>
 										</p>
 										<p>
-											姓名:<span>{$vo.hyname}</span>
+											姓名:<span><?php echo ($vo["hyname"]); ?></span>
 										</p>
 									</div>
 									<?php }else{ ?>
@@ -146,29 +270,29 @@
 									</div>
 									<?php  } ?>
 
-									<?php   if($vo['hynumber'] !='' && $vo['hylocation']==2  && $vo['isapproved']==1){ ?>
-									<form name="myForm" action="__URL__/select"  method="post">
-										<input type="hidden" name="ParentNumber" value="{$vo.hynumber}">
+									<?php  if($vo['hynumber'] !='' && $vo['hylocation']==2 && $vo['isapproved']==1){ ?>
+									<form name="myForm" action="/index.php/Home/ManagementTeam/select"  method="post">
+										<input type="hidden" name="ParentNumber" value="<?php echo ($vo["hynumber"]); ?>">
 										<a href="javascript:document.myForm.submit();" >
 										<div class="L_querys_con1 L_querys_con2 fr">
 												<h3>B点</h3>
 												<p>
-													编号:<span>{$vo.hynumber}</span>
+													编号:<span><?php echo ($vo["hynumber"]); ?></span>
 												</p>
 												<p>
-													姓名:<span>{$vo.hyname}</span>
+													姓名:<span><?php echo ($vo["hyname"]); ?></span>
 												</p>
 											</div>
 										</a>
 									</form>
-									<?php }else if($vo['hynumber'] !='' && $vo['hylocation']==2  && $vo['isapproved']==0){ ?>
+									<?php }else if($vo['hynumber'] !='' && $vo['hylocation']==2 && $vo['isapproved']==0){ ?>
 										<div class="L_querys_con1 L_querys_con2 fr">
 											<h3>B点</h3>
 											<p>
-												编号:<span>{$vo.hynumber}</span>
+												编号:<span><?php echo ($vo["hynumber"]); ?></span>
 											</p>
 											<p>
-												姓名:<span>{$vo.hyname}</span>
+												姓名:<span><?php echo ($vo["hyname"]); ?></span>
 											</p>
 										</div>
 									<?php  }else{ ?>
@@ -176,9 +300,7 @@
 												<h3>B点</h3>
 												<p>空市场</p>
 											</div>
-									<?php  } ?>
-
-								</volist>
+									<?php  } endforeach; endif; else: echo "" ;endif; ?>
 
 									<!--<div class="L_querys_con1 L_querys_con2 fr">
 									<h3>B点</h3>
@@ -195,9 +317,7 @@
 								</div>-->
 
 							</div>
-							<!--<volist name="UserModel" id="vo">
-
-							</volist>-->
+							<!--<?php if(is_array($UserModel)): $i = 0; $__LIST__ = $UserModel;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; endforeach; endif; else: echo "" ;endif; ?>-->
 						</div>
 					</div>
 				</div>
@@ -237,7 +357,7 @@
 
 /*	$('.parentid').click(function(){
 		var Unam=$("#Unam").val();
-		$.post("__APP__/Home/ManagementTeam/select",{ParentNumber:Unam},function(result) {
+		$.post("/index.php/Home/ManagementTeam/select",{ParentNumber:Unam},function(result) {
 			alert(result);
 			if(result ==0){
 				alert('没有改账号');

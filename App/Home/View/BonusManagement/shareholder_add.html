@@ -69,7 +69,7 @@
 								<span>申请股东</span>
 							</div>
 							<div class="L_person_con">
-								<form action="__URL__/shareholder">
+								<form action="__URL__/shareholder" method="post">
 									<div class="nsqgbox">
 										<dl>
 											<dt>申请类型：</dt>
@@ -78,7 +78,6 @@
 													<option value="B">申请股东分红</option>
 												</select>
 												</dd>
-
 										</dl>
 										<dl>
 											<dt>注册币：</dt>
@@ -90,13 +89,13 @@
 										</dl>
 										<dl>
 											<dt>会员编号：</dt>
-											<dd><input id="hynumber" id="hynumber" type="text" value="{$userinfo.hynumber}">
+											<dd><input id="hynumber" id="hynumber" type="text" value="">
 												<button type="button" id="veration_number" class="nbtnmsjh">会员验证</button>
 											</dd>
 										</dl>
 										<dl>
 											<dt>报单中心编号：</dt>
-											<dd><input type="text" id="hymumber_member" name="hymumber_member" value=""></dd>
+											<dd><input type="text" id="hymumber_member" name="hymumber_member" value="{$userinfo.hynumber}"></dd>
 										</dl>
 									</div>
 									<div class="clearfix">
@@ -149,15 +148,16 @@
 
 					$.post("__APP__/Home/BonusManagement/VerificationAccount",{hynumber:hynumber},function(result) {
 						if(result==1){
+							alert('恭喜当前用户可申请成为股东');
 							$("#veration_number").html("验证成功");
+							return true;
 						}else{
+							alert('该会员还没有资格成功股东');
 							$("#veration_number").html("验证失败");
+							return false;
 						}
 
 					});
-
-
-
 				});
 
 				$('#cation_number').click(function(){
