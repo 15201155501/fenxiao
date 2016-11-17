@@ -95,9 +95,9 @@
 						</div>
 						<div class="L_querys_con">
 							<div class="L_querys_con1">
-							<form name="myForm22" action="__URL__/select"  method="post">
+							<form name="myFormPar" action="__URL__/select"  method="post">
 									<input type="hidden" name="ParentNumber" value="{$vo.hynumber}">
-									<a href="javascript:document.myForm.submit();" >
+									<a href="javascript:document.myFormPar.submit();" >
 								<p>
 									编号:<span>{$UserMember.hynumber}</span>
 								</p>
@@ -120,9 +120,9 @@
 							<div class="L_querys_conm clearfix">
 								<volist name="UserModel" id="vo">
 									<if condition="($vo.hylocation eq 1) AND ($vo.isapproved eq 1) AND ($vo.hynumber neq '')" >
-										<form name="myForm" action="__URL__/select"  method="post">
+										<form name="myFormNum" action="__URL__/select"  method="post">
 											<input type="hidden" name="ParentNumber" value="{$vo.hynumber}">
-											<a href="javascript:document.myForm.submit();" >
+											<a href="javascript:document.myFormNum.submit();" >
 												<div class="L_querys_con1 fl">
 													<h3>A点</h3>
 													<p>
@@ -154,9 +154,9 @@
 									</if>
 
 									<if condition="($vo.hylocation eq 2) AND ($vo.isapproved eq 1) AND ($vo.hynumber neq '')" >
-										<form name="myForm" action="__URL__/select"  method="post">
+										<form name="myFormBnum" action="__URL__/select"  method="post">
 											<input type="hidden" name="ParentNumber" value="{$vo.hynumber}">
-											<a href="javascript:document.myForm.submit();" >
+											<a href="javascript:document.myFormBnum.submit();" >
 												<div class="L_querys_con1 L_querys_con2 fr">
 													<h3>B点</h3>
 													<p>

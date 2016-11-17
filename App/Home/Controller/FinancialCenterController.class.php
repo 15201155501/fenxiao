@@ -35,7 +35,7 @@ class FinancialCenterController extends CommonController {
         $Model=M('hytranslog');
         $UserModel=M('hyclub');
         $hynumber =session('hynumber');
-       $userinfo = $UserModel->field('BUsedPoints,StockNum,eWallet1,eWallet2,baodanfei')->where("HyNumber='$hynumber'")->select();
+       $userinfo = $UserModel->field('BUsedPoints,StockNum,HyMobile,eWallet1,eWallet2,baodanfei')->where("HyNumber='$hynumber'")->select();
         $userin =isset($userinfo[0]) ? $userinfo[0] : '';
         $count  = $Model->where("(TransType =25 or  TransType =26 or  TransType =27 or  TransType =28 or  TransType =229 or  TransType =30) and (HyNumberFrom ='$hynumber'  or  HyNumberto ='$hynumber')")->count();// 查询满足要求的总记录数
         $Page =$this->getpage($count,2);
@@ -47,6 +47,32 @@ class FinancialCenterController extends CommonController {
         $this->assign('userin',$userin);
         $this->display();
     }
+
+    /**
+     * 手机号验证
+     */
+    public function sendMessage(){
+        //获取要发送的验证码和手机号
+        $p = I('post.p');
+        $code = I('post.code');
+
+        // 存取验证码
+        session($p,$code);
+
+        //发送验证码
+        $url = "http://api.app2e.com/smsBigSend.api.php";
+        $post_data = "pwd=".md5('FqTa8a9Z')."&username=bjytysm&p=$p&msg=【人人投】验证码：$code&charSetStr=utf";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+        $output = curl_exec($ch);
+        curl_close($ch);
+        //打印获得的数据
+        print_r($output);
+    }
+
     /**
      * 验证转账账号
      */

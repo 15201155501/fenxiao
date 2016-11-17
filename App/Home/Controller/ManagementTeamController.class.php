@@ -49,7 +49,7 @@ class ManagementTeamController extends CommonController {
         $this->assign('UserModel',$UserModel);
 
 
-        /*$activation_number ='gs0007';
+     /*   $activation_number ='gs0007';
         $numarray = $this->MemberSystem($activation_number);
 
         //查询新用户是 一星会员 还是二星
@@ -68,15 +68,13 @@ class ManagementTeamController extends CommonController {
         $hyparentnumber= $numarray[0]['hyparentnumber'];
         $ewallet2 =$Model->where("HyNumber='$hyparentnumber'")->setInc('eWallet2',$getwall2);*/
         //获取顶层会员信息
-      //  $count =count($numarray)-1;
-       /* echo "<pre>";
-        print_r($count);exit;*/
+        /*$count =count($numarray)-1;
 
-      /*  $top = $numarray[$count];
-        $pnumber =$top['hynumber']; //获取顶层用户信息*/
+        $top = $numarray[$count];
+        $pnumber =$top['hynumber']; //获取顶层用户信息
         //返利给顶级用户 补贴
 
-       /* $newdata = $this->PcSystem($pnumber,$count); //$pnumber 顶层用户编号  重上往下查
+        $newdata = $this->PcSystem($pnumber,$count); //$pnumber 顶层用户编号  重上往下查
         $search_number =$this->FindHyNumber($newdata,$activation_number);
         $level =$newdata[$search_number]['level']; //查询这个用户所属第几层
        if($level>=3){
@@ -87,7 +85,7 @@ class ManagementTeamController extends CommonController {
        echo "<pre>";
         print_r($newdata);*/
         //判断满层 返利满层奖 4000
-       /* if($level>=2){
+     /*   if($level>=2){
             $fall =$this->Fulllayer($newdata,$level);
             if($fall==1){
                 $fallwall2 = 4000*0.9; //平衡奖
@@ -228,7 +226,7 @@ class ManagementTeamController extends CommonController {
             return $fall;
         }
     }
-//多维数组查询
+    //多维数组查询
     function FindHyNumber(&$arr,$hynumber){
         foreach($arr as $k=>$t){
             if(in_array($hynumber,$t))
@@ -236,10 +234,6 @@ class ManagementTeamController extends CommonController {
         }
         return false;
     }
-
-
-
-
 
     /***
      *  报单显示页面
