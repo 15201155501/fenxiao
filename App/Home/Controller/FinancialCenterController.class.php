@@ -92,9 +92,17 @@ class FinancialCenterController extends CommonController {
      * 提交转账
      */
     public function llreflec(){
+        //判断用户手机验证码是否正确
+        $hymobile =I('hymobile');
+        $code =I('code');
+        if($code != session($hymobile)){
+            echo 3;exit;
+        }
+
+
         $hynumber =session('hynumber');
         $moneycount = I('moneycount');
-        $hynumberto =I('hynumberto'); //接受账号
+        $hynumberto =I('hynumberto');
         $memo = I('memo');
         $passwd2 = I('passwd2');
         $data['ewallet1'] = I('ewallet1');
@@ -106,7 +114,6 @@ class FinancialCenterController extends CommonController {
         $hynuber=$Model->where("HyNumber='$hynumberto' AND IsApproved='1'")->field('HyNumber')->find();
         if(empty($hynuber)){
             echo 4;
-            return;
         }
         $hypassword2=$Model->where("HyNumber='$hynumber'")->field('HyPassword2')->find();
 
